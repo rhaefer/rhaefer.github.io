@@ -199,10 +199,27 @@ $(document).ready(function () {
 
 
 <p>Hello, Website!</p>
-<pre class="r"><code>library(datasets)
-library(ggplot2)</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.2.5</code></pre>
-<pre class="r"><code>ggplot(mtcars, aes( hp, disp)) + geom_point()</code></pre>
+<pre class="r"><code>library(pacman)
+pacman::p_load(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+
+
+data &lt;- data.frame(gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;))
+pop &lt;- data.frame(gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;))
+
+data_sum&lt;-data %&gt;% 
+  group_by(Sponsor, ID, Title, Total.Project.Cost) %&gt;%
+  summarise(psrc_funds = sum(PSRC.Funds), phases=paste(Phase.s., collapse=&quot; &amp; &quot;))
+
+data_final&lt;-left_join(pop, data_sum, by=&quot;ID&quot;) %&gt;% select (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
+data_final&lt;-data_final[complete.cases(data_final),]
+
+data_final$X2010.Population&lt;-gsub(&quot;,&quot;,&quot;&quot;,data_final$X2010.Population)
+data_final$X2010.Population&lt;-as.numeric(data_final$X2010.Population)
+
+data_final &lt;- data_final %&gt;% mutate (jurisdiction_size= ifelse(X2010.Population &lt;50000, &quot;Small Size Jurisdiction&quot;, ifelse(X2010.Population &gt;= 50000 &amp; X2010.Population &lt; 100000, &quot;Medium Size Jurisdiction&quot;,ifelse(X2010.Population &gt;= 100000 &amp; X2010.Population &lt; 300000, &quot;Large Size Jurisdiction&quot;, ifelse(X2010.Population &gt;= 300000 , &quot;Largest Size Jurisdiction&quot;, &quot;Not Applicable&quot;)))))
+
+
+ggplot(data_final, aes (phases.y,psrc_funds)) +geom_bar(stat=&quot;identity&quot;) + theme_economist() +coord_flip() </code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 
 
