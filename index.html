@@ -216,7 +216,7 @@ data_final&lt;-data_final[complete.cases(data_final),]
 data_final$X2010.Population&lt;-gsub(&quot;,&quot;,&quot;&quot;,data_final$X2010.Population)
 data_final$X2010.Population&lt;-as.numeric(data_final$X2010.Population)
 
-data_final &lt;- data_final %&gt;% mutate (jurisdiction_size= ifelse(X2010.Population &lt;50000, &quot;Small Size Jurisdiction&quot;, ifelse(X2010.Population &gt;= 50000 &amp; X2010.Population &lt; 100000, &quot;Medium Size Jurisdiction&quot;,ifelse(X2010.Population &gt;= 100000 &amp; X2010.Population &lt; 300000, &quot;Large Size Jurisdiction&quot;, ifelse(X2010.Population &gt;= 300000 , &quot;Largest Size Jurisdiction&quot;, &quot;Not Applicable&quot;)))))
+data_final &lt;- data_final %&gt;% mutate (jurisdiction_size= ifelse(X2010.Population &lt;50000, &quot;Small Size Jurisdiction&quot;, ifelse(X2010.Population &gt;= 50000 &amp; X2010.Population &lt; 100000, &quot;Medium Size Jurisdictions&quot;,ifelse(X2010.Population &gt;= 100000 &amp; X2010.Population &lt; 300000, &quot;Large Size Jurisdiction&quot;, ifelse(X2010.Population &gt;= 300000 , &quot;Largest Size Jurisdiction&quot;, &quot;Not Applicable&quot;)))))
 
 
 ggplot(data_final, aes (phases.y,psrc_funds)) +geom_bar(stat=&quot;identity&quot;) + theme_economist() +coord_flip() </code></pre>

@@ -4,7 +4,7 @@ title: "PSRC TIP Website"
   
 Hello, Website!
 
-```{r results='hide', message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 
 library(pacman)
 pacman::p_load(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
