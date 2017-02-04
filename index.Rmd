@@ -3,3 +3,11 @@ title: "PSRC TIP Website"
 ---
   
 Hello, Website!
+
+```{r}
+library(datasets)
+library(ggplot2)
+
+ggplot(mtcars, aes( hp, disp)) + geom_point()
+
+```
