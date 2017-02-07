@@ -28,4 +28,5 @@ data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population 
 
 ggplot(data_final, aes (phases.y,psrc_funds)) +geom_bar(stat="identity") + theme_economist() +coord_flip() 
 
+asdfsfsdf
 ```
