@@ -23,7 +23,9 @@ data_final<-data_final[complete.cases(data_final),]
 data_final$X2010.Population<-gsub(",","",data_final$X2010.Population)
 data_final$X2010.Population<-as.numeric(data_final$X2010.Population)
 
-data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population <50000, "Small Size Jurisdiction", ifelse(X2010.Population >= 50000 & X2010.Population < 100000, "Medium Size Jurisdictions",ifelse(X2010.Population >= 100000 & X2010.Population < 300000, "Large Size Jurisdiction", ifelse(X2010.Population >= 300000 , "Largest Size Jurisdiction", "Not Applicable")))))
+data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population <50000, "Small Size Jurisdiction", 
+                                            ifelse(X2010.Population >= 50000 & X2010.Population < 100000, "Medium Size Jurisdictions",
+                                                   ifelse(X2010.Population >= 100000 & X2010.Population < 300000, "Large Size Jurisdiction",    ifelse(X2010.Population >= 300000 , "Largest Size Jurisdiction", "Not Applicable")))))
 
 
 ggplot(data_final, aes (phases.y,psrc_funds)) +geom_bar(stat="identity") + theme_economist() +coord_flip() 
