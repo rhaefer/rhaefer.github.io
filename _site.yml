@@ -9,3 +9,16 @@ navbar:
       href: about.html
     - text: "Publications"
       href: publication.html
+    - text: "Mapping"
+      href: mapping.html
+    - text: "Data Analysis"
+      href: data_analysis.html
+    - text: "Visualization"
+      href: visualization.html
+    - text: "CV"
+      href: cv.html
+    - text: "Blog"
+      href: blog.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/rhaefer/rhaefer.github.io

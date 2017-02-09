@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="reid" />
 
 
-<title>PSRC TIP Website</title>
+<title>Mapping</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -217,12 +218,32 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">PSRC TIP Website</h1>
+<h1 class="title toc-ignore">Mapping</h1>
+<h4 class="author"><em>reid</em></h4>
+<h4 class="date"><em>February 9, 2017</em></h4>
 
 </div>
 
 
-<p>This is the website</p>
+<pre class="r"><code>library(pacman)
+pacman::p_load(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+
+setwd(&quot;X:/Trans/STAFF/Reid/viz/ggmap&quot;)
+shapefile &lt;- readOGR(dsn=&quot;.&quot;, layer=&quot;progress_reports&quot;)</code></pre>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;.&quot;, layer: &quot;progress_reports&quot;
+## with 167 features
+## It has 116 fields</code></pre>
+<pre class="r"><code>shapefile&lt;-spTransform(shapefile, CRS(&quot;+proj=longlat +datum=WGS84&quot;))
+seattle&lt;- c(lon = -122.335167, lat = 47.608013)
+seattle_map_bw &lt;- get_map(seattle, zoom = 9, scale=1, maptype=&quot;toner-lite&quot;, source=&quot;stamen&quot;)
+ggmap(seattle_map_bw) + 
+  geom_path(data=shapefile, aes(x=long, y=lat, group=group, color=&quot;red&quot;), size=.9) + 
+  theme (axis.text.x=element_blank(), axis.text.y=element_blank(), axis.ticks.x=element_blank(), axis.ticks.y=element_blank() ,
+         axis.title.x=element_blank(), axis.title.y=element_blank(),panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=3),
+         legend.position=&quot;none&quot;) +
+  ggtitle(&quot;Active PSRC Funded Projects&quot;)</code></pre>
+<p><img src="mapping_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 
 
 
