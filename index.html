@@ -203,10 +203,44 @@ $(document).ready(function () {
 
 <p>Hello, Website!</p>
 <pre class="r"><code>library(pacman)
-pacman::p_load(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
-
-
-data &lt;- data.frame(gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;))
+pacman::p_load(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)</code></pre>
+<pre><code>## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages
+## 
+## The downloaded binary packages are in
+##  /var/folders/0s/cjf5jqwd7tl8jhvz7k6ls1s80000gn/T//RtmpXpAX5u/downloaded_packages</code></pre>
+<pre class="r"><code>data &lt;- data.frame(gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;))
 pop &lt;- data.frame(gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;))
 
 data_sum&lt;-data %&gt;% 

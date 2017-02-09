@@ -7,5 +7,10 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+<<<<<<< Updated upstream
     - text: "data"
       href: data.html
+=======
+    
+      
+>>>>>>> Stashed changes
