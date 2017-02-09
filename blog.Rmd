@@ -2,7 +2,10 @@
 title: "Blog"
 author: "reid"
 date: "February 9, 2017"
-output: html_document
+output:
+  html_document:
+    theme: cerulean
+    highlight: tango
 ---
 
 blog

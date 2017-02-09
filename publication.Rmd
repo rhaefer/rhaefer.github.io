@@ -1,6 +1,9 @@
 ---
 title: "publication"
-output: html_document
+output:
+  html_document:
+    theme: cerulean
+    highlight: tango
 ---
 
 ```{r setup, include=FALSE}

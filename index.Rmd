@@ -1,5 +1,9 @@
 ---
 title: "PSRC TIP Website"
+output:
+  html_document:
+    theme: cerulean
+    highlight: tango
 ---
   
 This is the website
