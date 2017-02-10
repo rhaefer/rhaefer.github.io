@@ -6,4 +6,4 @@ output:
     highlight: tango
 ---
   
-This is the website
+![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/satellite.jpg)
