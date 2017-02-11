@@ -1,6 +1,6 @@
 ---
 title: "........."
-date: "`r format(Sys.time(), '%d %B, %Y - %H:%M:%S')`"
+date: "`r format(Sys.time(), '%d %B, %Y - %r')`"
 output:
   html_document:
     theme: cerulean
