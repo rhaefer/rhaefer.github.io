@@ -1,5 +1,9 @@
 ---
+<<<<<<< Updated upstream
 title: "Publications"
+=======
+title: "publication"
+>>>>>>> Stashed changes
 output:
   html_document:
     theme: cerulean

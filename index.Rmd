@@ -1,11 +1,20 @@
 ---
+<<<<<<< Updated upstream
 title: "_________"
 date: "`r format(Sys.time(), '%d %B, %Y - %r')`"
+=======
+title: "PSRC TIP Website"
+>>>>>>> Stashed changes
 output:
   html_document:
     theme: cerulean
     highlight: tango
 ---
+<<<<<<< Updated upstream
 
   
 ![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/satellite.jpg)
+=======
+  
+This is the website
+>>>>>>> Stashed changes
