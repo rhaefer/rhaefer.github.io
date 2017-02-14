@@ -9,10 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="reid" />
 
 
-<title>Mapping</title>
+<title>maps</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,6 +20,13 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-0.7.3/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-0.7.3/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="site_libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="site_libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="site_libs/leaflet-binding-1.0.1.9003/leaflet.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -246,9 +252,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Mapping</h1>
-<h4 class="author"><em>reid</em></h4>
-<h4 class="date"><em>February 9, 2017</em></h4>
+<h1 class="title toc-ignore">maps</h1>
 
 </div>
 
@@ -257,21 +261,25 @@ $(document).ready(function () {
 pacman::<span class="kw">p_load</span>(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
 <span class="kw">setwd</span>(<span class="st">&quot;X:/Trans/STAFF/Reid/viz/ggmap&quot;</span>)
-shapefile &lt;-<span class="st"> </span><span class="kw">readOGR</span>(<span class="dt">dsn=</span><span class="st">&quot;.&quot;</span>, <span class="dt">layer=</span><span class="st">&quot;progress_reports&quot;</span>)</code></pre></div>
-<pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;.&quot;, layer: &quot;progress_reports&quot;
-## with 167 features
-## It has 116 fields</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shapefile&lt;-<span class="kw">spTransform</span>(shapefile, <span class="kw">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>))
+shapefile &lt;-<span class="st"> </span><span class="kw">readOGR</span>(<span class="dt">dsn=</span><span class="st">&quot;.&quot;</span>, <span class="dt">layer=</span><span class="st">&quot;progress_reports&quot;</span>,<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
+shapefile&lt;-<span class="kw">spTransform</span>(shapefile, <span class="kw">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>))
 seattle&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">lon =</span> -<span class="fl">122.335167</span>, <span class="dt">lat =</span> <span class="fl">47.608013</span>)
-seattle_map_bw &lt;-<span class="st"> </span><span class="kw">get_map</span>(seattle, <span class="dt">zoom =</span> <span class="dv">9</span>, <span class="dt">scale=</span><span class="dv">1</span>, <span class="dt">maptype=</span><span class="st">&quot;toner-lite&quot;</span>, <span class="dt">source=</span><span class="st">&quot;stamen&quot;</span>)
+seattle_map_bw &lt;-<span class="st"> </span><span class="kw">get_map</span>(seattle, <span class="dt">zoom =</span> <span class="dv">9</span>, <span class="dt">scale=</span><span class="dv">1</span>, <span class="dt">maptype=</span><span class="st">&quot;toner-lite&quot;</span>, <span class="dt">source=</span><span class="st">&quot;stamen&quot;</span> )
 <span class="kw">ggmap</span>(seattle_map_bw) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data=</span>shapefile, <span class="kw">aes</span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>), <span class="dt">size=</span>.<span class="dv">9</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span> (<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.text.y=</span><span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.ticks.y=</span><span class="kw">element_blank</span>() ,
-         <span class="dt">axis.title.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.title.y=</span><span class="kw">element_blank</span>(),<span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="ot">NA</span>, <span class="dt">size=</span><span class="dv">3</span>),
-         <span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) +
+<span class="st">  </span><span class="kw">theme</span> (<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.text.y=</span><span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.ticks.y=</span><span class="kw">element_blank</span>() , <span class="dt">axis.title.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.title.y=</span><span class="kw">element_blank</span>(),<span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="ot">NA</span>, <span class="dt">size=</span><span class="dv">3</span>),<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) +
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Active PSRC Funded Projects&quot;</span>)</code></pre></div>
 <p><img src="mapping_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(leaflet)
+
+m &lt;-<span class="st"> </span><span class="kw">leaflet</span>() %&gt;%
+<span class="st">  </span><span class="kw">addTiles</span>() %&gt;%<span class="st">  </span><span class="co"># Add default OpenStreetMap map tiles</span>
+<span class="st">  </span><span class="kw">addMarkers</span>(<span class="dt">lng=</span><span class="fl">174.768</span>, <span class="dt">lat=</span>-<span class="fl">36.852</span>, <span class="dt">popup=</span><span class="st">&quot;The birthplace of R&quot;</span>)
+m </code></pre></div>
+<div id="htmlwidget-87553aea5eb12c10b035" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-87553aea5eb12c10b035">{"x":{"calls":[{"method":"addTiles","args":["http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap\u003c/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA\u003c/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<p><a href="https://public.tableau.com/profile/reid5830#!/vizhome/projectselectionstory_test/Story1"><img src="images/tableau_dashboard.png" alt="Tableau Dashboard" /></a></p>
 
 
 

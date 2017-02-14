@@ -1,37 +1,8 @@
 ---
-title: "data_analysis"
-author: "reid"
-date: "February 9, 2017"
+title: "data analysis"
 output:
   html_document:
     theme: cerulean
     highlight: tango
 ---
 
-```{r message=FALSE, warning=FALSE}
-
-library(pacman)
-pacman::p_load(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
-
-
-data <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing"))
-pop <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing"))
-
-data_sum<-data %>% 
-  group_by(Sponsor, ID, Title, Total.Project.Cost) %>%
-  summarise(psrc_funds = sum(PSRC.Funds), phases=paste(Phase.s., collapse=" & "))
-
-data_final<-left_join(pop, data_sum, by="ID") %>% select (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
-data_final<-data_final[complete.cases(data_final),]
-
-data_final$X2010.Population<-gsub(",","",data_final$X2010.Population)
-data_final$X2010.Population<-as.numeric(data_final$X2010.Population)
-
-data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population <50000, "Small Size Jurisdiction", 
-                                            ifelse(X2010.Population >= 50000 & X2010.Population < 100000, "Medium Size Jurisdictions",
-                                                   ifelse(X2010.Population >= 100000 & X2010.Population < 300000, "Large Size Jurisdiction",    ifelse(X2010.Population >= 300000 , "Largest Size Jurisdiction", "Not Applicable")))))
-
-
-ggplot(data_final, aes (phases.y,psrc_funds)) +geom_bar(stat="identity") + theme_economist() +coord_flip() 
-
-```

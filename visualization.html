@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="reid" />
 
 
 <title>visualization</title>
@@ -21,13 +20,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/htmlwidgets-0.8/htmlwidgets.js"></script>
-<link href="site_libs/leaflet-0.7.3/leaflet.css" rel="stylesheet" />
-<script src="site_libs/leaflet-0.7.3/leaflet.js"></script>
-<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<link href="site_libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
-<script src="site_libs/leaflet-label-0.2.2/leaflet.label.js"></script>
-<script src="site_libs/leaflet-binding-1.0.1.9003/leaflet.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -254,20 +246,35 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">visualization</h1>
-<h4 class="author"><em>reid</em></h4>
-<h4 class="date"><em>February 9, 2017</em></h4>
 
 </div>
 
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(leaflet)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pacman)
+pacman::<span class="kw">p_load</span>(grid, gridExtra,Rmisc,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
-m &lt;-<span class="st"> </span><span class="kw">leaflet</span>() %&gt;%
-<span class="st">  </span><span class="kw">addTiles</span>() %&gt;%<span class="st">  </span><span class="co"># Add default OpenStreetMap map tiles</span>
-<span class="st">  </span><span class="kw">addMarkers</span>(<span class="dt">lng=</span><span class="fl">174.768</span>, <span class="dt">lat=</span>-<span class="fl">36.852</span>, <span class="dt">popup=</span><span class="st">&quot;The birthplace of R&quot;</span>)
-m </code></pre></div>
-<div id="htmlwidget-e34f79db93e04b70e7de" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e34f79db93e04b70e7de">{"x":{"calls":[{"method":"addTiles","args":["http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap\u003c/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA\u003c/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;</span>))
+pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))
+
+data_sum&lt;-data %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Sponsor, ID, Title, Total.Project.Cost) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">psrc_funds =</span> <span class="kw">sum</span>(PSRC.Funds), <span class="dt">phases=</span><span class="kw">paste</span>(Phase.s., <span class="dt">collapse=</span><span class="st">&quot; &amp; &quot;</span>))
+
+data_final&lt;-<span class="kw">left_join</span>(pop, data_sum, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">select</span> (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
+
+data_final&lt;-data_final[<span class="kw">complete.cases</span>(data_final),]
+
+data_final$X2010.Population&lt;-<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>,data_final$X2010.Population)
+data_final$X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final$X2010.Population)
+
+data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population &lt;<span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">50000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">100000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
+
+<span class="kw">ggplot</span>(data_final, <span class="kw">aes</span> (phases.y,psrc_funds)) +<span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="st"> </span><span class="kw">theme_economist</span>() +<span class="kw">coord_flip</span>() </code></pre></div>
+<p><img src="visualization_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="figure">
+<img src="images/fleet.png" />
+
+</div>
 
 
 
