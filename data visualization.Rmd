@@ -1,5 +1,5 @@
 ---
-title: "data Visualization"
+title: "Data Visualization"
 output:
   html_document:
     theme: cerulean

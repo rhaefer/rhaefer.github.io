@@ -1,5 +1,5 @@
 ---
-title: "data analysis"
+title: "Data Analysis"
 output:
   html_document:
     theme: cerulean
