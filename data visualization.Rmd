@@ -1,0 +1,89 @@
+---
+title: "data Visualization"
+output:
+  html_document:
+    theme: cerulean
+    highlight: tango
+---
+
+
+```{r message=FALSE, warning=FALSE}
+library(pacman)
+pacman::p_load(shiny,shinydashboard , raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
+               rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
+
+setwd("X:/Trans/STAFF/Reid/Project Tracking/progress_reports")
+shapefile <- readOGR(dsn=".", layer="progress_reports",verbose = FALSE)
+shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
+
+    leaflet() %>%
+      fitBounds(-122.2, 47.187, -122.4, 47.932)%>%
+      addProviderTiles("Stamen.TonerLite", group = "Toner Lite") %>%
+      addPolylines(data=shapefile, weight=4, color="red",
+                   popup=paste(sep="<br/>",paste("<b>Sponsor:</b> ",shapefile$Sponsor),paste("<b>Title:</b> ",shapefile$ProjectTit), paste("<b>Milestone:</b> ",shapefile$milestone))) 
+
+```
+___________________________________________________________________________________
+
+
+```{r message=FALSE, warning=FALSE}
+
+library(pacman)
+pacman::p_load(grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+
+setwd("X:/Trans/STAFF/Reid/viz/ggmap")
+shapefile <- readOGR(dsn=".", layer="progress_reports",verbose = FALSE)
+shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
+seattle<- c(lon = -122.335167, lat = 47.608013)
+seattle_map_bw <- get_map(seattle, zoom = 9, scale=1, maptype="toner-lite", source="stamen" )
+ggmap(seattle_map_bw) + 
+  geom_path(data=shapefile, aes(x=long, y=lat, group=group, color="red"), size=.9) + 
+  theme (axis.text.x=element_blank(), axis.text.y=element_blank(), axis.ticks.x=element_blank(), axis.ticks.y=element_blank() , axis.title.x=element_blank(), axis.title.y=element_blank(),panel.border = element_rect(colour = "black", fill=NA, size=3),legend.position="none") +
+  ggtitle("Active PSRC Funded Projects")
+
+```
+
+____________________________________________________________________________________
+
+
+[![Tableau Dashboard](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/tableau_dashboard.png)](https://public.tableau.com/profile/reid5830#!/vizhome/projectselectionstory_test/Story1)
+
+
+```{r message=FALSE, warning=FALSE}
+
+library(pacman)
+pacman::p_load (gsheet,ggthemes,ggplot2,dplyr,reshape2,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)
+
+ii <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1LtNkmJpLy4nua9raN0vmytced9rhnP-buKgT_PTJ3iE/edit?usp=sharing"))
+fourteen<- ii %>% group_by(ageID) %>% summarise(total=sum(count))
+colnames(fourteen)<-c("age","total") 
+fourteen<-fourteen[1:30,]
+
+mpg <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1pS_jCOMXdeHPztkEyyhWzaQL4OV1x8520_ILFv66XCk/edit?usp=sharing"))
+mpg<-mpg[2:31,]
+data<-merge(mpg,fourteen, by="age")
+data$Perc <- data$total / sum(data$total) * 100
+
+g.bottom <- ggplot(data, aes(x = age, y = Perc)) +
+  geom_bar(stat="identity", fill="black") +
+  theme_economist() + 
+  theme(plot.margin = unit(c(0,5,30,30),units="points"),axis.title.y = element_text(vjust =3,size=9,face="bold"), axis.title.x = element_text(vjust=-1,size=10,face="bold"),axis.text.x=element_text(size=8,face="bold"), axis.text.y = element_text(size=8,face="bold"),
+        panel.background=element_rect(fill="#a7c1a6"), plot.background=element_rect(fill="#a7c1a6"))+
+  scale_x_continuous(breaks=0:29)+
+  scale_y_continuous(limits=c(0,7),breaks=1:7,labels=c("1 %","2 %","3 %","4 %","5 %","6 %","7 %"))+
+  labs(y = "Percentage of All Vehicles in Fleet",x = "Average Vehicle Age (Years)")
+
+g.top <- ggplot(data, aes(x = age, y = miles.per.gallon)) +
+  geom_line(size=1) +
+  geom_point(size=3)+
+  geom_point(size=1,color="white")+
+  theme_economist() +
+  scale_x_continuous(breaks=0:29)+
+  scale_y_continuous(limits=c(27,37),breaks=c(27,29,31,33,35,37),labels=c("27 mpg","29 mpg","31 mpg","33 mpg","35 mpg","37 mpg"))+ggtitle("Fuel Economy and Age Distribution of PSRC Vehicle Fleet (2014)")+
+  theme(plot.margin = unit(c(1,5,-10,30),units="points"), axis.title.y = element_text(vjust =3,size=9,face="bold"),plot.title = element_text(vjust=-.5,hjust=.8,size=12, face="bold"),axis.ticks.x = element_blank(), axis.text.x = element_blank(), axis.line.x=element_line(size=1),panel.background=element_rect(fill="#a7c1a6"), plot.background=element_rect(fill="#a7c1a6"),
+         axis.text.y = element_text(size=8,face="bold"))+
+  labs( y = "Fuel Economy (MPG)")
+
+grid.arrange(g.top,g.bottom, heights = c(1/2, 4/5))
+
+```

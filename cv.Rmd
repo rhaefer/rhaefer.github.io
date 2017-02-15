@@ -1,7 +1,5 @@
 ---
 title: "cv"
-author: "reid"
-date: "February 9, 2017"
 output:
   html_document:
     theme: cerulean
