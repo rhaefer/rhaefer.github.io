@@ -33,15 +33,14 @@ ggplot(data_final, aes (phases.y,psrc_funds)) +geom_bar(stat="identity") + theme
 ```
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load (ggthemes,ggplot2,dplyr,reshape2,plyr,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)
+pacman::p_load (googlesheets,ggthemes,ggplot2,dplyr,reshape2,plyr,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)
 
-setwd("X:/Trans/STAFF/Reid/Vehicle Age/PSRC 2014 data")
-ii<-read.csv("psrc_2014.csv",header=T)
+ii <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1LtNkmJpLy4nua9raN0vmytced9rhnP-buKgT_PTJ3iE/edit?usp=sharing"))
 fourteen<-ddply(ii, .(ageID), summarize, total=sum(count))
 colnames(fourteen)<-c("age","total") 
 fourteen<-fourteen[1:30,]
 
-mpg<-read.csv("2014 mpg.csv", header=T)
+mpg <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1pS_jCOMXdeHPztkEyyhWzaQL4OV1x8520_ILFv66XCk/edit?usp=sharing"))
 mpg<-mpg[2:31,]
 data<-merge(mpg,fourteen, by="age")
 data$Perc <- data$total / sum(data$total) * 100

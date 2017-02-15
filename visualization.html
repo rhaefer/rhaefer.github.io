@@ -273,15 +273,14 @@ data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </sp
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.background=</span><span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#a7c1a6&quot;</span>), <span class="dt">plot.background=</span><span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#a7c1a6&quot;</span>))</code></pre></div>
 <p><img src="visualization_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pacman)
-pacman::<span class="kw">p_load</span> (ggthemes,ggplot2,dplyr,reshape2,plyr,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)
+pacman::<span class="kw">p_load</span> (googlesheets,ggthemes,ggplot2,dplyr,reshape2,plyr,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)
 
-<span class="kw">setwd</span>(<span class="st">&quot;X:/Trans/STAFF/Reid/Vehicle Age/PSRC 2014 data&quot;</span>)
-ii&lt;-<span class="kw">read.csv</span>(<span class="st">&quot;psrc_2014.csv&quot;</span>,<span class="dt">header=</span>T)
+ii &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1LtNkmJpLy4nua9raN0vmytced9rhnP-buKgT_PTJ3iE/edit?usp=sharing&quot;</span>))
 fourteen&lt;-<span class="kw">ddply</span>(ii, .(ageID), summarize, <span class="dt">total=</span><span class="kw">sum</span>(count))
 <span class="kw">colnames</span>(fourteen)&lt;-<span class="kw">c</span>(<span class="st">&quot;age&quot;</span>,<span class="st">&quot;total&quot;</span>) 
 fourteen&lt;-fourteen[<span class="dv">1</span>:<span class="dv">30</span>,]
 
-mpg&lt;-<span class="kw">read.csv</span>(<span class="st">&quot;2014 mpg.csv&quot;</span>, <span class="dt">header=</span>T)
+mpg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1pS_jCOMXdeHPztkEyyhWzaQL4OV1x8520_ILFv66XCk/edit?usp=sharing&quot;</span>))
 mpg&lt;-mpg[<span class="dv">2</span>:<span class="dv">31</span>,]
 data&lt;-<span class="kw">merge</span>(mpg,fourteen, <span class="dt">by=</span><span class="st">&quot;age&quot;</span>)
 data$Perc &lt;-<span class="st"> </span>data$total /<span class="st"> </span><span class="kw">sum</span>(data$total) *<span class="st"> </span><span class="dv">100</span>
