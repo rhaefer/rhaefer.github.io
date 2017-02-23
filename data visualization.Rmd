@@ -6,7 +6,6 @@ output:
     highlight: tango
 ---
 
-
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
 pacman::p_load(raster,dplyr, leaflet, shiny, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, htmltools)
@@ -14,7 +13,6 @@ pacman::p_load(raster,dplyr, leaflet, shiny, rsconnect, rgdal, datasets, ggplot2
 setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/bird_data")
 
 bird<- read.csv("MyEBirdData.csv")
-
 bird$Location<-as.character(bird$Location)
 bird$Location[bird$Location=="US-WA-Renton-Cedar River Park - 47.4656x-122.1338"] <- "Cedar River Park"
 bird$lat <- jitter(bird$Latitude, factor = .2)
@@ -49,12 +47,12 @@ leaflet () %>%
     addMiniMap(toggleDisplay = TRUE) %>%
    addEasyButton(easyButton(
     icon="fa-globe", title="Zoom to Level 1",
-    onClick=JS("function(btn, map){ map.setZoom(4); }")))
-
+    onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
+    addLegend("topright", title= "Recent Bird Observations", colors= "#3487db", labels= "birds observed")
 
 ```
 _____________________________________________________________________________________
-Regional Transportation Projects
+
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
 pacman::p_load(shiny,shinydashboard , raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
@@ -70,11 +68,10 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
       addPolylines(data=shapefile, weight=4, color="red",
                    popup=paste(sep="<br/>",paste("<b>Jurisdiction:</b> ",shapefile$Sponsor),paste("<b>Project Title:</b> ",shapefile$ProjectTit), paste("<b>Status:</b> ",shapefile$milestone))) %>%
       addMiniMap(toggleDisplay = TRUE) %>%
-
+       addLegend("topright", title= "Regional Transportation Projects", colors= "#c60905", labels= "project")
 
 ```
 ___________________________________________________________________________________
-
 
 
 [![Tableau Dashboard](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/tableau_dashboard.png)](https://public.tableau.com/profile/reid5830#!/vizhome/projectselectionstory_test/Story1)
