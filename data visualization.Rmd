@@ -20,30 +20,13 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
       fitBounds(-122.2, 47.187, -122.4, 47.932)%>%
       addProviderTiles("Stamen.TonerLite", group = "Toner Lite") %>%
       addPolylines(data=shapefile, weight=4, color="red",
-                   popup=paste(sep="<br/>",paste("<b>Sponsor:</b> ",shapefile$Sponsor),paste("<b>Title:</b> ",shapefile$ProjectTit), paste("<b>Milestone:</b> ",shapefile$milestone))) 
+                   popup=paste(sep="<br/>",paste("<b>Jurisdiction:</b> ",shapefile$Sponsor),paste("<b>Project Title:</b> ",shapefile$ProjectTit), paste("<b>Status:</b> ",shapefile$milestone))) 
 
 ```
 ___________________________________________________________________________________
 
 
-```{r message=FALSE, warning=FALSE}
 
-library(pacman)
-pacman::p_load(grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
-
-setwd("X:/Trans/STAFF/Reid/viz/ggmap")
-shapefile <- readOGR(dsn=".", layer="progress_reports",verbose = FALSE)
-shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
-seattle<- c(lon = -122.335167, lat = 47.608013)
-seattle_map_bw <- get_map(seattle, zoom = 9, scale=1, maptype="toner-lite", source="stamen" )
-ggmap(seattle_map_bw) + 
-  geom_path(data=shapefile, aes(x=long, y=lat, group=group, color="red"), size=.9) + 
-  theme (axis.text.x=element_blank(), axis.text.y=element_blank(), axis.ticks.x=element_blank(), axis.ticks.y=element_blank() , axis.title.x=element_blank(), axis.title.y=element_blank(),panel.border = element_rect(colour = "black", fill=NA, size=3),legend.position="none") +
-  ggtitle("Active PSRC Funded Projects")
-
-```
-
-____________________________________________________________________________________
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
 pacman::p_load(raster,dplyr, leaflet, shiny, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, htmltools)
@@ -121,7 +104,7 @@ g.top <- ggplot(data, aes(x = age, y = miles.per.gallon)) +
   geom_point(size=1,color="white")+
   theme_economist() +
   scale_x_continuous(breaks=0:29)+
-  scale_y_continuous(limits=c(27,37),breaks=c(27,29,31,33,35,37),labels=c("27 mpg","29 mpg","31 mpg","33 mpg","35 mpg","37 mpg"))+ggtitle("Fuel Economy and Age Distribution of PSRC Vehicle Fleet (2014)")+
+  scale_y_continuous(limits=c(27,37),breaks=c(27,29,31,33,35,37),labels=c("27 mpg","29 mpg","31 mpg","33 mpg","35 mpg","37 mpg"))+ggtitle("Fuel Economy and Age Distribution of Vehicle Fleet (2014)")+
   theme(plot.margin = unit(c(1,5,-10,30),units="points"), axis.title.y = element_text(vjust =3,size=9,face="bold"),plot.title = element_text(vjust=-.5,hjust=.8,size=12, face="bold"),axis.ticks.x = element_blank(), axis.text.x = element_blank(), axis.line.x=element_line(size=1),panel.background=element_rect(fill="#a7c1a6"), plot.background=element_rect(fill="#a7c1a6"),
          axis.text.y = element_text(size=8,face="bold"))+
   labs( y = "Fuel Economy (MPG)")
@@ -129,3 +112,22 @@ g.top <- ggplot(data, aes(x = age, y = miles.per.gallon)) +
 grid.arrange(g.top,g.bottom, heights = c(1/2, 4/5))
 
 ```
+________________________________________________________________________________
+```{r message=FALSE, warning=FALSE}
+
+library(pacman)
+pacman::p_load(grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+
+setwd("X:/Trans/STAFF/Reid/viz/ggmap")
+shapefile <- readOGR(dsn=".", layer="progress_reports",verbose = FALSE)
+shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
+seattle<- c(lon = -122.335167, lat = 47.608013)
+seattle_map_bw <- get_map(seattle, zoom = 9, scale=1, maptype="toner-lite", source="stamen" )
+ggmap(seattle_map_bw) + 
+  geom_path(data=shapefile, aes(x=long, y=lat, group=group, color="red"), size=.9) + 
+  theme (axis.text.x=element_blank(), axis.text.y=element_blank(), axis.ticks.x=element_blank(), axis.ticks.y=element_blank() , axis.title.x=element_blank(), axis.title.y=element_blank(),panel.border = element_rect(colour = "black", fill=NA, size=3),legend.position="none") +
+  ggtitle("Regional Transportation Projects")
+
+```
+
+____________________________________________________________________________________
