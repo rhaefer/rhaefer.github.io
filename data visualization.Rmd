@@ -48,9 +48,9 @@ ________________________________________________________________________________
 library(pacman)
 pacman::p_load(raster,dplyr, leaflet, shiny, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, htmltools)
 
-setwd("X:/Trans/STAFF/Reid/viz/bird_map")
+setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/bird_data")
 
-bird<- read.csv("MyEBirdData 3.csv")
+bird<- read.csv("MyEBirdData.csv")
 
 bird$Location<-as.character(bird$Location)
 bird$Location[bird$Location=="US-WA-Renton-Cedar River Park - 47.4656x-122.1338"] <- "Cedar River Park"
