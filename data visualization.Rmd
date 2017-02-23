@@ -74,7 +74,7 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 ___________________________________________________________________________________
 
 
-[![Tableau Dashboard](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/tableau_dashboard.png)](https://public.tableau.com/profile/reid5830#!/vizhome/projectselectionstory_test/Story1)
+<a href="https://public.tableau.com/views/project_selection_RH/Story1?:embed=y&:display_count=yes" target="_blank"> <img border="0" alt="W3Schools" src="X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/tableau_dashboard.png" style="max-width: 100%; height: auto;">
 
 
 ```{r message=FALSE, warning=FALSE}
