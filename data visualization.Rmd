@@ -6,26 +6,6 @@ output:
     highlight: tango
 ---
 
-Regional Transportation Projects
-```{r message=FALSE, warning=FALSE}
-library(pacman)
-pacman::p_load(shiny,shinydashboard , raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
-               rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
-
-setwd("X:/Trans/STAFF/Reid/Project Tracking/progress_reports")
-shapefile <- readOGR(dsn=".", layer="progress_reports",verbose = FALSE)
-shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
-
-    leaflet() %>%
-      fitBounds(-122.2, 47.187, -122.4, 47.932)%>%
-      addProviderTiles("Stamen.TonerLite", group = "Toner Lite") %>%
-      addPolylines(data=shapefile, weight=4, color="red",
-                   popup=paste(sep="<br/>",paste("<b>Jurisdiction:</b> ",shapefile$Sponsor),paste("<b>Project Title:</b> ",shapefile$ProjectTit), paste("<b>Status:</b> ",shapefile$milestone))) 
-
-```
-___________________________________________________________________________________
-
-
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
@@ -66,10 +46,36 @@ leaflet () %>%
                            "<br/>","<font size=2 color=#B40404>", "Date: ", "</font>", bird$Date,
                            "<br/>", "<font size=2 color=#B40404>", "More Info About This Bird @ ", "</font>",bird$html),
                clusterOptions = markerClusterOptions())  %>%
-    addMiniMap()
+    addMiniMap(toggleDisplay = TRUE) %>%
+   addEasyButton(easyButton(
+    icon="fa-globe", title="Zoom to Level 1",
+    onClick=JS("function(btn, map){ map.setZoom(4); }")))
 
 
 ```
+_____________________________________________________________________________________
+Regional Transportation Projects
+```{r message=FALSE, warning=FALSE}
+library(pacman)
+pacman::p_load(shiny,shinydashboard , raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
+               rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
+
+setwd("X:/Trans/STAFF/Reid/Project Tracking/progress_reports")
+shapefile <- readOGR(dsn=".", layer="progress_reports",verbose = FALSE)
+shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
+
+    leaflet() %>%
+      fitBounds(-122.2, 47.187, -122.4, 47.932)%>%
+      addProviderTiles("Stamen.TonerLite", group = "Toner Lite") %>%
+      addPolylines(data=shapefile, weight=4, color="red",
+                   popup=paste(sep="<br/>",paste("<b>Jurisdiction:</b> ",shapefile$Sponsor),paste("<b>Project Title:</b> ",shapefile$ProjectTit), paste("<b>Status:</b> ",shapefile$milestone))) %>%
+      addMiniMap(toggleDisplay = TRUE) %>%
+
+
+```
+___________________________________________________________________________________
+
+
 
 [![Tableau Dashboard](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/tableau_dashboard.png)](https://public.tableau.com/profile/reid5830#!/vizhome/projectselectionstory_test/Story1)
 
@@ -112,22 +118,5 @@ g.top <- ggplot(data, aes(x = age, y = miles.per.gallon)) +
 grid.arrange(g.top,g.bottom, heights = c(1/2, 4/5))
 
 ```
-________________________________________________________________________________
-```{r message=FALSE, warning=FALSE}
 
-library(pacman)
-pacman::p_load(grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
-setwd("X:/Trans/STAFF/Reid/viz/ggmap")
-shapefile <- readOGR(dsn=".", layer="progress_reports",verbose = FALSE)
-shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
-seattle<- c(lon = -122.335167, lat = 47.608013)
-seattle_map_bw <- get_map(seattle, zoom = 9, scale=1, maptype="toner-lite", source="stamen" )
-ggmap(seattle_map_bw) + 
-  geom_path(data=shapefile, aes(x=long, y=lat, group=group, color="red"), size=.9) + 
-  theme (axis.text.x=element_blank(), axis.text.y=element_blank(), axis.ticks.x=element_blank(), axis.ticks.y=element_blank() , axis.title.x=element_blank(), axis.title.y=element_blank(),panel.border = element_rect(colour = "black", fill=NA, size=3),legend.position="none") +
-  ggtitle("Regional Transportation Projects")
-
-```
-
-____________________________________________________________________________________
