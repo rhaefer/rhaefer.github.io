@@ -1,5 +1,4 @@
 ---
-title: "blog"
 output:
   html_document:
     theme: cerulean
