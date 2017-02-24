@@ -6,4 +6,3 @@ output:
     highlight: tango
 ---
 
-blog

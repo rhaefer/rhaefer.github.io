@@ -220,9 +220,6 @@ $(document).ready(function () {
   <a href="data_analysis.html">Data Analysis</a>
 </li>
 <li>
-  <a href="cv.html">CV</a>
-</li>
-<li>
   <a href="blog.html">Blog</a>
 </li>
       </ul>
@@ -266,9 +263,31 @@ data_final$X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final$X2
 
 data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population &lt;<span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">50000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">100000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
 
-<span class="kw">ggplot</span>(data_final, <span class="kw">aes</span> (phases.y,psrc_funds)) +<span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="st"> </span><span class="kw">theme_economist</span>() +<span class="kw">coord_flip</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.background=</span><span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#a7c1a6&quot;</span>), <span class="dt">plot.background=</span><span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#a7c1a6&quot;</span>))</code></pre></div>
-<p><img src="data_analysis_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<span class="kw">summary</span>(data_final)</code></pre></div>
+<pre><code>##  X2010.Population      ID              phases.y        
+##  Min.   :   477   Length:289         Length:289        
+##  1st Qu.: 19911   Class :character   Class :character  
+##  Median : 53007   Mode  :character   Mode  :character  
+##  Mean   :118373                                        
+##  3rd Qu.:168872                                        
+##  Max.   :608660                                        
+##  NA&#39;s   :40                                            
+##    psrc_funds         Sponsor.y           Title.y         
+##  Min.   :    29496   Length:289         Length:289        
+##  1st Qu.:   441150   Class :character   Class :character  
+##  Median :   750000   Mode  :character   Mode  :character  
+##  Mean   :  2421581                                        
+##  3rd Qu.:  1706586                                        
+##  Max.   :143282211                                        
+##                                                           
+##  jurisdiction_size 
+##  Length:289        
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## </code></pre>
 
 
 
