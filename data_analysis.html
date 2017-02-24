@@ -245,7 +245,7 @@ $(document).ready(function () {
 
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pacman)
-pacman::<span class="kw">p_load</span>(grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+pacman::<span class="kw">p_load</span>(knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
 data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;</span>))
 pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))
@@ -263,31 +263,126 @@ data_final$X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final$X2
 
 data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population &lt;<span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">50000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">100000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
 
-<span class="kw">summary</span>(data_final)</code></pre></div>
-<pre><code>##  X2010.Population      ID              phases.y        
-##  Min.   :   477   Length:289         Length:289        
-##  1st Qu.: 19911   Class :character   Class :character  
-##  Median : 53007   Mode  :character   Mode  :character  
-##  Mean   :118373                                        
-##  3rd Qu.:168872                                        
-##  Max.   :608660                                        
-##  NA&#39;s   :40                                            
-##    psrc_funds         Sponsor.y           Title.y         
-##  Min.   :    29496   Length:289         Length:289        
-##  1st Qu.:   441150   Class :character   Class :character  
-##  Median :   750000   Mode  :character   Mode  :character  
-##  Mean   :  2421581                                        
-##  3rd Qu.:  1706586                                        
-##  Max.   :143282211                                        
-##                                                           
-##  jurisdiction_size 
-##  Length:289        
-##  Class :character  
-##  Mode  :character  
-##                    
-##                    
-##                    
-## </code></pre>
+data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),]
+
+<span class="kw">kable</span>(data_final[<span class="dv">1</span>:<span class="dv">10</span>, ], <span class="dt">caption =</span> <span class="st">&quot;Top Ten Highest Funding Amounts Per Project&quot;</span>)</code></pre></div>
+<table>
+<caption>Top Ten Highest Funding Amounts Per Project</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">X2010.Population</th>
+<th align="left">ID</th>
+<th align="left">phases.y</th>
+<th align="right">psrc_funds</th>
+<th align="left">Sponsor.y</th>
+<th align="left">Title.y</th>
+<th align="left">jurisdiction_size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>286</td>
+<td align="right">NA</td>
+<td align="left">MET-188</td>
+<td align="left">CN &amp; BUSR &amp; OTH</td>
+<td align="right">143282211</td>
+<td align="left">King County</td>
+<td align="left">Trolley Bus Replacement</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>288</td>
+<td align="right">NA</td>
+<td align="left">RTA-3A</td>
+<td align="left">PE &amp; CN</td>
+<td align="right">44429663</td>
+<td align="left">Sound Transit</td>
+<td align="left">Northgate Link (UW Station to Northgate)</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>289</td>
+<td align="right">NA</td>
+<td align="left">RTA-76</td>
+<td align="left">PE &amp; CN</td>
+<td align="right">40717286</td>
+<td align="left">Sound Transit</td>
+<td align="left">East Link Light Rail: Downtown Seattle, Bellevue, Overlake</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>282</td>
+<td align="right">NA</td>
+<td align="left">CT-54</td>
+<td align="left">BUSR &amp; BUSE &amp; OTH</td>
+<td align="right">32882965</td>
+<td align="left">Community Transit</td>
+<td align="left">Transit Revenue Vehicles</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>284</td>
+<td align="right">NA</td>
+<td align="left">WSF-59</td>
+<td align="left">CN</td>
+<td align="right">20519156</td>
+<td align="left">Washington State Ferries</td>
+<td align="left">Mukilteo Multimodal Terminal</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>205</td>
+<td align="right">198364</td>
+<td align="left">TAC-69</td>
+<td align="left">CN</td>
+<td align="right">12200000</td>
+<td align="left">Tacoma</td>
+<td align="left">Puyallup River Bridge F16A &amp; F16B Replacement</td>
+<td align="left">Large Size Jurisdiction</td>
+</tr>
+<tr class="odd">
+<td>248</td>
+<td align="right">608660</td>
+<td align="left">SEA-168</td>
+<td align="left">PE &amp; CN</td>
+<td align="right">11750000</td>
+<td align="left">Seattle</td>
+<td align="left">First Hill Streetcar - Broadway Extension</td>
+<td align="left">Largest Size Jurisdiction</td>
+</tr>
+<tr class="even">
+<td>285</td>
+<td align="right">NA</td>
+<td align="left">RTA-81</td>
+<td align="left">PE &amp; ROW &amp; OTH</td>
+<td align="right">11599943</td>
+<td align="left">Sound Transit</td>
+<td align="left">Tacoma Link Expansion Project</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>26</td>
+<td align="right">9156</td>
+<td align="left">FIF-16</td>
+<td align="left">PE &amp; ROW &amp; CN</td>
+<td align="right">11106500</td>
+<td align="left">Fife</td>
+<td align="left">Port of Tacoma Interchange Improvements</td>
+<td align="left">Small Size Jurisdiction</td>
+</tr>
+<tr class="even">
+<td>162</td>
+<td align="right">89304</td>
+<td align="left">FW-19</td>
+<td align="left">PE &amp; ROW &amp; CN</td>
+<td align="right">9639331</td>
+<td align="left">Federal Way</td>
+<td align="left">Pacific Highway South HOV Lanes Phase V (S 340th Street to S 359th Street)</td>
+<td align="left">Medium Size Jurisdictions</td>
+</tr>
+</tbody>
+</table>
 
 
 

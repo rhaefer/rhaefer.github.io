@@ -10,7 +10,7 @@ output:
 ```{r message=FALSE, warning=FALSE}
 
 library(pacman)
-pacman::p_load(grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+pacman::p_load(knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
 data <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing"))
 pop <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing"))
@@ -28,6 +28,8 @@ data_final$X2010.Population<-as.numeric(data_final$X2010.Population)
 
 data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population <50000, "Small Size Jurisdiction", ifelse(X2010.Population >= 50000 & X2010.Population < 100000, "Medium Size Jurisdictions",ifelse(X2010.Population >= 100000 & X2010.Population < 300000, "Large Size Jurisdiction", ifelse(X2010.Population >= 300000 , "Largest Size Jurisdiction", "Not Applicable")))))
 
-summary(data_final)
+data_final<-data_final[order(-data_final$psrc_funds),]
+
+kable(data_final[1:10, ], caption = "Top Ten Highest Funding Amounts Per Project")
 
 ```
