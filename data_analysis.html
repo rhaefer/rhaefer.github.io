@@ -265,19 +265,22 @@ data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </sp
 
 data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),]
 
+data_final$jurisdiction_size[<span class="kw">is.na</span>(data_final$jurisdiction_size)] &lt;-<span class="st"> &quot;Transit Agency&quot;</span>
+<span class="kw">colnames</span>(data_final)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Population&quot;</span>, <span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Phases&quot;</span>, <span class="st">&quot;Awards&quot;</span>, <span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Size&quot;</span>)
+
 <span class="kw">kable</span>(data_final[<span class="dv">1</span>:<span class="dv">10</span>, ], <span class="dt">caption =</span> <span class="st">&quot;Top Ten Highest Funding Amounts Per Project&quot;</span>)</code></pre></div>
 <table>
 <caption>Top Ten Highest Funding Amounts Per Project</caption>
 <thead>
 <tr class="header">
 <th></th>
-<th align="right">X2010.Population</th>
+<th align="right">Population</th>
 <th align="left">ID</th>
-<th align="left">phases.y</th>
-<th align="right">psrc_funds</th>
-<th align="left">Sponsor.y</th>
-<th align="left">Title.y</th>
-<th align="left">jurisdiction_size</th>
+<th align="left">Phases</th>
+<th align="right">Awards</th>
+<th align="left">Jurisdiction</th>
+<th align="left">Project Title</th>
+<th align="left">Size</th>
 </tr>
 </thead>
 <tbody>
@@ -289,7 +292,7 @@ data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),
 <td align="right">143282211</td>
 <td align="left">King County</td>
 <td align="left">Trolley Bus Replacement</td>
-<td align="left">NA</td>
+<td align="left">Transit Agency</td>
 </tr>
 <tr class="even">
 <td>288</td>
@@ -299,7 +302,7 @@ data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),
 <td align="right">44429663</td>
 <td align="left">Sound Transit</td>
 <td align="left">Northgate Link (UW Station to Northgate)</td>
-<td align="left">NA</td>
+<td align="left">Transit Agency</td>
 </tr>
 <tr class="odd">
 <td>289</td>
@@ -309,7 +312,7 @@ data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),
 <td align="right">40717286</td>
 <td align="left">Sound Transit</td>
 <td align="left">East Link Light Rail: Downtown Seattle, Bellevue, Overlake</td>
-<td align="left">NA</td>
+<td align="left">Transit Agency</td>
 </tr>
 <tr class="even">
 <td>282</td>
@@ -319,7 +322,7 @@ data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),
 <td align="right">32882965</td>
 <td align="left">Community Transit</td>
 <td align="left">Transit Revenue Vehicles</td>
-<td align="left">NA</td>
+<td align="left">Transit Agency</td>
 </tr>
 <tr class="odd">
 <td>284</td>
@@ -329,7 +332,7 @@ data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),
 <td align="right">20519156</td>
 <td align="left">Washington State Ferries</td>
 <td align="left">Mukilteo Multimodal Terminal</td>
-<td align="left">NA</td>
+<td align="left">Transit Agency</td>
 </tr>
 <tr class="even">
 <td>205</td>
@@ -359,7 +362,7 @@ data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),
 <td align="right">11599943</td>
 <td align="left">Sound Transit</td>
 <td align="left">Tacoma Link Expansion Project</td>
-<td align="left">NA</td>
+<td align="left">Transit Agency</td>
 </tr>
 <tr class="odd">
 <td>26</td>

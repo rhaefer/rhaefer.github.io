@@ -30,6 +30,9 @@ data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population 
 
 data_final<-data_final[order(-data_final$psrc_funds),]
 
+data_final$jurisdiction_size[is.na(data_final$jurisdiction_size)] <- "Transit Agency"
+colnames(data_final)<- c("Population", "ID", "Phases", "Awards", "Jurisdiction", "Project Title", "Size")
+
 kable(data_final[1:10, ], caption = "Top Ten Highest Funding Amounts Per Project")
 
 ```
