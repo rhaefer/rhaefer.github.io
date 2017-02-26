@@ -6,4 +6,4 @@ output:
 ---
 ________________________________________________________
 
-![](images/resume_one.pdf){ width="700px" height="950px" }
+![](images/cv.pdf){ width="700px" height="950px" }
