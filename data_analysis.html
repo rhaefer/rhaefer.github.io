@@ -244,145 +244,123 @@ $(document).ready(function () {
 </div>
 
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pacman)
-pacman::<span class="kw">p_load</span>(knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#load required packages</span>
+<span class="kw">library</span>(pacman)
+pacman::<span class="kw">p_load</span>(scales,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
+<span class="co">#load data from google sheets</span>
 data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;</span>))
 pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))
 
+<span class="co">#summarise data</span>
 data_sum&lt;-data %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(Sponsor, ID, Title, Total.Project.Cost) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">psrc_funds =</span> <span class="kw">sum</span>(PSRC.Funds), <span class="dt">phases=</span><span class="kw">paste</span>(Phase.s., <span class="dt">collapse=</span><span class="st">&quot; &amp; &quot;</span>))
 
+<span class="co">#join datasets</span>
 data_final&lt;-<span class="kw">left_join</span>(pop, data_sum, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">select</span> (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
 
+<span class="co">#clean data</span>
 data_final&lt;-data_final[<span class="kw">complete.cases</span>(data_final),]
-
 data_final$X2010.Population&lt;-<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>,data_final$X2010.Population)
 data_final$X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final$X2010.Population)
 
+<span class="co">#manipulate data</span>
 data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population &lt;<span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">50000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">100000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
 
-data_final&lt;-data_final[<span class="kw">order</span>(-data_final$psrc_funds),]
-
+<span class="co">#prepare data for display in table</span>
+data_final&lt;-data_final[<span class="kw">order</span>(data_final$psrc_funds),]
 data_final$jurisdiction_size[<span class="kw">is.na</span>(data_final$jurisdiction_size)] &lt;-<span class="st"> &quot;Transit Agency&quot;</span>
-<span class="kw">colnames</span>(data_final)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Population&quot;</span>, <span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Phases&quot;</span>, <span class="st">&quot;Awards&quot;</span>, <span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Size&quot;</span>)
+data_final$psrc_funds&lt;-<span class="kw">dollar</span>(data_final$psrc_funds)
+<span class="kw">colnames</span>(data_final)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Population&quot;</span>, <span class="st">&quot;ID&quot;</span>,<span class="st">&quot;Phases&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Size&quot;</span>)
+data_final&lt;-data_final %&gt;%<span class="st"> </span><span class="kw">select</span>(Population, <span class="st">`</span><span class="dt">Funding Award</span><span class="st">`</span>, Jurisdiction, <span class="st">`</span><span class="dt">Project Title</span><span class="st">`</span>, Size)
+data_final$Population&lt;-<span class="kw">prettyNum</span>(data_final$Population,<span class="dt">big.mark=</span><span class="st">&quot;,&quot;</span>,<span class="dt">scientific=</span><span class="ot">FALSE</span>)
+data_final$Population&lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;NA&quot;</span>,<span class="st">&quot;Transit Agency&quot;</span>, data_final$Population)
+data_final&lt;-data_final[<span class="kw">c</span>(<span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Population&quot;</span>, <span class="st">&quot;Size&quot;</span>)]
 
-<span class="kw">kable</span>(data_final[<span class="dv">1</span>:<span class="dv">10</span>, ], <span class="dt">caption =</span> <span class="st">&quot;Top Ten Highest Funding Amounts Per Project&quot;</span>)</code></pre></div>
+<span class="co">#show summary table</span>
+<span class="kw">kable</span>(data_final[<span class="dv">1</span>:<span class="dv">10</span>, ], <span class="dt">caption =</span> <span class="st">&quot;Smallest Funding Amounts Per Project&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="st">&#39;l&#39;</span>)</code></pre></div>
 <table>
-<caption>Top Ten Highest Funding Amounts Per Project</caption>
+<caption>Smallest Funding Amounts Per Project</caption>
 <thead>
 <tr class="header">
-<th></th>
-<th align="right">Population</th>
-<th align="left">ID</th>
-<th align="left">Phases</th>
-<th align="right">Awards</th>
 <th align="left">Jurisdiction</th>
 <th align="left">Project Title</th>
+<th align="left">Funding Award</th>
+<th align="left">Population</th>
 <th align="left">Size</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>286</td>
-<td align="right">NA</td>
-<td align="left">MET-188</td>
-<td align="left">CN &amp; BUSR &amp; OTH</td>
-<td align="right">143282211</td>
-<td align="left">King County</td>
-<td align="left">Trolley Bus Replacement</td>
-<td align="left">Transit Agency</td>
-</tr>
-<tr class="even">
-<td>288</td>
-<td align="right">NA</td>
-<td align="left">RTA-3A</td>
-<td align="left">PE &amp; CN</td>
-<td align="right">44429663</td>
-<td align="left">Sound Transit</td>
-<td align="left">Northgate Link (UW Station to Northgate)</td>
-<td align="left">Transit Agency</td>
-</tr>
-<tr class="odd">
-<td>289</td>
-<td align="right">NA</td>
-<td align="left">RTA-76</td>
-<td align="left">PE &amp; CN</td>
-<td align="right">40717286</td>
-<td align="left">Sound Transit</td>
-<td align="left">East Link Light Rail: Downtown Seattle, Bellevue, Overlake</td>
-<td align="left">Transit Agency</td>
-</tr>
-<tr class="even">
-<td>282</td>
-<td align="right">NA</td>
-<td align="left">CT-54</td>
-<td align="left">BUSR &amp; BUSE &amp; OTH</td>
-<td align="right">32882965</td>
-<td align="left">Community Transit</td>
-<td align="left">Transit Revenue Vehicles</td>
-<td align="left">Transit Agency</td>
-</tr>
-<tr class="odd">
-<td>284</td>
-<td align="right">NA</td>
-<td align="left">WSF-59</td>
-<td align="left">CN</td>
-<td align="right">20519156</td>
-<td align="left">Washington State Ferries</td>
-<td align="left">Mukilteo Multimodal Terminal</td>
-<td align="left">Transit Agency</td>
-</tr>
-<tr class="even">
-<td>205</td>
-<td align="right">198364</td>
-<td align="left">TAC-69</td>
-<td align="left">CN</td>
-<td align="right">12200000</td>
-<td align="left">Tacoma</td>
-<td align="left">Puyallup River Bridge F16A &amp; F16B Replacement</td>
-<td align="left">Large Size Jurisdiction</td>
-</tr>
-<tr class="odd">
-<td>248</td>
-<td align="right">608660</td>
-<td align="left">SEA-168</td>
-<td align="left">PE &amp; CN</td>
-<td align="right">11750000</td>
-<td align="left">Seattle</td>
-<td align="left">First Hill Streetcar - Broadway Extension</td>
-<td align="left">Largest Size Jurisdiction</td>
-</tr>
-<tr class="even">
-<td>285</td>
-<td align="right">NA</td>
-<td align="left">RTA-81</td>
-<td align="left">PE &amp; ROW &amp; OTH</td>
-<td align="right">11599943</td>
-<td align="left">Sound Transit</td>
-<td align="left">Tacoma Link Expansion Project</td>
-<td align="left">Transit Agency</td>
-</tr>
-<tr class="odd">
-<td>26</td>
-<td align="right">9156</td>
-<td align="left">FIF-16</td>
-<td align="left">PE &amp; ROW &amp; CN</td>
-<td align="right">11106500</td>
-<td align="left">Fife</td>
-<td align="left">Port of Tacoma Interchange Improvements</td>
+<td align="left">Edgewood</td>
+<td align="left">Meridian Ave - 24th St E to 36th St E</td>
+<td align="left">$29,496</td>
+<td align="left">9,387</td>
 <td align="left">Small Size Jurisdiction</td>
 </tr>
 <tr class="even">
-<td>162</td>
-<td align="right">89304</td>
-<td align="left">FW-19</td>
-<td align="left">PE &amp; ROW &amp; CN</td>
-<td align="right">9639331</td>
-<td align="left">Federal Way</td>
-<td align="left">Pacific Highway South HOV Lanes Phase V (S 340th Street to S 359th Street)</td>
+<td align="left">Kitsap Transit</td>
+<td align="left">Electric Vehicle Charging Systems</td>
+<td align="left">$40,000</td>
+<td align="left">Transit Agency</td>
+<td align="left">Transit Agency</td>
+</tr>
+<tr class="odd">
+<td align="left">Kitsap County</td>
+<td align="left">Pedestrian Safety Improvements at Suquamish Way and Division Ave NE</td>
+<td align="left">$40,462</td>
+<td align="left">168,872</td>
+<td align="left">Large Size Jurisdiction</td>
+</tr>
+<tr class="even">
+<td align="left">Tacoma</td>
+<td align="left">Thea Foss Waterway- Site 10 Esplanade</td>
+<td align="left">$50,000</td>
+<td align="left">198,364</td>
+<td align="left">Large Size Jurisdiction</td>
+</tr>
+<tr class="odd">
+<td align="left">Auburn</td>
+<td align="left">Lake Tapps Parkway ITS Expansion</td>
+<td align="left">$82,950</td>
+<td align="left">70,179</td>
 <td align="left">Medium Size Jurisdictions</td>
+</tr>
+<tr class="even">
+<td align="left">Sumner</td>
+<td align="left">No. 9 Ditch Trail (Sumner Trail System)</td>
+<td align="left">$93,500</td>
+<td align="left">9,451</td>
+<td align="left">Small Size Jurisdiction</td>
+</tr>
+<tr class="odd">
+<td align="left">Arlington</td>
+<td align="left">Smokey Point Blvd Pavement Preservation (188th to SR-530)</td>
+<td align="left">$112,225</td>
+<td align="left">17,944</td>
+<td align="left">Small Size Jurisdiction</td>
+</tr>
+<tr class="even">
+<td align="left">Snohomish County</td>
+<td align="left">164th Street SE Overlay</td>
+<td align="left">$114,000</td>
+<td align="left">18,229</td>
+<td align="left">Small Size Jurisdiction</td>
+</tr>
+<tr class="odd">
+<td align="left">Puyallup</td>
+<td align="left">Non-Motorized Transportation Plan Project</td>
+<td align="left">$129,750</td>
+<td align="left">37,022</td>
+<td align="left">Small Size Jurisdiction</td>
+</tr>
+<tr class="even">
+<td align="left">Kitsap Transit</td>
+<td align="left">Bremerton Transportation Center Phase A/B/C/D</td>
+<td align="left">$141,489</td>
+<td align="left">Transit Agency</td>
+<td align="left">Transit Agency</td>
 </tr>
 </tbody>
 </table>
