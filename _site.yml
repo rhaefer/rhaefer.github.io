@@ -10,7 +10,15 @@ navbar:
     - text: "Research"
       href: research.html
     - text: "Data Visualization"
-      href: data_visualization.html
+      menu:
+        - text: "Bird Map"
+          href: bird.html
+        - text: "Transportation Map"
+          href: transportation.html
+        - text: "Tableau Dashboard"
+          href: tableau.html
+        - text: "Vehicle Plot"
+          href: vehicle.html
     - text: "Data Analysis"
       href: data_analysis.html
     - text: "Blog"
