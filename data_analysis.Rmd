@@ -46,4 +46,6 @@ data_final<-data_final[c("Jurisdiction", "Project Title", "Funding Award", "Popu
 #show summary table
 kable(data_final[1:10, ], caption = "Smallest Funding Amounts Per Project", row.names=FALSE, align='l')
 
+ggplot(data_final, aes))
+
 ```
