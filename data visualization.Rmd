@@ -9,7 +9,6 @@ output:
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
 pacman::p_load(raster,dplyr, leaflet, shiny, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, htmltools)
-
 setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/bird_data")
 
 bird<- read.csv("MyEBirdData.csv")
@@ -27,12 +26,6 @@ bird$html <- paste0("<a href=", "\"", bird$url, "\"", ">", "All About Birds", "<
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cipbjqldq0017cvnfmduk5unx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "© <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
-summary<- bird %>%
-summarise(Species_Observed=length(unique(bird$Common.Name)), Birds_Observed=length(bird$Common.Name),
-        Observation_Sites=length(unique(bird$Location)), 
-        Observation_Days=length(unique(bird$Date)))
-colnames(summary) <- c("Species Observed", "Birds Observed", "Observation Sites","Observation Days")
-
 leaflet () %>%
     addTiles(urlTemplate = base_map, attribution = mb_attribution)%>%
     addMarkers(bird$lon, bird$lat, 
@@ -45,9 +38,7 @@ leaflet () %>%
                            "<br/>", "<font size=2 color=#B40404>", "More Info About This Bird @ ", "</font>",bird$html),
                clusterOptions = markerClusterOptions())  %>%
     addMiniMap(toggleDisplay = TRUE) %>%
-   addEasyButton(easyButton(
-    icon="fa-globe", title="Zoom to Level 1",
-    onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
+   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
     addLegend("topright", title= "Recent Bird Observations", colors= "#3487db", labels= "birds observed")
 
 ```
