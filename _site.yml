@@ -11,13 +11,13 @@ navbar:
       href: research.html
     - text: "Data Visualization"
       menu:
-        - text: "Bird Map"
+        - text: "Bird Observation Map"
           href: bird.html
-        - text: "Transportation Map"
+        - text: "Transportation Project Map"
           href: transportation.html
         - text: "Tableau Dashboard"
           href: tableau.html
-        - text: "Vehicle Plot"
+        - text: "Fuel Economy Graph"
           href: vehicle.html
     - text: "Data Analysis"
       href: data_analysis.html

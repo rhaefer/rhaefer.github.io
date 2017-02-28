@@ -1,5 +1,5 @@
 ---
-title: "bird"
+title: "Bird Observation Map"
 output:
   html_document:
     theme: cerulean
