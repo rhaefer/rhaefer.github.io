@@ -37,6 +37,7 @@ data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population 
 data_final<-data_final[order(data_final$psrc_funds),]
 data_final$jurisdiction_size[is.na(data_final$jurisdiction_size)] <- "Transit Agency"
 data_graph<-data_final
+data_graph<-data_graph %>% filter(phases.y %in% c("CN","CN & BUSR & OTH","OTH", "PE", "PE & CN", "PE & ROW", "PE & ROW & CN"))
 data_final$psrc_funds<-dollar(data_final$psrc_funds)
 colnames(data_final)<- c("Population", "ID","Phases", "Funding Award", "Jurisdiction", "Project Title", "Size")
 data_final<-data_final %>% select(Population, `Funding Award`, Jurisdiction, `Project Title`, Size)
@@ -47,6 +48,6 @@ data_final<-data_final[c("Jurisdiction", "Project Title", "Funding Award", "Popu
 #show summary table
 kable(data_final[1:10, ], caption = "Smallest Funding Amounts Per Project", row.names=FALSE, align='l')
 
-ggplot(data_graph, aes(jurisdiction_size, psrc_funds, fill=phases.y)) +geom_bar(stat="identity") +theme_economist() +coord_flip()
+ggplot(data_graph, aes(jurisdiction_size, psrc_funds, fill=phases.y)) +geom_bar(stat="identity") +theme_economist() +coord_flip() + theme( axis.title.y = element_blank(), legend.title = element_blank()) +xlab("Federal Funds Awarded") + scale_fill_manual(values=c("#067ca0", "#9e3838","#c17913","#258227","#653e7c","black","#8c8b7f"))
 
 ```
