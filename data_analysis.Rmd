@@ -48,6 +48,6 @@ data_final<-data_final[c("Jurisdiction", "Project Title", "Funding Award", "Popu
 #show summary table
 kable(data_final[1:10, ], caption = "Smallest Funding Amounts Per Project", row.names=FALSE, align='l')
 
-ggplot(data_graph, aes(jurisdiction_size, psrc_funds, fill=phases.y)) +geom_bar(stat="identity") +theme_economist() +coord_flip() + theme( axis.title.y = element_blank(), legend.title = element_blank()) +xlab("Federal Funds Awarded") + scale_fill_manual(values=c("#067ca0", "#9e3838","#c17913","#258227","#653e7c","black","#8c8b7f"))
+ggplot(data_graph, aes(jurisdiction_size, psrc_funds, fill=phases.y)) +geom_bar(stat="identity") +theme_economist() +coord_flip() + theme( axis.title.y = element_blank(), legend.title = element_blank(), plot.background = element_rect(fill="#afccb7"),panel.background = element_rect(fill="#afccb7"), legend.background =element_rect(fill="#afccb7")) +ylab("Federal Funds Awarded") + scale_fill_manual(values=c("#067ca0", "#9e3838","#c17913","#258227","#653e7c","black","#8c8b7f")) +scale_y_continuous(labels=scales::dollar)
 
 ```
