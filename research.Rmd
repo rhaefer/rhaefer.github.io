@@ -2,7 +2,7 @@
 title: "Research"
 output:
   html_document:
-    theme: cerulean
+    theme: yeti
     highlight: tango
 ---
 

@@ -2,7 +2,7 @@
 title: "__________"
 output:
   html_document:
-    theme: cerulean
+    theme: yeti
     highlight: tango
 ---
 ![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/india2.jpg)

@@ -2,7 +2,7 @@
 title: "Tableau Dashboard"
 output:
   html_document:
-    theme: cerulean
+    theme: yeti
     highlight: tango
 ---
 
