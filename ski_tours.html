@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Ski Tour Map</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="site_libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="site_libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="site_libs/leaflet-binding-1.1.0/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-1.0.27/leaflet-providers.js"></script>
+<script src="site_libs/leaflet-providers-plugin-1.1.0/leaflet-providers-plugin.js"></script>
+<link href="site_libs/leaflet-minimap-3.3.1/Control.MiniMap.min.css" rel="stylesheet" />
+<script src="site_libs/leaflet-minimap-3.3.1/Control.MiniMap.min.js"></script>
+<script src="site_libs/leaflet-minimap-3.3.1/Minimap-binding.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Reid Haefer</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="research.html">Research</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Data Visualization
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="bird.html">Bird Observation Map</a>
+    </li>
+    <li>
+      <a href="transportation.html">Transportation Project Map</a>
+    </li>
+    <li>
+      <a href="tableau.html">Tableau Dashboard</a>
+    </li>
+    <li>
+      <a href="vehicle.html">Fuel Economy Graph</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="data_analysis.html">Data Analysis</a>
+</li>
+<li>
+  <a href="blog.html">Blog</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/rhaefer/rhaefer.github.io">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Ski Tour Map</h1>
+
+</div>
+
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pacman)
+pacman::<span class="kw">p_load</span>( gsheet, raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
+                rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
+
+<span class="kw">setwd</span>(<span class="st">&quot;X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours&quot;</span>)
+shapefile &lt;-<span class="st"> </span><span class="kw">readOGR</span>(<span class="dt">dsn=</span><span class="st">&quot;.&quot;</span>, <span class="dt">layer=</span><span class="st">&quot;tours_ski_leaflet&quot;</span>,<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
+shapefile&lt;-<span class="kw">spTransform</span>(shapefile, <span class="kw">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>))
+
+<span class="kw">leaflet</span>() %&gt;%
+<span class="st">  </span><span class="kw">fitBounds</span>(-<span class="fl">120.2</span>, <span class="fl">47.187</span>, -<span class="fl">123.4</span>, <span class="fl">50.932</span>)%&gt;%
+<span class="st">  </span><span class="kw">addProviderTiles</span>(<span class="st">&quot;Stamen.Terrain&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;Toner Lite&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">addPolylines</span>(<span class="dt">data=</span>shapefile, <span class="dt">weight=</span><span class="dv">4</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>,
+               <span class="dt">popup=</span><span class="kw">paste</span>(<span class="dt">sep=</span><span class="st">&quot;&lt;br/&gt;&quot;</span>,<span class="kw">paste</span>(<span class="st">&quot;&lt;b&gt;Tour Name:&lt;/b&gt; &quot;</span>,shapefile$name),
+                           <span class="kw">paste</span>(<span class="st">&quot;&lt;b&gt;Date:&lt;/b&gt; &quot;</span>,shapefile$Ski.Tours),
+                           <span class="kw">paste</span>(<span class="st">&quot;&lt;b&gt;Location:&lt;/b&gt; &quot;</span>,shapefile$Ski.Tour_1),
+                           <span class="kw">paste</span>(<span class="st">&quot;&lt;b&gt;Objective Achieved:&lt;/b&gt; &quot;</span>,shapefile$Ski.Tour_4),
+                           <span class="kw">paste</span>(<span class="st">&quot;&lt;b&gt;Avalanche Forecast:&lt;/b&gt; &quot;</span>,shapefile$Ski.Tour_5))) %&gt;%
+<span class="st">  </span><span class="kw">addMiniMap</span>(<span class="dt">toggleDisplay =</span> <span class="ot">TRUE</span>) %&gt;%
+<span class="st">  </span><span class="kw">addLegend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">title=</span> <span class="st">&quot;Backcountry Ski Tours&quot;</span>, <span class="dt">colors=</span> <span class="st">&quot;#c60905&quot;</span>, <span class="dt">labels=</span> <span class="st">&quot;ski tour&quot;</span>)</code></pre></div>
+<div id="htmlwidget-b3b8063196db5cb1e114" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b3b8063196db5cb1e114">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"fitBounds":[47.187,-120.2,50.932,-123.4],"calls":[{"method":"addProviderTiles","args":["Stamen.Terrain",null,"Toner Lite",{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]},{"method":"addPolylines","args":[[[[{"lng":[-121.421147241772,-121.424699175005,-121.426277811998,-121.42785644899,-121.433973667336,-121.438709578314,-121.443445489291,-121.448773389141,-121.452719981623,-121.45646924448,-121.454693277863,-121.452917311247,-121.450746685382,-121.448773389141,-121.450549355758,-121.454298618615,-121.459034529593,-121.461205155457,-121.464559759067,-121.466730384931,-121.469887658916,-121.470479647789,-121.471268966285,-121.473636921774,-121.474228910646,-121.476004877262,-121.478570162375,-121.479556810496,-121.481530106736,-121.483700732601,-121.48508203997,-121.485476699218,-121.484095391849,-121.482319425233,-121.47975414012,-121.477386184631,-121.476202206886,-121.474623569894,-121.474031581022,-121.471268966285,-121.47008498854,-121.46909834042,-121.465743736811,-121.464757088691,-121.460021177713,-121.456666574104,-121.452917311247,-121.45015469651,-121.448773389141,-121.448181400269,-121.450352026134,-121.453311970495,-121.455482596359,-121.458245211096,-121.459231859217,-121.457061233352,-121.454298618615,-121.450352026134,-121.447589411397,-121.44384014854,-121.436933611697,-121.431408382223,-121.427067130494,-121.422133889892],"lat":[47.4410001297332,47.4434024215691,47.444470071618,47.4459380550546,47.4483401214028,47.4506086388969,47.4534107901262,47.4542113773396,47.4547450953773,47.4575470262035,47.4594148971411,47.4600819778231,47.4612827017219,47.4634172542756,47.4652849166645,47.4667523191337,47.4682196806386,47.4690200423754,47.468753256484,47.4690200423754,47.4696870011794,47.4706207292862,47.4726215193695,47.4722213674466,47.4715544408043,47.4707541176615,47.4719545978053,47.4734218140747,47.4752891209911,47.4772897333408,47.4784900641885,47.4790235357634,47.4799570979857,47.4807572809735,47.4814240908203,47.4811573678972,47.4806239179886,47.4796903676149,47.4790235357634,47.476622871021,47.4747556115001,47.4740887170192,47.4719545978053,47.4710208933966,47.4699537823312,47.4691534348133,47.4675527032146,47.4656851214005,47.4643510937645,47.4624833981978,47.4602153929439,47.4596817304296,47.4582141305845,47.456746489774,47.4558125152019,47.4547450953773,47.4536776538849,47.453277357739,47.453277357739,47.4526101907246,47.4492742286913,47.4468722050027,47.444470071618,47.4411335932686]}]],[[{"lng":[-117.520929767356,-117.525925919968,-117.535363097123,-117.545355402345,-117.558123347908,-117.569225909267,-117.578385522388,-117.585324623237,-117.594206672324,-117.602811157377,-117.611970770498,-117.623906023958,-117.631677816909,-117.636396405487,-117.641947686166,-117.646666274744,-117.651107299287,-117.656658579967,-117.658046400136,-117.659434220306,-117.660266912408],"lat":[51.3043697991723,51.3047168545649,51.3024609476015,51.3010726420492,51.2958661222361,51.2915269046259,51.2880552352626,51.2861457052336,51.2818055689685,51.2765968640694,51.2738186466267,51.2724294749048,51.2722558254864,51.2703456385699,51.2666986975831,51.2658303356416,51.2658303356416,51.2658303356416,51.2672197068724,51.2686090361004,51.2687826993006]}]],[[{"lng":[-117.504331320149,-117.498295267664,-117.494070030925,-117.490448399434,-117.489241188936,-117.488838785437,-117.488838785437,-117.489039987187,-117.486021960944,-117.481796724205,-117.476967882217,-117.473748654224,-117.471133031481,-117.471133031481,-117.471133031481,-117.471736636729,-117.470127022733,-117.469724619234,-117.469724619234,-117.470127022733,-117.470328224483,-117.470931829731,-117.471937838479,-117.471937838479,-117.470127022733,-117.465499382495,-117.461475347505,-117.458658523011,-117.457048909015,-117.455640496769,-117.472742645477,-117.480991917207,-117.483205136451,-117.485619557445,-117.487027969692,-117.487027969692,-117.487229171441,-117.493667627426,-117.502922907903],"lat":[51.2695783676463,51.2670606332433,51.2632837729975,51.2595066023743,51.2563587230879,51.2514476009858,51.2470397370756,51.240868017779,51.2353253600448,51.2302860007905,51.2277661141936,51.2256241020968,51.2207096976417,51.2165509455782,51.2117616141755,51.2091146646733,51.2089886156639,51.2117616141755,51.2150385789543,51.2186933799225,51.2204576627565,51.2229779495128,51.2247420681389,51.2260021114758,51.2267581209196,51.2273881193031,51.2283960987787,51.2287740853902,51.23003401834,51.2307899615522,51.2285220946608,51.2339395912685,51.239104517299,51.2442688635047,51.2467878463765,51.2513216678802,51.2587511310036,51.2646686577921,51.270333661069]}]],[[{"lng":[-117.504431787068,-117.50200772125,-117.498651322425,-117.4953881569,-117.491752058173,-117.487836259543,-117.485505427026,-117.483733994312,-117.481496395095,-117.478326462871,-117.475809163752,-117.473571564535,-117.472732464829,-117.472732464829,-117.472359531626,-117.472545998228,-117.473571564535,-117.475063297347,-117.476461796857,-117.478326462871,-117.478792629375,-117.492404691278,-117.502194187851,-117.50461825367,-117.503872387264,-117.504804720271],"lat":[51.2702747432647,51.2710330423216,51.2711497026043,51.2696914277825,51.2695747637975,51.2703330744056,51.2694580995163,51.2690497721997,51.2689331065857,51.2695747637975,51.2695747637975,51.2701580807606,51.2716746702111,51.2728995713027,51.2742994182805,51.2755825738772,51.2776238839233,51.2786736652003,51.2791402269564,51.280539883793,51.2810647441118,51.2780321350483,51.2748243499016,51.2731328820941,51.2719663162899,51.270566398229]}]],[[{"lng":[-121.430778988229,-121.433675567065,-121.437178406589,-121.439064550948,-121.442028492083,-121.445531331606,-121.449370982623,-121.451189764683,-121.452267561459,-121.45361480743,-121.455568314087,-121.45637666167,-121.455568314087,-121.455029415699,-121.453884256624,-121.454894691102,-121.455298864893,-121.455972487879,-121.457454458446,-121.458599617521,-121.459946863492,-121.46095729797,-121.461765645552,-121.461900370149,-121.463045529224,-121.464190688299,-121.46506639818,-121.46506639818,-121.464662224389,-121.464460137493,-121.463853876807,-121.461900370149,-121.460216312686,-121.457319733849,-121.45314327134,-121.450516141698,-121.448629997339,-121.448293185846,-121.448966808831,-121.449909881011,-121.451391851579,-121.452671735251,-121.454153705818,-121.454827328804,-121.454490517311,-121.454018981221,-121.453412720534,-121.452941184445,-121.450785590892,-121.445059795517,-121.43987289853,-121.435494349126,-121.431991509602,-121.430576901333],"lat":[47.4475492599091,47.4489158848086,47.4500547117668,47.4516034768575,47.4523778422997,47.4531066464177,47.453653242878,47.4544275781381,47.4551563538495,47.4556118335402,47.4558395719061,47.4565683280487,47.4575248051582,47.4582079924413,47.4589367157589,47.4593466181866,47.4596654289765,47.4598476057028,47.4598476057028,47.4598020615804,47.4597109732172,47.4597109732172,47.4603030447568,47.4603030447568,47.4607129365322,47.4623524716772,47.4633999256957,47.4650393770437,47.4664510858443,47.4673618455952,47.4676350704432,47.4676806077798,47.4672707703303,47.4669520056602,47.465631388576,47.4647205988415,47.4636731711378,47.4620792193705,47.4607584798656,47.4601664134549,47.459483251619,47.4591644397243,47.458481264869,47.4573881666364,47.4564316870413,47.4556573812923,47.4553840941881,47.4546553216329,47.4539265389776,47.4526511450275,47.4513301686851,47.4489614383604,47.4479136966876,47.4475037051343]}]],[[{"lng":[-121.417109195558,-121.420002455613,-121.421977220412,-121.424227533788,-121.426156373825,-121.427028944318,-121.42326311377,-121.418349164153,-121.416098850776],"lat":[47.4257806846769,47.4255631931472,47.4248796424896,47.4240407272783,47.4225182173766,47.4213374650968,47.4219899893671,47.4235125145456,47.4243514381747]}]],[[{"lng":[-121.415521674928,-121.413386740387,-121.412618163952,-121.411593395373,-121.409031473924,-121.40570097604,-121.404590810079,-121.403822233644,-121.401943491248,-121.399466967181,-121.398954582891,-121.396734250969,-121.393916137375,-121.391525010689,-121.388792294477,-121.386998949463,-121.38529100183,-121.384266233251,-121.382985272526,-121.381875106565,-121.380679543222,-121.379740172024,-121.37794682701,-121.376153481996,-121.375128713416,-121.374189342218,-121.373335368402,-121.373164573639],"lat":[47.4283331621837,47.4285064789283,47.4278709814077,47.4273510231836,47.4276398894978,47.4283331621837,47.428968654124,47.4301818447037,47.4306440051878,47.4310483922822,47.432088230543,47.4328392120651,47.4337057158894,47.4341100794581,47.4341100794581,47.433994547327,47.4343989086763,47.4339367811663,47.433532416266,47.4329547467327,47.4326081419689,47.4324926065404,47.4326081419689,47.4327236771438,47.4331280482585,47.4341678454286,47.4365939589273,47.4378069737304]}]],[[{"lng":[-121.601003732199,-121.608107660692,-121.614027601103,-121.616000914573,-121.619158216125,-121.626262144618,-121.630603434253,-121.637707362745,-121.64402196585,-121.649547243567,-121.655467183977,-121.660203136306,-121.66257111247],"lat":[45.4148144080358,45.4139832790751,45.4112127608641,45.4089962484393,45.407333807038,45.4056713167086,45.4042858707252,45.4023461892655,45.3987437470124,45.3976352570321,45.396526745306,45.3909838604862,45.3884893849517]}]],[[{"lng":[-121.429690611989,-121.435772730081,-121.439850513803,-121.444342987394,-121.449872185661,-121.453051474664,-121.455401383927,-121.457198373363,-121.456161648688,-121.454641119165,-121.454502889208,-121.45526315397,-121.45775129319,-121.459755627561,-121.46148350202,-121.462589341673,-121.463487836391,-121.464040756218,-121.464386331109,-121.464870135958,-121.465215710849,-121.464731906001,-121.465215710849,-121.466045090589,-121.466736240373,-121.468256769896,-121.469224379592,-121.470744909116,-121.473025703401,-121.474477117945,-121.474615347902,-121.474408002967,-121.474062428075,-121.473647738205,-121.472956588422,-121.471919863747,-121.471159598986,-121.470191989289,-121.470468449202,-121.469639069462,-121.468947919679,-121.467496505134,-121.466114205568,-121.464662791023,-121.463764296305,-121.463280491456,-121.462865801586,-121.462105536825,-121.460792352236,-121.458718902887,-121.457682178212,-121.455816073797,-121.451254485227,-121.447314931462,-121.444965022199,-121.441232813369,-121.437224144626,-121.431833176317,-121.431003796577],"lat":[47.4475384245852,47.4494079929784,47.4506231767978,47.4521654850588,47.4538946859896,47.4553434321826,47.4564182825982,47.4569790653975,47.4578669592648,47.4585679175166,47.4593623255718,47.4601099927767,47.4600632638879,47.4599698059857,47.4604370938355,47.4607174645518,47.4615118401285,47.462773470786,47.4641752471176,47.4656237100584,47.4660442240816,47.4668385191691,47.4680065783761,47.4684270733362,47.469081169921,47.4695016562842,47.470576217262,47.4709032531989,47.4703426189184,47.4691746116258,47.4672123009395,47.465390089703,47.4646424975884,47.4636145410704,47.4622594767656,47.4603436365978,47.4584277266139,47.4565584788587,47.4545489634063,47.4529599898444,47.4517448600187,47.450856862775,47.4503894897823,47.4503894897823,47.4504829647131,47.4510905477139,47.4517915963004,47.4523056926578,47.4534740747802,47.4552499658907,47.4560444240761,47.4561846213334,47.4546891646508,47.4537544826269,47.4529599898444,47.4515579144766,47.4498286367086,47.4476786445198,47.4471177625385]}]],[[{"lng":[-121.428999462205,-121.435772730081,-121.439021134063,-121.446001746874,-121.450217760552,-121.45443377423,-121.457543948255,-121.458096868082,-121.456645453537,-121.455124924013,-121.454779349122,-121.45526315397,-121.456368993623,-121.458511557952,-121.460308547388,-121.46148350202,-121.461552616998,-121.460377662366,-121.459617397605,-121.458649787908,-121.456783683493,-121.454710234143,-121.452567669815,-121.451185370249,-121.449872185661,-121.449733955704],"lat":[47.447164502932,47.4491275619559,47.4508101256627,47.4533338702961,47.4541283574301,47.4558107611499,47.4556705628958,47.4563248182169,47.4569790653975,47.4580071516628,47.4587081080456,47.4596894312822,47.4599230769723,47.4599698059857,47.4598763479173,47.4602969079166,47.4604838223921,47.4611380178229,47.4617454777197,47.4625398377633,47.4629136501012,47.4626800177015,47.4628201972659,47.4625398377633,47.4628669237043,47.4633341858041]}]],[[{"lng":[-121.735100396625,-121.735846456646,-121.7377862127,-121.738830696729,-121.737040152679,-121.735548032637,-121.734652760612,-121.734503548608,-121.732713004558,-121.730474824496,-121.727938220425,-121.725700040363,-121.725103192346,-121.725849252367,-121.728385856438,-121.730474824496,-121.730176400488,-121.730325612492,-121.732713004558,-121.733011428567,-121.733011428567],"lat":[46.7863913816716,46.788230382852,46.7897628358421,46.7921125123536,46.7948706973678,46.7969137062403,46.7991609264136,46.8009994912937,46.8020208890799,46.804165761314,46.8072297161669,46.8104977423224,46.8127443951252,46.8178500751976,46.8216279663672,46.8240783484347,46.8260181550306,46.8278558019747,46.8303059001763,46.8325517254166,46.836022361655]}]],[[{"lng":[-121.474636149777,-121.474845544877,-121.475787822826,-121.477462983623,-121.480394515018,-121.482802558664,-121.484687114561,-121.48562939251,-121.486466972909,-121.486257577809,-121.486152880259,-121.485001207211,-121.483849534163,-121.482488466015,-121.481964978266,-121.483640139063,-121.487199855757,-121.49159715285,-121.497460215641,-121.500810537236,-121.50437025393,-121.505731322078],"lat":[46.9380226044246,46.9363069047056,46.9332328052285,46.9292290622797,46.9263690626411,46.9228653549733,46.9211491696511,46.9193614181483,46.9167154364509,46.9147845024785,46.9128534989273,46.9105648120262,46.909277382694,46.907203125946,46.9061302030275,46.9053433792385,46.904270419096,46.9034835680093,46.9039127609428,46.9034835680093,46.9040558244904,46.9040558244904]}]],[[{"lng":[-121.517643206987,-121.516324409394,-121.515884810196,-121.515093531641,-121.51342305469,-121.510785459505,-121.508147864319,-121.505334429455,-121.503927712023,-121.502696834269,-121.502081395393,-121.501993475553,-121.501993475553,-121.503224353307,-121.504718990578,-121.506037788171,-121.507796184961,-121.509642501591,-121.510521699986,-121.510609619826],"lat":[46.8757865007519,46.874163764212,46.8724808744887,46.8712787780908,46.8718798296554,46.8732622227089,46.8728414981577,46.8718197248018,46.8712186725642,46.8707979319927,46.8695356904886,46.8679127649362,46.8664100123381,46.8656886761475,46.8656285643608,46.8653280044173,46.8651476676435,46.8650875552509,46.8653280044173,46.8664701232497]}]],[[{"lng":[-121.087788917528,-121.089712280186,-121.089531964937,-121.09115480218,-121.091094697097,-121.092837744506,-121.093799425836,-121.095782893577,-121.097525940986,-121.099509408728,-121.101132245971,-121.103416239128,-121.105339601787,-121.106301283116,-121.108465066107,-121.109426747436,-121.110208113516,-121.110208113516],"lat":[47.7479712510721,47.7487795295587,47.7499919237529,47.7509214068418,47.7521741621306,47.7529015545884,47.7547604002329,47.7556897981548,47.7563767337755,47.7566595869834,47.7571444746196,47.7571444746196,47.7573061028275,47.7586395163851,47.7605789660116,47.7613870486843,47.7619122956907,47.7622355219818]}]],[[{"lng":[-121.077027927188,-121.071384875193,-121.066232523371,-121.061816221809,-121.05752259529,-121.050775467904,-121.046727191473,-121.044887065822,-121.039980064087,-121.036913188002,-121.034582362178,-121.032742236527,-121.031515486094,-121.029798035486,-121.028080584879,-121.027221859575,-121.027221859575,-121.026363134271,-121.024645683664,-121.02378695836],"lat":[47.7650576763139,47.7636558585055,47.7620890762493,47.7613468997627,47.7615118287859,47.7610170401477,47.7603573146432,47.7585430263684,47.7573884463429,47.7591203067732,47.7616767572862,47.7636558585055,47.7653050520056,47.7659647147653,47.7637383194223,47.7624189290669,47.7603573146432,47.7583780879334,47.7566462027969,47.7561513678837]}]],[[{"lng":[-121.420949556322,-121.424616088579,-121.429993669222,-121.437693386962,-121.445881975669,-121.451015120828,-121.454070564375,-121.455414959536,-121.454926088569,-121.454437217601,-121.455414959536,-121.4582259676,-121.458714838567],"lat":[47.441509510814,47.4438239694099,47.4470475099121,47.4503535000947,47.4526675695814,47.4544856956046,47.4551468167554,47.456303758769,47.4575433112505,47.4589481020711,47.4597744320799,47.4610139027423,47.4610965330808]}]],[[{"lng":[-121.421193991806,-121.424127217611,-121.428527056319,-121.435860120833,-121.440504395025,-121.445270886959,-121.449915161151,-121.452603951473,-121.454559435343,-121.456759354697,-121.458348185342,-121.458348185342,-121.457492661149,-121.456637136955,-121.455537177278,-121.454559435343,-121.454070564375],"lat":[47.4407655560693,47.4424187745488,47.4458903642551,47.4501055580391,47.4513452566284,47.45332871359,47.4541551319122,47.4542377730301,47.4544856956046,47.454816257219,47.4543204140181,47.4530807855609,47.4519237726364,47.4505187941491,47.4495270220304,47.4495270220304,47.4489484796578]}]]],null,null,{"lineCap":null,"lineJoin":null,"clickable":true,"pointerEvents":null,"className":"","stroke":true,"color":"red","weight":4,"opacity":0.5,"fill":false,"fillColor":"red","fillOpacity":0.2,"dashArray":null,"smoothFactor":1,"noClip":false},["<b>Tour Name:\u003c/b>  holy diver couloir<br/><b>Date:\u003c/b>  2/25/17<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  balu pass<br/><b>Date:\u003c/b>  2/18/17<br/><b>Location:\u003c/b>  roger's pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  considerable","<b>Tour Name:\u003c/b>  asulkan valley<br/><b>Date:\u003c/b>  2/19/17<br/><b>Location:\u003c/b>  roger's pass<br/><b>Objective Achieved:\u003c/b>  no<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  avalanche crest<br/><b>Date:\u003c/b>  2/20/17<br/><b>Location:\u003c/b>  roger's pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  chair peak northeast slopes<br/><b>Date:\u003c/b>  02/12/2017<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  summit west<br/><b>Date:\u003c/b>  02/06/2017<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  no<br/><b>Avalanche Forecast:\u003c/b>  considerable","<b>Tour Name:\u003c/b>  silver lining, adventure zone<br/><b>Date:\u003c/b>  1/29/2017<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  no<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  tilly jane<br/><b>Date:\u003c/b>  1/21/2017<br/><b>Location:\u003c/b>  mount hood<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  chair peak circumnavigation<br/><b>Date:\u003c/b>  1/15/2017<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  chair peak north slopes<br/><b>Date:\u003c/b>  1/14/2017<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  no<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  camp muir<br/><b>Date:\u003c/b>  10/22/2016<br/><b>Location:\u003c/b>  mount rainier<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  crystal lakes, silver basin<br/><b>Date:\u003c/b>  12/03/2016<br/><b>Location:\u003c/b>  crystal mountain<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  considerable","<b>Tour Name:\u003c/b>  naches peak area<br/><b>Date:\u003c/b>  11/19/2016<br/><b>Location:\u003c/b>  chinook pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  considerable","<b>Tour Name:\u003c/b>  skyline/tye peak<br/><b>Date:\u003c/b>  11/27/2016<br/><b>Location:\u003c/b>  stevens pass<br/><b>Objective Achieved:\u003c/b>  no<br/><b>Avalanche Forecast:\u003c/b>  considerable","<b>Tour Name:\u003c/b>  yodelin<br/><b>Date:\u003c/b>  12/10/2016<br/><b>Location:\u003c/b>  stevens pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  considerable","<b>Tour Name:\u003c/b>  snow lake divide<br/><b>Date:\u003c/b>  12/17/2016<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate","<b>Tour Name:\u003c/b>  pineapple pass basin<br/><b>Date:\u003c/b>  12/18/2016<br/><b>Location:\u003c/b>  snoqualmie pass<br/><b>Objective Achieved:\u003c/b>  yes<br/><b>Avalanche Forecast:\u003c/b>  moderate"],null,null,null,null]},{"method":"addMiniMap","args":[null,null,"bottomright",150,150,19,19,-5,false,false,false,true,false,false,{"color":"#ff7800","weight":1,"clickable":false},{"color":"#000000","weight":1,"clickable":false,"opacity":0,"fillOpacity":0},{"hideText":"Hide MiniMap","showText":"Show MiniMap"},[]]},{"method":"addLegend","args":[{"colors":["#c60905"],"labels":["ski tour"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"topright","type":"unknown","title":"Backcountry Ski Tours","extra":null,"layerId":null,"className":"info legend"}]}],"limits":{"lat":[45.3884893849517,51.3047168545649],"lng":[-121.738830696729,-117.455640496769]}},"evals":[],"jsHooks":[]}</script>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
