@@ -15,6 +15,8 @@ navbar:
           href: bird.html
         - text: "Transportation Project Map"
           href: transportation.html
+        - text: "Ski Tour Map"
+          href: ski_tours.html
         - text: "Tableau Dashboard"
           href: tableau.html
         - text: "Fuel Economy Graph"

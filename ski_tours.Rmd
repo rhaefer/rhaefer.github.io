@@ -16,7 +16,6 @@ shapefile <- readOGR(dsn=".", layer="tours_ski_leaflet",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
 leaflet() %>%
-  fitBounds(-120.2, 47.187, -123.4, 50.932)%>%
   addProviderTiles("Stamen.Terrain", group = "Toner Lite") %>%
   addPolylines(data=shapefile, weight=4, color="red",
                popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile$name),
@@ -25,5 +24,6 @@ leaflet() %>%
                            paste("<b>Objective Achieved:</b> ",shapefile$Ski.Tour_4),
                            paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_5))) %>%
   addMiniMap(toggleDisplay = TRUE) %>%
+  addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour")
 ```
