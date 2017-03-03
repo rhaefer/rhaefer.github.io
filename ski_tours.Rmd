@@ -8,12 +8,14 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load( gsheet, raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
+pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
 
 setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
 shapefile <- readOGR(dsn=".", layer="tours_ski_leaflet",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
+
+data<-read.csv("Ski Tours - Sheet1.csv", header=T)
 
 leaflet() %>%
   addProviderTiles("Stamen.Terrain", group = "Toner Lite") %>%
@@ -26,4 +28,10 @@ leaflet() %>%
   addMiniMap(toggleDisplay = TRUE) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour")
+```
+______________________________________________________________________________________________
+```{r message=FALSE, warning=FALSE}
+data_table<-data %>% select(date, general.area, tour.objective, objective.achieved, nwac.avy.rating, weather)
+colnames(data_table)<-c("Date", "Area", "Objective", "Objective Achieved", "NWAC Forecast", "Weather")
+kable(data_table, caption = "Recent Ski Tours", row.names=FALSE, align='l')
 ```
