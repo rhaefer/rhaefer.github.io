@@ -1,0 +1,19 @@
+library(pacman)
+pacman::p_load( gsheet, raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
+                rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
+
+setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
+shapefile <- readOGR(dsn=".", layer="tours_ski_leaflet",verbose = FALSE)
+shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
+
+leaflet() %>%
+  fitBounds(-120.2, 47.187, -123.4, 50.932)%>%
+  addProviderTiles("Stamen.Terrain", group = "Toner Lite") %>%
+  addPolylines(data=shapefile, weight=4, color="red",
+               popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile$name),
+                           paste("<b>Date:</b> ",shapefile$Ski.Tours),
+                           paste("<b>Location:</b> ",shapefile$Ski.Tour_1),
+                           paste("<b>Objective Achieved:</b> ",shapefile$Ski.Tour_4),
+                           paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_5))) %>%
+  addMiniMap(toggleDisplay = TRUE) %>%
+  addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour")
