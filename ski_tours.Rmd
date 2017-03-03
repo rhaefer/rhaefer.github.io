@@ -1,5 +1,5 @@
 ---
-title: "Ski Tour Map"
+title: "Backcountry Ski Tours"
 output:
   html_document:
     theme: yeti
@@ -15,7 +15,7 @@ setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
 shapefile <- readOGR(dsn=".", layer="tours_ski_leaflet",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
-data<-read.csv("Ski Tours - Sheet1.csv", header=T)
+data<-read.xlsx("Ski_Tours.xlsx", header=T, sheetName = "sheet1")
 
 leaflet() %>%
   addProviderTiles("Stamen.Terrain", group = "Toner Lite") %>%
@@ -31,7 +31,10 @@ leaflet() %>%
 ```
 ______________________________________________________________________________________________
 ```{r message=FALSE, warning=FALSE}
-data_table<-data %>% select(date, general.area, tour.objective, objective.achieved, nwac.avy.rating, weather)
-colnames(data_table)<-c("Date", "Area", "Objective", "Objective Achieved", "NWAC Forecast", "Weather")
+
+data_table<-data %>% select(date, general.area, tour.name, objective.achieved, nwac.avy.rating, weather, duration) 
+colnames(data_table)<-c("Date", "Area", "Objective", "Objective Achieved", "NWAC Forecast", "Weather", "Duration")
+data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
+data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y")),]
 kable(data_table, caption = "Recent Ski Tours", row.names=FALSE, align='l')
 ```
