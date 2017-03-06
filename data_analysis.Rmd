@@ -1,5 +1,5 @@
 ---
-title: "Data Analysis"
+title: "Funding Analysis"
 output:
   html_document:
     theme: yeti

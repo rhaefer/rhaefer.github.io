@@ -9,7 +9,7 @@ navbar:
       href: about.html
     - text: "Research"
       href: research.html
-    - text: "Data Visualization"
+    - text: "Data Viz/Analysis"
       menu:
         - text: "Bird Observation Map"
           href: bird.html
@@ -21,8 +21,8 @@ navbar:
           href: tableau.html
         - text: "Fuel Economy Graph"
           href: vehicle.html
-    - text: "Data Analysis"
-      href: data_analysis.html
+        - text: "Funding Analysis"
+          href: data_analysis.html
     - text: "Blog"
       href: blog.html
   right:
