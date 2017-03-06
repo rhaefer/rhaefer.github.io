@@ -24,7 +24,8 @@ leaflet() %>%
                            paste("<b>Date:</b> ",shapefile$Ski.Tours),
                            paste("<b>Location:</b> ",shapefile$Ski.Tour_1),
                            paste("<b>Objective Achieved:</b> ",shapefile$Ski.Tour_4),
-                           paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_5))) %>%
+                           paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_5)),
+               highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE)) %>%
   addMiniMap(toggleDisplay = TRUE) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour")
