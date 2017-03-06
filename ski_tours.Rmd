@@ -18,17 +18,20 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 data<-read.xlsx("Ski_Tours.xlsx", header=T, sheetName = "sheet1")
 
 leaflet() %>%
-  addProviderTiles("Stamen.Terrain", group = "Toner Lite") %>%
+  addProviderTiles("OpenStreetMap.BlackAndWhite", group="Base Map") %>%
+  addProviderTiles("OpenTopoMap", group="Topographic") %>%
+  addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
   addPolylines(data=shapefile, weight=4, color="red",
                popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile$name),
                            paste("<b>Date:</b> ",shapefile$Ski.Tours),
                            paste("<b>Location:</b> ",shapefile$Ski.Tour_1),
                            paste("<b>Objective Achieved:</b> ",shapefile$Ski.Tour_4),
                            paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_5)),
-               highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE)) %>%
+               highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
   addMiniMap(toggleDisplay = TRUE) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
-  addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour")
+  addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
+  addLayersControl(baseGroups = c("Base Map", "Topographic", "Satellite"), options = layersControlOptions(collapsed = FALSE))
 ```
 ______________________________________________________________________________________________
 ```{r message=FALSE, warning=FALSE}
