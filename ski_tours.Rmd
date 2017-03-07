@@ -17,9 +17,12 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
 data<-read.xlsx("Ski_Tours.xlsx", header=T, sheetName = "sheet1")
 
-leaflet() %>%
+topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
+mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+
+leaflet(width=900, height=700) %>%
   addProviderTiles("OpenStreetMap.BlackAndWhite", group="Base Map") %>%
-  addProviderTiles("OpenTopoMap", group="Topographic") %>%
+  addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
   addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
   addPolylines(data=shapefile, weight=4, color="red",
                popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile$name),
@@ -28,8 +31,8 @@ leaflet() %>%
                            paste("<b>Objective Achieved:</b> ",shapefile$Ski.Tour_4),
                            paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_5)),
                highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
-  addMiniMap(toggleDisplay = TRUE) %>%
-  addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(4); }"))) %>%
+  addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.DE) %>%
+  addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(2); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
   addLayersControl(baseGroups = c("Base Map", "Topographic", "Satellite"), options = layersControlOptions(collapsed = FALSE))
 ```
