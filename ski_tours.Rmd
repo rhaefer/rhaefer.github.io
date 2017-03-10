@@ -20,9 +20,11 @@ data1<-read.xlsx("Ski Tours - Sheet1.xlsx", header=T, sheetName="Sheet1")
 topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
+base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qzzwb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
+mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
 leaflet(width=900, height=700) %>%
-  addProviderTiles("OpenStreetMap.BlackAndWhite", group="Base Map") %>%
+  addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
   addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
   addPolylines(data=shapefile, weight=4, color="red",
@@ -36,7 +38,7 @@ leaflet(width=900, height=700) %>%
                           # paste("<b>Photos:</b> ",shapefile$Ski.Tour21)),
                            paste0("<a href=", "\"", shapefile$Ski.Tour21, "\"", ">","Photos" ,"</a>")),
                highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
-  addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.DE) %>%
+  addMiniMap(toggleDisplay = TRUE, tiles=base_map) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
   addLayersControl(baseGroups = c("Base Map", "Topographic", "Satellite"), options = layersControlOptions(collapsed = FALSE))
