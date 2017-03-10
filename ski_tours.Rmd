@@ -11,11 +11,11 @@ library(pacman)
 pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
 
-setwd('X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours')
+setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
 shapefile <- readOGR(dsn=".", layer="ski_tours_3_19_17",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
-data1<-read.xlsx("tours_3_9_17.xlsx", header=T, sheetName = "ski")
+data1<-read.xlsx("Ski Tours - Sheet1.xlsx", header=T, sheetName="Sheet1")
 
 topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
@@ -44,8 +44,10 @@ leaflet(width=900, height=700) %>%
 ______________________________________________________________________________________________
 ```{r message=FALSE, warning=FALSE}
 
-data_table<-data1 %>% select(date, general.area, tour.name, objective.achieved, nwac.avy.rating, weather, duration) 
-colnames(data_table)<-c("Date", "Area", "Objective", "Objective Achieved", "NWAC Forecast", "Weather", "Duration")
+data_table<-data1 %>% select(date, general.area, tour.name, nwac.avy.rating, weather, duration, elevation.gain..ft., distance..mile., photos ) 
+data_table$distance..mile.<- paste(data_table$distance..mile., "miles")
+data_table$elevation.gain..ft.<- paste(data_table$elevation.gain..ft., "ft")
+colnames(data_table)<-c("Date", "Area", "Tour Name", "Avy Forecast", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
 data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y")),]
 kable(data_table, caption = "Recent Ski Tours", row.names=FALSE, align='l')
