@@ -8,7 +8,7 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load(raster,dplyr,gsheet, leaflet, shiny, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, htmltools)
+pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, htmltools)
 
 bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_7_sfWFCYy0BCuic5iLayzpKsCGVyOE-5sQ/edit?usp=sharing"))
 bird$Location<-as.character(bird$Location)
@@ -39,5 +39,14 @@ leaflet (width=900, height=700) %>%
     addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.DE) %>%
    addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(3); }"))) %>%
     addLegend("topright", title= "Recent Bird Observations", colors= "#3487db", labels= "birds observed")
+
+```
+```{r message=FALSE, warning=FALSE}
+
+bird_table<-data.frame(bird %>% group_by(Common.Name, html) %>% summarise(Count=sum(Count))) 
+bird_table<-bird_table %>% 
+      rename(`Common Name`=Common.Name, `Number Observed`=Count, `More Information`=html) %>% 
+      select(`Common Name`, `Number Observed`, `More Information`)
+kable(bird_table, caption = "Summary of Recent Bird Observations", row.names=FALSE, align='l')
 
 ```
