@@ -11,14 +11,15 @@ library(pacman)
 pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
 
-setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
-shapefile <- readOGR(dsn=".", layer="tours_ski_leaflet",verbose = FALSE)
+setwd('X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours')
+shapefile <- readOGR(dsn=".", layer="ski_tours_3_19_17",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
-data<-read.xlsx("Ski_Tours.xlsx", header=T, sheetName = "sheet1")
+data1<-read.xlsx("tours_3_9_17.xlsx", header=T, sheetName = "ski")
 
 topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+
 
 leaflet(width=900, height=700) %>%
   addProviderTiles("OpenStreetMap.BlackAndWhite", group="Base Map") %>%
@@ -26,20 +27,24 @@ leaflet(width=900, height=700) %>%
   addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
   addPolylines(data=shapefile, weight=4, color="red",
                popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile$name),
-                           paste("<b>Date:</b> ",shapefile$Ski.Tours),
+                           paste("<b>Date:</b> ",shapefile$Ski.Tours_),
                            paste("<b>Location:</b> ",shapefile$Ski.Tour_1),
-                           paste("<b>Objective Achieved:</b> ",shapefile$Ski.Tour_4),
-                           paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_5)),
+                           paste("<b>Distance:</b> ",shapefile$Ski.Tour18, "miles"),
+                           paste("<b>Elevation Gained:</b> ",shapefile$Ski.Tour17, "feet"),
+                           paste("<b>Weather:</b> ",shapefile$Ski.Tour_5),
+                           paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_4),
+                          # paste("<b>Photos:</b> ",shapefile$Ski.Tour21)),
+                           paste0("<a href=", "\"", shapefile$Ski.Tour21, "\"", ">","Photos" ,"</a>")),
                highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
   addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.DE) %>%
-  addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(2); }"))) %>%
+  addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
   addLayersControl(baseGroups = c("Base Map", "Topographic", "Satellite"), options = layersControlOptions(collapsed = FALSE))
 ```
 ______________________________________________________________________________________________
 ```{r message=FALSE, warning=FALSE}
 
-data_table<-data %>% select(date, general.area, tour.name, objective.achieved, nwac.avy.rating, weather, duration) 
+data_table<-data1 %>% select(date, general.area, tour.name, objective.achieved, nwac.avy.rating, weather, duration) 
 colnames(data_table)<-c("Date", "Area", "Objective", "Objective Achieved", "NWAC Forecast", "Weather", "Duration")
 data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y")),]
