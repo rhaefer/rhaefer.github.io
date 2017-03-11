@@ -12,6 +12,7 @@ pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, data
 
 bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_7_sfWFCYy0BCuic5iLayzpKsCGVyOE-5sQ/edit?usp=sharing"))
 bird$Location<-as.character(bird$Location)
+bird$Common.Name<-gsub("'","",bird$Common.Name)
 bird$Location[bird$Location=="US-WA-Renton-Cedar River Park - 47.4656x-122.1338"] <- "Cedar River Park"
 bird$Common.Name[bird$Common.Name=="American Coot (Red-shielded)"] <- "American Coot"
 bird$lat <- jitter(bird$Latitude, factor = .2)
@@ -23,10 +24,11 @@ table<-bird %>% select(Common.Name, Count, Scientific.Name, Location, Area, Date
 bird$url <- paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",bird$Common.Name), "/id")
 bird$html <- paste0("<a href=", "\"", bird$url, "\"", ">", "All About Birds", "</a>")
 
-
+#custom base map map created with Mapbox
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cipbjqldq0017cvnfmduk5unx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
+#custom inset map created with Mapbox
 inset_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qzzwb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
@@ -48,10 +50,11 @@ leaflet (width=900, height=700) %>%
 ```
 ```{r message=FALSE, warning=FALSE}
 
-bird_table<-data.frame(bird %>% group_by(Common.Name, html) %>% summarise(Count=sum(Count))) 
+bird_table<-data.frame(bird %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & ")))
+bird_table$url <- paste0("<a href=", "\"", bird_table$url, "\"", ">", bird_table$Common.Name, " @ All About Birds","</a>")
 bird_table<-bird_table %>% 
-      rename(`Common Name`=Common.Name, `Number Observed`=Count, `More Information`=html) %>% 
-      select(`Common Name`, `Number Observed`, `More Information`)
-kable(bird_table, caption = "Summary of Recent Bird Observations", row.names=FALSE, align='l')
+      rename(`Common Name`=Common.Name, `Number Observed`=Count, `More Information`=url) %>% 
+      select(`Common Name`, `Number Observed`, Location, `More Information`)
+kable(bird_table, caption = "Summary of Recent Bird Observations", row.names=FALSE, align='l', padding=0)
 
 ```
