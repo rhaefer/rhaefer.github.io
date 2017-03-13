@@ -51,6 +51,12 @@ leaflet (width=900, height=700) %>%
 ```{r message=FALSE, warning=FALSE}
 
 bird_table<-data.frame(bird %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & ")))
+bird_table$Location<- gsub("US-WA","Washington State",bird_table$Location)
+bird_table$Location<- gsub("US-OR","Oregon",bird_table$Location)
+bird_table$Location<- gsub("US-MT","Montana",bird_table$Location)
+bird_table$Location<- gsub("US-CA","California",bird_table$Location)
+bird_table$Location<- gsub("MX-BCS","Baja, Mexico",bird_table$Location)
+bird_table$Location<- gsub("CA-BC","British Columbia",bird_table$Location)
 bird_table$url <- paste0("<a href=", "\"", bird_table$url, "\"", ">", bird_table$Common.Name, " @ All About Birds","</a>")
 bird_table<-bird_table %>% 
       rename(`Common Name`=Common.Name, `Number Observed`=Count, `More Information`=url) %>% 
