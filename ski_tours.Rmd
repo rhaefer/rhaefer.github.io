@@ -5,6 +5,9 @@ output:
     theme: yeti
     highlight: tango
     code_folding: hide
+header-includes:
+- \usepackage{fancyhdr}
+- \fancyfoot[CO,CE]{And this is a fancy footer}
 ---
 
 ```{r message=FALSE, warning=FALSE}
