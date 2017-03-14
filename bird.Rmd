@@ -22,7 +22,7 @@ bird$Area<- paste(sep="",bird$State.Province,"-", bird$County)
 bird$Location[bird$Location=="US-WA-North Bend-Snoqualmie National Forest - 47.4352x-121.5129"] <- "Pratt Lake (Snoqualmie Pass)"
 table<-bird %>% select(Common.Name, Count, Scientific.Name, Location, Area, Date)
 bird$url <- paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",bird$Common.Name), "/id")
-bird$html <- paste0("<a href=", "\"", bird$url, "\"", ">", "All About Birds", "</a>")
+bird$html <- paste0("<a href=", "\"", bird$url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>")
 
 #custom base map map created with Mapbox
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cipbjqldq0017cvnfmduk5unx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
@@ -58,7 +58,7 @@ bird_table$Location<- gsub("US-MT","Montana",bird_table$Location)
 bird_table$Location<- gsub("US-CA","California",bird_table$Location)
 bird_table$Location<- gsub("MX-BCS","Baja, Mexico",bird_table$Location)
 bird_table$Location<- gsub("CA-BC","British Columbia",bird_table$Location)
-bird_table$url <- paste0("<a href=", "\"", bird_table$url, "\"", ">", bird_table$Common.Name, " @ All About Birds","</a>")
+bird_table$url <- paste0("<a href=", "\"", bird_table$url, "\"","target=", "\"", "blank", "\"", ">", bird_table$Common.Name, " @ All About Birds","</a>")
 bird_table<-bird_table %>% 
       rename(`Common Name`=Common.Name, `Number Observed`=Count, `More Information`=url) %>% 
       select(`Common Name`, `Number Observed`, Location, `More Information`)

@@ -39,7 +39,7 @@ leaflet(width=900, height=700) %>%
                            paste("<b>Weather:</b> ",shapefile$Ski.Tour_5),
                            paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_4),
                           # paste("<b>Photos:</b> ",shapefile$Ski.Tour21)),
-                           paste0("<a href=", "\"", shapefile$Ski.Tour22, "\"", ">","Photos" ,"</a>")),
+                           paste0("<a href=", "\"", shapefile$Ski.Tour22, "\"", "target=", "\"","blank", "\"", ">","Photos" ,"</a>")),
                highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
   addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
@@ -50,14 +50,13 @@ ________________________________________________________________________________
 ```{r message=FALSE, warning=FALSE}
 
 data_table<-data1 %>% select(date, general.area, tour.name, nwac.avy.rating, weather, duration, elevation.gain..ft., distance..mile., photos )
-data_table$photos <- paste0("<a href=", "\"", data_table$photos, "\"", ">", data_table$tour.name, "</a>")
+data_table$photos <- paste0("<a href=", "\"", data_table$photos, "\"", "target=", "\"","blank", "\"", ">", data_table$tour.name, "</a>")
 data_table$distance..mile.<- paste(data_table$distance..mile., "miles")
 data_table$elevation.gain..ft.<- paste(data_table$elevation.gain..ft., "ft")
 colnames(data_table)<-c("Date", "Area", "Tour Name", "Avy Forecast", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
 data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
 kable(data_table, caption = "Recent Ski Tours", row.names=FALSE, align='l')
-
 
 
 ```
