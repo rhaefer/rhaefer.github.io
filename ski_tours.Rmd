@@ -4,6 +4,7 @@ output:
   html_document:
     theme: yeti
     highlight: tango
+    code_folding: hide
 ---
 
 ```{r message=FALSE, warning=FALSE}
@@ -46,7 +47,7 @@ leaflet(width=900, height=700) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
   addLayersControl(baseGroups = c("Base Map", "Topographic", "Satellite"), options = layersControlOptions(collapsed = FALSE))
 ```
-______________________________________________________________________________________________
+
 ```{r message=FALSE, warning=FALSE}
 
 data_table<-data1 %>% select(date, general.area, tour.name, nwac.avy.rating, weather, duration, elevation.gain..ft., distance..mile., photos )

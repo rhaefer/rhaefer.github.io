@@ -4,6 +4,7 @@ output:
   html_document:
     theme: yeti
     highlight: tango
+    code_folding: hide
 ---
 
 ```{r message=FALSE, warning=FALSE}
