@@ -5,9 +5,6 @@ output:
     theme: yeti
     highlight: tango
     code_folding: hide
-header-includes:
-- \usepackage{fancyhdr}
-- \fancyfoot[CO,CE]{And this is a fancy footer}
 ---
 
 ```{r message=FALSE, warning=FALSE}
@@ -16,10 +13,13 @@ pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, dplyr, xlsx, ma
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
 
 setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
-shapefile <- readOGR(dsn=".", layer="ski_tours_3_14_17",verbose = FALSE)
+shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
 data1<-read.xlsx("Ski Tours - Sheet1.xlsx", header=T, sheetName="Sheet1")
+shapefile@data <- left_join(shapefile@data, data1)
+
+shapefile1<-shapefile
 
 #custom topographic map created with Mapbox
 topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
@@ -34,16 +34,15 @@ leaflet(width=900, height=700) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
   addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
-  addPolylines(data=shapefile, weight=4, color="red",
-               popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile$name),
-                           paste("<b>Date:</b> ",shapefile$Ski.Tours),
-                           paste("<b>Location:</b> ",shapefile$Ski.Tour_1),
-                           paste("<b>Distance:</b> ",shapefile$Ski.Tour19, "miles"),
-                           paste("<b>Elevation Gained:</b> ",shapefile$Ski.Tour18, "feet"),
-                           paste("<b>Weather:</b> ",shapefile$Ski.Tour_5),
-                           paste("<b>Avalanche Forecast:</b> ",shapefile$Ski.Tour_4),
-                          # paste("<b>Photos:</b> ",shapefile$Ski.Tour21)),
-                           paste0("<a href=", "\"", shapefile$Ski.Tour22, "\"", "target=", "\"","blank", "\"", ">","Photos" ,"</a>")),
+  addPolylines(data=shapefile1, weight=4, color="red",
+               popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile1$name),
+                           paste("<b>Date:</b> ",shapefile1$date),
+                           paste("<b>Location:</b> ",shapefile1$general.area),
+                           paste("<b>Distance:</b> ",shapefile1$distance..mile., "miles"),
+                           paste("<b>Elevation Gained:</b> ",shapefile1$elevation.gain..ft., "feet"),
+                           paste("<b>Weather:</b> ",shapefile1$weather),
+                           paste("<b>Avalanche Forecast:</b> ",shapefile1$nwac.avy.rating),
+                           paste0("<a href=", "\"", shapefile1$photos, "\"", "target=", "\"","blank", "\"", ">","Photos" ,"</a>")),
                highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
   addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
