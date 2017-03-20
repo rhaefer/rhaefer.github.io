@@ -16,7 +16,7 @@ setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
 shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
-data1<-read.xlsx("Ski Tours - Sheet1.xlsx", header=T, sheetName="Sheet1")
+data1<-read.xlsx("Ski Tours (2).xlsx", header=T, sheetName="Sheet1")
 shapefile@data <- left_join(shapefile@data, data1)
 
 shapefile1<-shapefile
