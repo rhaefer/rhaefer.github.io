@@ -21,6 +21,7 @@ shapefile@data <- left_join(shapefile@data, data1)
 
 shapefile1<-shapefile
 
+
 #custom topographic map created with Mapbox
 topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"

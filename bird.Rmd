@@ -51,8 +51,9 @@ leaflet (width=900, height=700) %>%
 
 ```
 ```{r message=FALSE, warning=FALSE}
-
-bird_table<-data.frame(bird %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & ")))
+bird1<-bird
+bird1$Date<-as.Date(bird1$Date, "%m/%d/%Y")
+bird_table<-data.frame(bird1 %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & "),mydates=format(max(Date), '%m/%d/%Y')))
 bird_table$Location<- gsub("US-WA","Washington State",bird_table$Location)
 bird_table$Location<- gsub("US-OR","Oregon",bird_table$Location)
 bird_table$Location<- gsub("US-MT","Montana",bird_table$Location)
@@ -61,8 +62,10 @@ bird_table$Location<- gsub("MX-BCS","Baja, Mexico",bird_table$Location)
 bird_table$Location<- gsub("CA-BC","British Columbia",bird_table$Location)
 bird_table$url <- paste0("<a href=", "\"", bird_table$url, "\"","target=", "\"", "blank", "\"", ">", bird_table$Common.Name, " @ All About Birds","</a>")
 bird_table<-bird_table %>% 
-      rename(`Common Name`=Common.Name, `Number Observed`=Count, `More Information`=url) %>% 
-      select(`Common Name`, `Number Observed`, Location, `More Information`)
+      rename(`Common Name`=Common.Name, `Total Observed`=Count, Locations=Location, `More Information`=url, RecentObservation=mydates) %>% 
+      select(`Common Name`, `Total Observed`, Locations, `More Information`, RecentObservation)
+bird_table$RecentObservation<-as.Date(bird_table$RecentObservation, "%m/%d/%Y")
+bird_table<-bird_table[order(bird_table$RecentObservation, decreasing = TRUE),]
+bird_table<-bird_table %>% rename (`Recent Observation`=RecentObservation)
 kable(bird_table, caption = "Summary of Recent Bird Observations", row.names=FALSE, align='l', padding=0)
-
 ```
