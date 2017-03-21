@@ -48,7 +48,7 @@ leaflet(width=900, height=700) %>%
   addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
-  addLayersControl(baseGroups = c("Base Map", "Topographic", "Satellite"), options = layersControlOptions(collapsed = FALSE))
+  addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE))
 ```
 
 ```{r message=FALSE, warning=FALSE}
