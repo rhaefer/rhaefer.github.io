@@ -68,5 +68,6 @@ bird_table$RecentObservation<-as.Date(bird_table$RecentObservation, "%m/%d/%Y")
 bird_table<-bird_table[order(bird_table$RecentObservation, decreasing = TRUE),]
 bird_table$RecentObservation<-format(bird_table$RecentObservation, "%m/%d/%Y")
 bird_table<-bird_table %>% rename (`Recent Observation`=RecentObservation)
-kable(bird_table, caption = "Summary of Recent Bird Observations", row.names=FALSE, align='l', padding=0)
+
+DT::datatable(bird_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 200, dom = 'ft'))
 ```
