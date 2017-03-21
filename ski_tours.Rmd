@@ -61,5 +61,5 @@ colnames(data_table)<-c("Date", "Area", "Tour Name", "Avy Forecast", "Weather", 
 data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
 
-DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 20))
+DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 20, dom = 'ft'))
 ```
