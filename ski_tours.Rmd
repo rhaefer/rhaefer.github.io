@@ -57,7 +57,7 @@ data_table<-data1 %>% select(date, general.area, tour.name, nwac.avy.rating, wea
 data_table$photos <- paste0("<a href=", "\"", data_table$photos, "\"", "target=", "\"","blank", "\"", ">", data_table$tour.name, "</a>")
 data_table$distance..mile.<- paste(data_table$distance..mile., "miles")
 data_table$elevation.gain..ft.<- paste(data_table$elevation.gain..ft., "ft")
-colnames(data_table)<-c("Date", "Area", "Tour Name", "Avy Forecast", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
+colnames(data_table)<-c("Date", "Area", "Tour Name", "Avalanche Danger", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
 data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
 
