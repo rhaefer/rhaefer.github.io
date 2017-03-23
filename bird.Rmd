@@ -34,6 +34,7 @@ inset_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qz
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
 leaflet (width=900, height=700) %>%
+  addPopups(-122.340236, lat = 47.605792, "recent observation", options = popupOptions(closeButton = FALSE)) %>%
    addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
     addTiles(urlTemplate = base_map, attribution = mb_attribution)%>%
     addMarkers(bird$lon, bird$lat, 
