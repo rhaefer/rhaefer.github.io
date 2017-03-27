@@ -16,10 +16,11 @@ setwd("X:/Trans/STAFF/Reid/viz/rhaefer.github.io/ski tours")
 shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
-data1<-read.xlsx("Ski Tours (2).xlsx", header=T, sheetName="Sheet1")
+data1<-read.xlsx("Ski Tours.xlsx", header=T, sheetName="Sheet1")
 shapefile@data <- left_join(shapefile@data, data1)
 
 shapefile1<-shapefile
+shapefile1$name<-gsub("South Trail to Bullion Basin Trail, Pierce County, WA, USA", "east peak circumnaviation",shapefile1$name )
 
 
 #custom topographic map created with Mapbox
