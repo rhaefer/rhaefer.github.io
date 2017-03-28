@@ -93,6 +93,7 @@ ggplot(data_graph, aes(jurisdiction_size, psrc_funds, fill=phases.y)) +geom_bar(
 
 ```
 ____________________________________________________________
+
 ![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/ProjectSelectionMultiplot.png)
 
 ________________________________________________________________
