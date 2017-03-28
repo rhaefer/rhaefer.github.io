@@ -19,10 +19,8 @@ navbar:
           href: ski_tours.html
         - text: "Tableau Dashboard"
           href: tableau.html
-        - text: "Fuel Economy Graph"
+        - text: "Static Charts"
           href: vehicle.html
-        - text: "Funding Analysis"
-          href: data_analysis.html
     - text: "Blog"
       href: blog.html
   right:

@@ -233,13 +233,7 @@ $(document).ready(function () {
       <a href="tableau.html">Tableau Dashboard</a>
     </li>
     <li>
-      <a href="vehicle.html">Fuel Economy Graph</a>
-    </li>
-    <li>
-      <a href="data_analysis.html">Funding Analysis</a>
-    </li>
-    <li>
-      <a href="flex.html">Static Charts</a>
+      <a href="vehicle.html">Static Charts</a>
     </li>
   </ul>
 </li>
@@ -268,130 +262,195 @@ $(document).ready(function () {
 </div>
 
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#load required packages</span>
-<span class="kw">library</span>(pacman)
-pacman::<span class="kw">p_load</span>(scales,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(xlsx)
+<span class="kw">library</span>(googleVis)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(digest)
+<span class="kw">library</span>(networkD3)
+<span class="kw">library</span>(plyr)
+<span class="kw">library</span>(rCharts)
+<span class="kw">library</span>(rjson)
+<span class="kw">library</span>(devtools)
+<span class="kw">library</span>(knitr)
 
-<span class="co">#load data from google sheets</span>
-data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;</span>))
-pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))
+<span class="kw">setwd</span>(<span class="st">&quot;X:/Trans/STAFF/Reid/Project Tracking/phase_analysis&quot;</span>)
 
-<span class="co">#summarise data</span>
-data_sum&lt;-data %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Sponsor, ID, Title, Total.Project.Cost) %&gt;%
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">psrc_funds =</span> <span class="kw">sum</span>(PSRC.Funds), <span class="dt">phases=</span><span class="kw">paste</span>(Phase.s., <span class="dt">collapse=</span><span class="st">&quot; &amp; &quot;</span>))
+phase&lt;-<span class="kw">read.xlsx</span>(<span class="st">&quot;PhaseAnalysisForAllAwardsSince2012.xlsx&quot;</span>, <span class="dt">sheetName=</span><span class="st">&quot;tidy_data&quot;</span>)
+phase$summary&lt;-phase$Award.Type
+phase$summary&lt;-<span class="kw">gsub</span>(<span class="st">&quot;.*Construction.*&quot;</span>,<span class="st">&quot;Includes Construction&quot;</span>,phase$Award.Type)
+phase_select&lt;-phase %&gt;%<span class="st"> </span><span class="kw">select</span>( process2,summary, Amount)
+<span class="kw">colnames</span>(phase_select) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;source&quot;</span>, <span class="st">&quot;target&quot;</span>, <span class="st">&quot;value&quot;</span>)
+phase_select&lt;-phase_select[!(phase_select$value==<span class="dv">0</span>),]
 
-<span class="co">#join datasets</span>
-data_final&lt;-<span class="kw">left_join</span>(pop, data_sum, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">select</span> (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
-
-<span class="co">#clean data</span>
-data_final&lt;-data_final[<span class="kw">complete.cases</span>(data_final),]
-data_final$X2010.Population&lt;-<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>,data_final$X2010.Population)
-data_final$X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final$X2010.Population)
-
-<span class="co">#manipulate data</span>
-data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population &lt;<span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">50000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">100000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
-
-<span class="co">#prepare data for display in table</span>
-data_final&lt;-data_final[<span class="kw">order</span>(data_final$psrc_funds),]
-data_final$jurisdiction_size[<span class="kw">is.na</span>(data_final$jurisdiction_size)] &lt;-<span class="st"> &quot;Transit Agency&quot;</span>
-data_graph&lt;-data_final
-data_graph&lt;-data_graph %&gt;%<span class="st"> </span><span class="kw">filter</span>(phases.y %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;CN&quot;</span>,<span class="st">&quot;CN &amp; BUSR &amp; OTH&quot;</span>,<span class="st">&quot;OTH&quot;</span>, <span class="st">&quot;PE&quot;</span>, <span class="st">&quot;PE &amp; CN&quot;</span>, <span class="st">&quot;PE &amp; ROW&quot;</span>, <span class="st">&quot;PE &amp; ROW &amp; CN&quot;</span>))
-data_final$psrc_funds&lt;-<span class="kw">dollar</span>(data_final$psrc_funds)
-<span class="kw">colnames</span>(data_final)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Population&quot;</span>, <span class="st">&quot;ID&quot;</span>,<span class="st">&quot;Phases&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Size&quot;</span>)
-data_final&lt;-data_final %&gt;%<span class="st"> </span><span class="kw">select</span>(Population, <span class="st">`</span><span class="dt">Funding Award</span><span class="st">`</span>, Jurisdiction, <span class="st">`</span><span class="dt">Project Title</span><span class="st">`</span>, Size)
-data_final$Population&lt;-<span class="kw">prettyNum</span>(data_final$Population,<span class="dt">big.mark=</span><span class="st">&quot;,&quot;</span>,<span class="dt">scientific=</span><span class="ot">FALSE</span>)
-data_final$Population&lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;NA&quot;</span>,<span class="st">&quot;Transit Agency&quot;</span>, data_final$Population)
-data_final&lt;-data_final[<span class="kw">c</span>(<span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Population&quot;</span>, <span class="st">&quot;Size&quot;</span>)]
-
-<span class="co">#show summary table</span>
-<span class="kw">kable</span>(data_final[<span class="dv">1</span>:<span class="dv">10</span>, ], <span class="dt">caption =</span> <span class="st">&quot;Smallest Funding Amounts Per Project&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="st">&#39;l&#39;</span>)</code></pre></div>
-<table>
-<caption>Smallest Funding Amounts Per Project</caption>
-<thead>
-<tr class="header">
-<th align="left">Jurisdiction</th>
-<th align="left">Project Title</th>
-<th align="left">Funding Award</th>
-<th align="left">Population</th>
-<th align="left">Size</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Edgewood</td>
-<td align="left">Meridian Ave - 24th St E to 36th St E</td>
-<td align="left">$29,496</td>
-<td align="left">9,387</td>
-<td align="left">Small Size Jurisdiction</td>
-</tr>
-<tr class="even">
-<td align="left">Kitsap Transit</td>
-<td align="left">Electric Vehicle Charging Systems</td>
-<td align="left">$40,000</td>
-<td align="left">Transit Agency</td>
-<td align="left">Transit Agency</td>
-</tr>
-<tr class="odd">
-<td align="left">Kitsap County</td>
-<td align="left">Pedestrian Safety Improvements at Suquamish Way and Division Ave NE</td>
-<td align="left">$40,462</td>
-<td align="left">168,872</td>
-<td align="left">Large Size Jurisdiction</td>
-</tr>
-<tr class="even">
-<td align="left">Tacoma</td>
-<td align="left">Thea Foss Waterway- Site 10 Esplanade</td>
-<td align="left">$50,000</td>
-<td align="left">198,364</td>
-<td align="left">Large Size Jurisdiction</td>
-</tr>
-<tr class="odd">
-<td align="left">Auburn</td>
-<td align="left">Lake Tapps Parkway ITS Expansion</td>
-<td align="left">$82,950</td>
-<td align="left">70,179</td>
-<td align="left">Medium Size Jurisdictions</td>
-</tr>
-<tr class="even">
-<td align="left">Sumner</td>
-<td align="left">No. 9 Ditch Trail (Sumner Trail System)</td>
-<td align="left">$93,500</td>
-<td align="left">9,451</td>
-<td align="left">Small Size Jurisdiction</td>
-</tr>
-<tr class="odd">
-<td align="left">Arlington</td>
-<td align="left">Smokey Point Blvd Pavement Preservation (188th to SR-530)</td>
-<td align="left">$112,225</td>
-<td align="left">17,944</td>
-<td align="left">Small Size Jurisdiction</td>
-</tr>
-<tr class="even">
-<td align="left">Snohomish County</td>
-<td align="left">164th Street SE Overlay</td>
-<td align="left">$114,000</td>
-<td align="left">18,229</td>
-<td align="left">Small Size Jurisdiction</td>
-</tr>
-<tr class="odd">
-<td align="left">Puyallup</td>
-<td align="left">Non-Motorized Transportation Plan Project</td>
-<td align="left">$129,750</td>
-<td align="left">37,022</td>
-<td align="left">Small Size Jurisdiction</td>
-</tr>
-<tr class="even">
-<td align="left">Kitsap Transit</td>
-<td align="left">Bremerton Transportation Center Phase A/B/C/D</td>
-<td align="left">$141,489</td>
-<td align="left">Transit Agency</td>
-<td align="left">Transit Agency</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(data_graph, <span class="kw">aes</span>(jurisdiction_size, psrc_funds, <span class="dt">fill=</span>phases.y)) +<span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="kw">theme_economist</span>() +<span class="kw">coord_flip</span>() +<span class="st"> </span><span class="kw">theme</span>( <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#afccb7&quot;</span>),<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#afccb7&quot;</span>), <span class="dt">legend.background =</span><span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#afccb7&quot;</span>)) +<span class="kw">ylab</span>(<span class="st">&quot;Federal Funds Awarded&quot;</span>) +<span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;#067ca0&quot;</span>, <span class="st">&quot;#9e3838&quot;</span>,<span class="st">&quot;#c17913&quot;</span>,<span class="st">&quot;#258227&quot;</span>,<span class="st">&quot;#653e7c&quot;</span>,<span class="st">&quot;black&quot;</span>,<span class="st">&quot;#8c8b7f&quot;</span>)) +<span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales::dollar)</code></pre></div>
-<p><img src="data_analysis_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+sankeyPlot &lt;-<span class="st"> </span>rCharts$<span class="kw">new</span>()
+sankeyPlot$<span class="kw">set</span>(<span class="dt">data =</span> phase_select, <span class="dt">nodeWidth =</span> <span class="dv">30</span>, <span class="dt">nodePadding =</span> <span class="dv">30</span>,<span class="dt">layout =</span> <span class="dv">32</span>,<span class="dt">width =</span> <span class="dv">700</span>,<span class="dt">height =</span> <span class="dv">600</span>,<span class="dt">units =</span> <span class="st">&quot;$&quot;</span>,<span class="dt">title =</span> <span class="st">&quot;Phases and Funding&quot;</span>)
+sankeyPlot$<span class="kw">setLib</span>(<span class="st">&#39;X:/Trans/STAFF/Reid/Project Tracking/phase_analysis/rCharts_d3_sankey-gh-pages/rCharts_d3_sankey-gh-pages/libraries/widgets/d3_sankey&#39;</span>)
+sankeyPlot$<span class="kw">show</span>(<span class="st">&quot;iframesrc&quot;</span>, <span class="dt">cdn =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## &lt;iframe srcdoc=&#39; &amp;lt;!doctype HTML&amp;gt;
+## &amp;lt;meta charset = &amp;#039;utf-8&amp;#039;&amp;gt;
+## &amp;lt;html&amp;gt;
+##   &amp;lt;head&amp;gt;
+##     &amp;lt;link rel=&amp;#039;stylesheet&amp;#039; href=&amp;#039;http://timelyportfolio.github.io/rCharts_d3_sankey/css/sankey.css&amp;#039;&amp;gt;
+##     
+##     &amp;lt;script src=&amp;#039;http://d3js.org/d3.v3.min.js&amp;#039; type=&amp;#039;text/javascript&amp;#039;&amp;gt;&amp;lt;/script&amp;gt;
+##     &amp;lt;script src=&amp;#039;http://timelyportfolio.github.io/rCharts_d3_sankey/js/sankey.js&amp;#039; type=&amp;#039;text/javascript&amp;#039;&amp;gt;&amp;lt;/script&amp;gt;
+##     
+##     &amp;lt;style&amp;gt;
+##     .rChart {
+##       display: block;
+##       margin-left: auto; 
+##       margin-right: auto;
+##       width: 700px;
+##       height: 600px;
+##     }  
+##     &amp;lt;/style&amp;gt;
+##     
+##   &amp;lt;/head&amp;gt;
+##   &amp;lt;body &amp;gt;
+##     
+##     &amp;lt;div id = &amp;#039;chart3edc7b9d4ce7&amp;#039; class = &amp;#039;rChart d3_sankey&amp;#039;&amp;gt;&amp;lt;/div&amp;gt;    
+##     ï»¿&amp;lt;!--Attribution:
+## Mike Bostock https://github.com/d3/d3-plugins/tree/master/sankey
+## Mike Bostock http://bost.ocks.org/mike/sankey/
+## --&amp;gt;
+## 
+## &amp;lt;script&amp;gt;
+## (function(){
+## var params = {
+##  &amp;quot;dom&amp;quot;: &amp;quot;chart3edc7b9d4ce7&amp;quot;,
+## &amp;quot;width&amp;quot;:    700,
+## &amp;quot;height&amp;quot;:    600,
+## &amp;quot;data&amp;quot;: {
+##  &amp;quot;source&amp;quot;: [ &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot; 2014 Supplemental Funding Action &amp;quot;, &amp;quot; 2014 Supplemental Funding Action &amp;quot;, &amp;quot; 2014 Supplemental Funding Action &amp;quot;, &amp;quot; 2014 Supplemental Funding Action &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot; 2014 Supplemental Funding Action &amp;quot;, &amp;quot; 2014 Supplemental Funding Action &amp;quot;, &amp;quot;2013 Competition&amp;quot;, &amp;quot;2013 Competition&amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot; 2013 Supplemental Funding Action &amp;quot;, &amp;quot; 2013 Supplemental Funding Action &amp;quot;, &amp;quot; 2013 Supplemental Funding Action &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot;Regular 2012 Process &amp;quot;, &amp;quot; 2013 Supplemental Funding Action &amp;quot;, &amp;quot; 2013 Supplemental Funding Action &amp;quot;, &amp;quot;2013 Competition&amp;quot;, &amp;quot;2013 Competition&amp;quot;, &amp;quot;2013 Competition&amp;quot;, &amp;quot;2013 Competition&amp;quot; ],
+## &amp;quot;target&amp;quot;: [ &amp;quot;Planning Study&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;PE/Design and Right of Way &amp;quot;, &amp;quot;Right of Way Only &amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Planning Study&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;Right of Way Only &amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;Right of Way Only &amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Right of Way Only &amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Planning Study&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;PE/Design and Right of Way &amp;quot;, &amp;quot;Right of Way Only &amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Planning Study&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;PE/Design and Right of Way &amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Planning Study&amp;quot;, &amp;quot;PE/Design Only&amp;quot;, &amp;quot;Includes Construction&amp;quot;, &amp;quot;Includes Construction&amp;quot; ],
+## &amp;quot;value&amp;quot;: [ 1.0324e+06, 1.9975e+07, 1.9008e+06, 1.0481e+07, 5.431e+06, 1.0491e+08, 2.46e+05, 1.13e+06, 3.4e+05, 4.9323e+06, 8.4702e+06, 1.3793e+07, 1.023e+06, 4.655e+07, 3.019e+06, 7.9882e+06, 3.5e+05, 2.65e+06, 1.1297e+06, 1.4279e+07, 3.3703e+06, 1.7836e+06, 2.3147e+07,  5e+05, 1.9365e+06, 7.3595e+07, 1.3475e+05, 3.3912e+06, 4.7e+06, 3.972e+06, 5.1207e+06, 5.0696e+07, 7.07e+06, 8.6e+06, 2.5e+05, 4.45e+05, 1.5954e+06, 1.1e+06 ] 
+## },
+## &amp;quot;nodeWidth&amp;quot;:     30,
+## &amp;quot;nodePadding&amp;quot;:     30,
+## &amp;quot;layout&amp;quot;:     32,
+## &amp;quot;units&amp;quot;: &amp;quot;$&amp;quot;,
+## &amp;quot;title&amp;quot;: &amp;quot;Phases and Funding&amp;quot;,
+## &amp;quot;id&amp;quot;: &amp;quot;chart3edc7b9d4ce7&amp;quot; 
+## };
+## 
+## params.units ? units = &amp;quot; &amp;quot; + params.units : units = &amp;quot;&amp;quot;;
+## 
+## //hard code these now but eventually make available
+## var formatNumber = d3.format(&amp;quot;0,.0f&amp;quot;),    // zero decimal places
+##     format = function(d) { return formatNumber(d) + units; },
+##     color = d3.scale.category20();
+## 
+## if(params.labelFormat){
+##   formatNumber = d3.format(&amp;quot;.2%&amp;quot;);
+## }
+## 
+## var svg = d3.select(&amp;#039;#&amp;#039; + params.id).append(&amp;quot;svg&amp;quot;)
+##     .attr(&amp;quot;width&amp;quot;, params.width)
+##     .attr(&amp;quot;height&amp;quot;, params.height);
+##     
+## var sankey = d3.sankey()
+##     .nodeWidth(params.nodeWidth)
+##     .nodePadding(params.nodePadding)
+##     .layout(params.layout)
+##     .size([params.width,params.height]);
+##     
+## var path = sankey.link();
+##     
+## var data = params.data,
+##     links = [],
+##     nodes = [];
+##     
+## //get all source and target into nodes
+## //will reduce to unique in the next step
+## //also get links in object form
+## data.source.forEach(function (d, i) {
+##     nodes.push({ &amp;quot;name&amp;quot;: data.source[i] });
+##     nodes.push({ &amp;quot;name&amp;quot;: data.target[i] });
+##     links.push({ &amp;quot;source&amp;quot;: data.source[i], &amp;quot;target&amp;quot;: data.target[i], &amp;quot;value&amp;quot;: +data.value[i] });
+## }); 
+## 
+## //now get nodes based on links data
+## //thanks Mike Bostock https://groups.google.com/d/msg/d3-js/pl297cFtIQk/Eso4q_eBu1IJ
+## //this handy little function returns only the distinct / unique nodes
+## nodes = d3.keys(d3.nest()
+##                 .key(function (d) { return d.name; })
+##                 .map(nodes));
+## 
+## //it appears d3 with force layout wants a numeric source and target
+## //so loop through each link replacing the text with its index from node
+## links.forEach(function (d, i) {
+##     links[i].source = nodes.indexOf(links[i].source);
+##     links[i].target = nodes.indexOf(links[i].target);
+## });
+## 
+## //now loop through each nodes to make nodes an array of objects rather than an array of strings
+## nodes.forEach(function (d, i) {
+##     nodes[i] = { &amp;quot;name&amp;quot;: d };
+## });
+## 
+## sankey
+##   .nodes(nodes)
+##   .links(links)
+##   .layout(params.layout);
+##   
+## var link = svg.append(&amp;quot;g&amp;quot;).selectAll(&amp;quot;.link&amp;quot;)
+##   .data(links)
+## .enter().append(&amp;quot;path&amp;quot;)
+##   .attr(&amp;quot;class&amp;quot;, &amp;quot;link&amp;quot;)
+##   .attr(&amp;quot;d&amp;quot;, path)
+##   .style(&amp;quot;stroke-width&amp;quot;, function (d) { return Math.max(1, d.dy); })
+##   .sort(function (a, b) { return b.dy - a.dy; });
+## 
+## link.append(&amp;quot;title&amp;quot;)
+##   .text(function (d) { return d.source.name + &amp;quot; â &amp;quot; + d.target.name + &amp;quot;\n&amp;quot; + format(d.value); });
+## 
+## var node = svg.append(&amp;quot;g&amp;quot;).selectAll(&amp;quot;.node&amp;quot;)
+##   .data(nodes)
+## .enter().append(&amp;quot;g&amp;quot;)
+##   .attr(&amp;quot;class&amp;quot;, &amp;quot;node&amp;quot;)
+##   .attr(&amp;quot;transform&amp;quot;, function (d) { return &amp;quot;translate(&amp;quot; + d.x + &amp;quot;,&amp;quot; + d.y + &amp;quot;)&amp;quot;; })
+## .call(d3.behavior.drag()
+##   .origin(function (d) { return d; })
+##   .on(&amp;quot;dragstart&amp;quot;, function () { this.parentNode.appendChild(this); })
+##   .on(&amp;quot;drag&amp;quot;, dragmove));
+## 
+## node.append(&amp;quot;rect&amp;quot;)
+##   .attr(&amp;quot;height&amp;quot;, function (d) { return d.dy; })
+##   .attr(&amp;quot;width&amp;quot;, sankey.nodeWidth())
+##   .style(&amp;quot;fill&amp;quot;, function (d) { return d.color = color(d.name.replace(/ .*/, &amp;quot;&amp;quot;)); })
+##   .style(&amp;quot;stroke&amp;quot;, function (d) { return d3.rgb(d.color).darker(2); })
+## .append(&amp;quot;title&amp;quot;)
+##   .text(function (d) { return d.name + &amp;quot;\n&amp;quot; + format(d.value); });
+## 
+## node.append(&amp;quot;text&amp;quot;)
+##   .attr(&amp;quot;x&amp;quot;, -6)
+##   .attr(&amp;quot;y&amp;quot;, function (d) { return d.dy / 2; })
+##   .attr(&amp;quot;dy&amp;quot;, &amp;quot;.35em&amp;quot;)
+##   .attr(&amp;quot;text-anchor&amp;quot;, &amp;quot;end&amp;quot;)
+##   .attr(&amp;quot;transform&amp;quot;, null)
+##   .text(function (d) { return d.name; })
+## .filter(function (d) { return d.x &amp;lt; params.width / 2; })
+##   .attr(&amp;quot;x&amp;quot;, 6 + sankey.nodeWidth())
+##   .attr(&amp;quot;text-anchor&amp;quot;, &amp;quot;start&amp;quot;);
+## 
+## // the function for moving the nodes
+##   function dragmove(d) {
+##     d3.select(this).attr(&amp;quot;transform&amp;quot;, 
+##         &amp;quot;translate(&amp;quot; + (
+##                    d.x = Math.max(0, Math.min(params.width - d.dx, d3.event.x))
+##                 ) + &amp;quot;,&amp;quot; + (
+##                    d.y = Math.max(0, Math.min(params.height - d.dy, d3.event.y))
+##                 ) + &amp;quot;)&amp;quot;);
+##         sankey.relayout();
+##         link.attr(&amp;quot;d&amp;quot;, path);
+##   }
+## })();
+## &amp;lt;/script&amp;gt;
+##     
+##     &amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;    
+##   &amp;lt;/body&amp;gt;
+## &amp;lt;/html&amp;gt; &#39; scrolling=&#39;no&#39; frameBorder=&#39;0&#39; seamless class=&#39;rChart  X:/Trans/STAFF/Reid/Project Tracking/phase_analysis/rCharts_d3_sankey-gh-pages/rCharts_d3_sankey-gh-pages/libraries/widgets/d3_sankey  &#39; id=&#39;iframe-chart3edc7b9d4ce7&#39;&gt; &lt;/iframe&gt;
+##  &lt;style&gt;iframe.rChart{ width: 100%; height: 400px;}&lt;/style&gt;</code></pre>
 
 
 

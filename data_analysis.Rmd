@@ -9,45 +9,30 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 
-#load required packages
-library(pacman)
-pacman::p_load(scales,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+library(xlsx)
+library(googleVis)
+library(dplyr)
+library(digest)
+library(networkD3)
+library(plyr)
+library(rCharts)
+library(rjson)
+library(devtools)
+library(knitr)
 
-#load data from google sheets
-data <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing"))
-pop <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing"))
+setwd("X:/Trans/STAFF/Reid/Project Tracking/phase_analysis")
 
-#summarise data
-data_sum<-data %>% 
-  group_by(Sponsor, ID, Title, Total.Project.Cost) %>%
-  summarise(psrc_funds = sum(PSRC.Funds), phases=paste(Phase.s., collapse=" & "))
+phase<-read.xlsx("PhaseAnalysisForAllAwardsSince2012.xlsx", sheetName="tidy_data")
+phase$summary<-phase$Award.Type
+phase$summary<-gsub(".*Construction.*","Includes Construction",phase$Award.Type)
+phase_select<-phase %>% select( process2,summary, Amount)
+colnames(phase_select) <- c("source", "target", "value")
+phase_select<-phase_select[!(phase_select$value==0),]
 
-#join datasets
-data_final<-left_join(pop, data_sum, by="ID") %>% select (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
+sankeyPlot <- rCharts$new()
+sankeyPlot$set(data = phase_select, nodeWidth = 30, nodePadding = 30,layout = 32,width = 700,height = 600,units = "$",title = "Phases and Funding")
+sankeyPlot$setLib('X:/Trans/STAFF/Reid/Project Tracking/phase_analysis/rCharts_d3_sankey-gh-pages/rCharts_d3_sankey-gh-pages/libraries/widgets/d3_sankey')
+sankeyPlot$show("iframesrc", cdn = TRUE)
 
-#clean data
-data_final<-data_final[complete.cases(data_final),]
-data_final$X2010.Population<-gsub(",","",data_final$X2010.Population)
-data_final$X2010.Population<-as.numeric(data_final$X2010.Population)
-
-#manipulate data
-data_final <- data_final %>% mutate (jurisdiction_size= ifelse(X2010.Population <50000, "Small Size Jurisdiction", ifelse(X2010.Population >= 50000 & X2010.Population < 100000, "Medium Size Jurisdictions",ifelse(X2010.Population >= 100000 & X2010.Population < 300000, "Large Size Jurisdiction", ifelse(X2010.Population >= 300000 , "Largest Size Jurisdiction", "Not Applicable")))))
-
-#prepare data for display in table
-data_final<-data_final[order(data_final$psrc_funds),]
-data_final$jurisdiction_size[is.na(data_final$jurisdiction_size)] <- "Transit Agency"
-data_graph<-data_final
-data_graph<-data_graph %>% filter(phases.y %in% c("CN","CN & BUSR & OTH","OTH", "PE", "PE & CN", "PE & ROW", "PE & ROW & CN"))
-data_final$psrc_funds<-dollar(data_final$psrc_funds)
-colnames(data_final)<- c("Population", "ID","Phases", "Funding Award", "Jurisdiction", "Project Title", "Size")
-data_final<-data_final %>% select(Population, `Funding Award`, Jurisdiction, `Project Title`, Size)
-data_final$Population<-prettyNum(data_final$Population,big.mark=",",scientific=FALSE)
-data_final$Population<- gsub("NA","Transit Agency", data_final$Population)
-data_final<-data_final[c("Jurisdiction", "Project Title", "Funding Award", "Population", "Size")]
-
-#show summary table
-kable(data_final[1:10, ], caption = "Smallest Funding Amounts Per Project", row.names=FALSE, align='l')
-
-ggplot(data_graph, aes(jurisdiction_size, psrc_funds, fill=phases.y)) +geom_bar(stat="identity") +theme_economist() +coord_flip() + theme( axis.title.y = element_blank(), legend.title = element_blank(), plot.background = element_rect(fill="#afccb7"),panel.background = element_rect(fill="#afccb7"), legend.background =element_rect(fill="#afccb7")) +ylab("Federal Funds Awarded") + scale_fill_manual(values=c("#067ca0", "#9e3838","#c17913","#258227","#653e7c","black","#8c8b7f")) +scale_y_continuous(labels=scales::dollar)
 
 ```

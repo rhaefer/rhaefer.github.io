@@ -11,7 +11,7 @@
 
 
 
-<title>Fuel Economy Graph</title>
+<title>Static Charts</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +20,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -60,6 +61,9 @@ code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Doc
 code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
 code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -186,6 +190,14 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 
@@ -233,10 +245,7 @@ $(document).ready(function () {
       <a href="tableau.html">Tableau Dashboard</a>
     </li>
     <li>
-      <a href="vehicle.html">Fuel Economy Graph</a>
-    </li>
-    <li>
-      <a href="data_analysis.html">Funding Analysis</a>
+      <a href="vehicle.html">Static Charts</a>
     </li>
   </ul>
 </li>
@@ -258,9 +267,17 @@ $(document).ready(function () {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
 
 
-<h1 class="title toc-ignore">Fuel Economy Graph</h1>
+
+<h1 class="title toc-ignore">Static Charts</h1>
 
 </div>
 
@@ -299,7 +316,54 @@ g.top &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data, <span c
 <span class="st">  </span><span class="kw">labs</span>( <span class="dt">y =</span> <span class="st">&quot;Fuel Economy (MPG)&quot;</span>)
 
 <span class="kw">grid.arrange</span>(g.top,g.bottom, <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">2</span>, <span class="dv">4</span>/<span class="dv">5</span>))</code></pre></div>
-<p><img src="vehicle_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="vehicle_files/figure-html/unnamed-chunk-1-1.png" width="672" /> ____________________________________________________________ <img src="images/psrcawardflowsSankey.png" /> ____________________________________________________________</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#load required packages</span>
+<span class="kw">library</span>(pacman)
+pacman::<span class="kw">p_load</span>(scales,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+
+<span class="co">#load data from google sheets</span>
+data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;</span>))
+pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))
+
+<span class="co">#summarise data</span>
+data_sum&lt;-data %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Sponsor, ID, Title, Total.Project.Cost) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">psrc_funds =</span> <span class="kw">sum</span>(PSRC.Funds), <span class="dt">phases=</span><span class="kw">paste</span>(Phase.s., <span class="dt">collapse=</span><span class="st">&quot; &amp; &quot;</span>))
+
+<span class="co">#join datasets</span>
+data_final&lt;-<span class="kw">left_join</span>(pop, data_sum, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">select</span> (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
+
+<span class="co">#clean data</span>
+data_final&lt;-data_final[<span class="kw">complete.cases</span>(data_final),]
+data_final$X2010.Population&lt;-<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>,data_final$X2010.Population)
+data_final$X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final$X2010.Population)
+
+<span class="co">#manipulate data</span>
+data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population &lt;<span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">50000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">100000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
+
+<span class="co">#prepare data for display in table</span>
+data_final&lt;-data_final[<span class="kw">order</span>(data_final$psrc_funds),]
+data_final$jurisdiction_size[<span class="kw">is.na</span>(data_final$jurisdiction_size)] &lt;-<span class="st"> &quot;Transit Agency&quot;</span>
+data_graph&lt;-data_final
+data_graph&lt;-data_graph %&gt;%<span class="st"> </span><span class="kw">filter</span>(phases.y %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;CN&quot;</span>,<span class="st">&quot;CN &amp; BUSR &amp; OTH&quot;</span>,<span class="st">&quot;OTH&quot;</span>, <span class="st">&quot;PE&quot;</span>, <span class="st">&quot;PE &amp; CN&quot;</span>, <span class="st">&quot;PE &amp; ROW&quot;</span>, <span class="st">&quot;PE &amp; ROW &amp; CN&quot;</span>))
+data_final$psrc_funds&lt;-<span class="kw">dollar</span>(data_final$psrc_funds)
+<span class="kw">colnames</span>(data_final)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Population&quot;</span>, <span class="st">&quot;ID&quot;</span>,<span class="st">&quot;Phases&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Size&quot;</span>)
+data_final&lt;-data_final %&gt;%<span class="st"> </span><span class="kw">select</span>(Population, <span class="st">`</span><span class="dt">Funding Award</span><span class="st">`</span>, Jurisdiction, <span class="st">`</span><span class="dt">Project Title</span><span class="st">`</span>, Size)
+data_final$Population&lt;-<span class="kw">prettyNum</span>(data_final$Population,<span class="dt">big.mark=</span><span class="st">&quot;,&quot;</span>,<span class="dt">scientific=</span><span class="ot">FALSE</span>)
+data_final$Population&lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;NA&quot;</span>,<span class="st">&quot;Transit Agency&quot;</span>, data_final$Population)
+data_final&lt;-data_final[<span class="kw">c</span>(<span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Population&quot;</span>, <span class="st">&quot;Size&quot;</span>)]
+
+<span class="co">#show summary table</span>
+<span class="co">#kable(data_final[1:10, ], caption = &quot;Smallest Funding Amounts Per Project&quot;, row.names=FALSE, align=&#39;l&#39;)</span>
+
+<span class="kw">ggplot</span>(data_graph, <span class="kw">aes</span>(jurisdiction_size, psrc_funds, <span class="dt">fill=</span>phases.y)) +<span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="kw">theme_economist</span>() +<span class="kw">coord_flip</span>() +<span class="st"> </span><span class="kw">theme</span>( <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#afccb7&quot;</span>),<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#afccb7&quot;</span>), <span class="dt">legend.background =</span><span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&quot;#afccb7&quot;</span>)) +<span class="kw">ylab</span>(<span class="st">&quot;Federal Funds Awarded&quot;</span>) +<span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;#067ca0&quot;</span>, <span class="st">&quot;#9e3838&quot;</span>,<span class="st">&quot;#c17913&quot;</span>,<span class="st">&quot;#258227&quot;</span>,<span class="st">&quot;#653e7c&quot;</span>,<span class="st">&quot;black&quot;</span>,<span class="st">&quot;#8c8b7f&quot;</span>)) +<span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales::dollar)</code></pre></div>
+<p><img src="vehicle_files/figure-html/unnamed-chunk-2-1.png" width="672" /> ____________________________________________________________ <img src="images/ProjectSelectionMultiplot.png" /></p>
+<hr />
+<p><img src="images/PSRC_distribution_2014.png" /> ________________________________________________________________</p>
+<div class="figure">
+<img src="images/CountyWideSummary.png" />
+
+</div>
 
 
 
