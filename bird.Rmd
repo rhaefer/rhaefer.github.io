@@ -24,6 +24,9 @@ bird$Location[bird$Location=="US-WA-North Bend-Snoqualmie National Forest - 47.4
 table<-bird %>% select(Common.Name, Count, Scientific.Name, Location, Area, Date)
 bird$url <- paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",bird$Common.Name), "/id")
 bird$html <- paste0("<a href=", "\"", bird$url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>")
+bird1<-bird
+bird$Date<-as.Date(bird$Date, "%m/%d/%Y")
+bird$Date<-format(bird$Date, "%B %d, %Y")
 
 #custom base map map created with Mapbox
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cipbjqldq0017cvnfmduk5unx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
@@ -52,7 +55,7 @@ leaflet (width=900, height=700) %>%
 
 ```
 ```{r message=FALSE, warning=FALSE}
-bird1<-bird
+
 bird1$Date<-as.Date(bird1$Date, "%m/%d/%Y")
 bird_table<-data.frame(bird1 %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & "),mydates=format(max(Date), '%m/%d/%Y')))
 bird_table$Location<- gsub("US-WA","Washington State",bird_table$Location)
@@ -67,7 +70,7 @@ bird_table<-bird_table %>%
       select(`Common Name`, `Total Observed`, Locations, `More Information`, RecentObservation)
 bird_table$RecentObservation<-as.Date(bird_table$RecentObservation, "%m/%d/%Y")
 bird_table<-bird_table[order(bird_table$RecentObservation, decreasing = TRUE),]
-bird_table$RecentObservation<-format(bird_table$RecentObservation, "%m/%d/%Y")
+bird_table$RecentObservation<-format(bird_table$RecentObservation, "%B %d, %Y")
 bird_table<-bird_table %>% rename (`Recent Observation`=RecentObservation)
 
 DT::datatable(bird_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 200, dom = 'ft'))

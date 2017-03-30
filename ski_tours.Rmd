@@ -21,6 +21,9 @@ shapefile@data <- left_join(shapefile@data, data1)
 
 shapefile1<-shapefile
 shapefile1$name<-gsub("South Trail to Bullion Basin Trail, Pierce County, WA, USA", "east peak circumnaviation",shapefile1$name )
+shapefile1$date<-as.Date(shapefile1$date, "%m/%d/%Y")
+shapefile1$date<-format(shapefile1$date, "%B %d, %Y")
+
 
 
 #custom topographic map created with Mapbox
@@ -66,6 +69,8 @@ data_table$elevation.gain..ft.<- paste(data_table$elevation.gain..ft., "ft")
 colnames(data_table)<-c("Date", "Area", "Tour Name", "Avalanche Danger", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
 data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
+data_table$Date<-as.Date(data_table$Date, "%m/%d/%Y")
+data_table$Date<-format(data_table$Date, "%B %d, %Y")
 
-DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 20, dom = 'ft'))
+DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 100, dom = 'ft'))
 ```
