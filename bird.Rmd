@@ -43,10 +43,10 @@ leaflet (width=900, height=700) %>%
     addMarkers(bird$lon, bird$lat, 
                popup=paste(sep="","<b>", bird$Common.Name,"</b>",
                            "<br/>","<font size=2 color=#B40404>","Scientific Name: ","</font>" ,bird$Scientific.Name,
+                           "<br/>","<font size=2 color=#B40404>", "Date: ", "</font>", bird$Date,
                            "<br/>","<font size=2 color=#B40404>","Number Observed: ","</font>", bird$Count,
                            "<br/>","<font size=2 color=#B40404>","Location: ","</font>", bird$Location,
                            "<br/>","<font size=2 color=#B40404>","Region: ","</font>", bird$Area,
-                           "<br/>","<font size=2 color=#B40404>", "Date: ", "</font>", bird$Date,
                            "<br/>", "<font size=2 color=#B40404>", "More Info About This Bird @ ", "</font>",bird$html),
                clusterOptions = markerClusterOptions())  %>%
     addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
