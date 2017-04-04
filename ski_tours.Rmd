@@ -39,7 +39,7 @@ leaflet(width=900, height=700) %>%
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-121.472547, lat = 46.941553, "recent ski tour", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-121.735736, lat = 46.785938, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
@@ -71,6 +71,7 @@ data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
 data_table$Date<-as.Date(data_table$Date, "%m/%d/%Y")
 data_table$Date<-format(data_table$Date, "%B %d, %Y")
+data_table <- data_table[complete.cases(data_table),]
 
 DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 100, dom = 'ft'))
 ```
