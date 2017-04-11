@@ -17,7 +17,9 @@ shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
 data1<-read.xlsx("Ski Tours.xlsx", header=T, sheetName="Sheet1")
-shapefile@data <- left_join(shapefile@data, data1)
+data1<- data1[complete.cases(data1),]
+data1$id<- as.factor(data1$id)
+shapefile@data <- left_join(shapefile@data, data1, by="id")
 
 shapefile1<-shapefile
 shapefile1$name<-gsub("South Trail to Bullion Basin Trail, Pierce County, WA, USA", "east peak circumnaviation",shapefile1$name )
@@ -39,7 +41,7 @@ leaflet(width=900, height=700) %>%
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-121.735736, lat = 46.785938, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-121.746219, lat = 46.775011, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
