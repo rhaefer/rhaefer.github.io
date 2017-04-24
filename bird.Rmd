@@ -30,7 +30,7 @@ bird$Date1<-format(bird$Date, "%B %d, %Y")
 
 lat_recent<-bird%>% filter (Date==max(bird$Date)) %>% select (lat)
 lat_recent<-lat_recent[1,]
-lat_recent <-lat_recent + .002
+lat_recent <-lat_recent + .005
 
 lon_recent<-bird%>% filter (Date==max(bird$Date)) %>% select (lon)
 lon_recent<-lon_recent[1,]
