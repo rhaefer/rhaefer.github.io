@@ -26,7 +26,14 @@ bird$url <- paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",bird$Com
 bird$html <- paste0("<a href=", "\"", bird$url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>")
 bird1<-bird
 bird$Date<-as.Date(bird$Date, "%m/%d/%Y")
-bird$Date<-format(bird$Date, "%B %d, %Y")
+bird$Date1<-format(bird$Date, "%B %d, %Y")
+
+lat_recent<-bird%>% filter (Date==max(bird$Date)) %>% select (lat)
+lat_recent<-lat_recent[1,]
+lat_recent <-lat_recent + .002
+
+lon_recent<-bird%>% filter (Date==max(bird$Date)) %>% select (lon)
+lon_recent<-lon_recent[1,]
 
 #custom base map map created with Mapbox
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cipbjqldq0017cvnfmduk5unx/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
@@ -37,7 +44,7 @@ inset_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qz
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
 leaflet (width=900, height=700) %>%
-  addPopups(-122.340236, lat = 47.605792, "recent observation", options = popupOptions(closeButton = FALSE)) %>%
+ addPopups(lon_recent, lat = lat_recent, "recent observation", options = popupOptions(closeButton = FALSE)) %>%
    addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
     addTiles(urlTemplate = base_map, attribution = mb_attribution)%>%
     addMarkers(bird$lon, bird$lat, 
