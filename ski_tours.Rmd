@@ -18,6 +18,7 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 
 data1<-read.xlsx("Ski Tours.xlsx", header=T, sheetName="Sheet1")
 data1<- data1[complete.cases(data1),]
+data1$tour.name <- tolower(data1$tour.name)
 data1$id<- as.factor(data1$id)
 shapefile@data <- left_join(shapefile@data, data1, by="id")
 
