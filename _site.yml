@@ -21,6 +21,8 @@ navbar:
           href: tableau.html
         - text: "Static Charts"
           href: vehicle.html
+        - text: "Cost Estimation Analysis"
+          href: data_wrangle.html
     - text: "Blog"
       href: blog.html
   right:

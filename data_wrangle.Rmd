@@ -1,0 +1,51 @@
+---
+title: "Cost Estimation w/Inflation Factors"
+output:
+  html_document:
+    theme: yeti
+    highlight: tango
+---
+
+Goal: Estimate average annual expenditures based upon total project costs and the number of years it takes to build projects, given unique annual inflation factors.
+
+```{r message=FALSE, warning=FALSE}
+library(pacman)
+pacman::p_load (xlsx, tidyverse, scales, ggthemes)
+
+setwd("X:/Trans/STAFF/Reid/t2040/financial estimate")
+
+conversion<- read.xlsx("financial_copy.xlsx", sheetName="InflationFactors")
+conversion2<-conversion
+conversion2 <- rename(conversion2, InfFactor_Actual_Year = InfFactor, actual_year = Year)
+conversion2$actual_year <- as.character(conversion2$actual_year)
+DT::datatable(conversion2, rownames=FALSE, escape=FALSE, options=list(pageLength = 8, dom = 'ft'))
+
+data<- read.xlsx("financial_copy.xlsx", sheetName="Projects")
+data$project<- paste ("Project #", data$MTPID)
+data<-data[ , !(names(data) %in% c("Agency","Title", "MTPID"))]
+data <- data[c("project", "EstCostYear", "StartYear", "CompletionYear", "TotProjCost")]
+DT::datatable(data, rownames=FALSE, escape=FALSE, options=list(pageLength = 8, dom = 'ft'))
+
+
+data$no_years<- data$CompletionYear - data$StartYear +1
+data$avg_year_cost<-data$TotProjCost/data$no_years 
+xx = as.vector(as.character(1990:2041))
+data[xx] <- NA
+data<-left_join(data, conversion, by =c ("EstCostYear" = "Year"))
+
+data2<-data %>% gather (year, amount, `1990`:`2041` )
+data2 <-left_join(data2, conversion2, by = c ("year"= "actual_year"))
+data2$amount <- (data2$avg_year_cost * data2$InfFactor) / data2$InfFactor_Actual_Year
+
+data3<-data2[data2$year>= data2$StartYear & data2$year<= data2$CompletionYear, ]
+data4<-data3
+data3<-arrange(data3, project)
+data3$amount<-dollar(data3$amount)
+data3$avg_year_cost<-dollar(data3$avg_year_cost)
+data3 <- rename(data3, `Inflation Factor Cost Year` = InfFactor, `Inflation Factor Actual Year`=InfFactor_Actual_Year, `Number of Spending Years`=no_years,`Cost Year`=EstCostYear, `Start Year`=StartYear, `Completion Year`=CompletionYear, `Completion Year`=CompletionYear,`Total Project Cost`=TotProjCost, `Average Cost Per Year` = avg_year_cost, `Project Name` = project, `Project Cost Per Year`=amount,`Year of Expenditure` = year)
+
+DT::datatable(data3, rownames=FALSE, escape=FALSE, options=list(pageLength = 15, dom = 'ft'))
+
+ggplot(data4, aes(as.numeric(year), amount)) + geom_bar(stat="identity") +theme_economist() + xlab("Year") + ylab("Expenditure") + 
+  ggtitle("Total Project Expenditure by Year") 
+```
