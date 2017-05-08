@@ -20,6 +20,7 @@ conversion2 <- rename(conversion2, InfFactor_Actual_Year = InfFactor, actual_yea
 conversion2$actual_year <- as.character(conversion2$actual_year)
 DT::datatable(conversion2, rownames=FALSE, escape=FALSE, options=list(pageLength = 8, dom = 'ft'))
 
+
 data<- read.xlsx("financial_copy.xlsx", sheetName="Projects")
 data$project<- paste ("Project #", data$MTPID)
 data<-data[ , !(names(data) %in% c("Agency","Title", "MTPID"))]
