@@ -10,7 +10,7 @@ Goal: Estimate average annual expenditures based upon total project costs and th
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load (xlsx, tidyverse, scales, ggthemes)
+pacman::p_load (xlsx, tidyverse, scales, ggthemes, DT)
 
 setwd("X:/Trans/STAFF/Reid/t2040/financial estimate")
 
@@ -18,6 +18,7 @@ conversion<- read.xlsx("financial_copy.xlsx", sheetName="InflationFactors")
 conversion2<-conversion
 conversion2 <- rename(conversion2, InfFactor_Actual_Year = InfFactor, actual_year = Year)
 conversion2$actual_year <- as.character(conversion2$actual_year)
+
 DT::datatable(conversion2, rownames=FALSE, escape=FALSE, options=list(pageLength = 8, dom = 'ft'))
 
 
@@ -25,6 +26,7 @@ data<- read.xlsx("financial_copy.xlsx", sheetName="Projects")
 data$project<- paste ("Project #", data$MTPID)
 data<-data[ , !(names(data) %in% c("Agency","Title", "MTPID"))]
 data <- data[c("project", "EstCostYear", "StartYear", "CompletionYear", "TotProjCost")]
+
 DT::datatable(data, rownames=FALSE, escape=FALSE, options=list(pageLength = 8, dom = 'ft'))
 
 
