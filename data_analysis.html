@@ -235,6 +235,9 @@ $(document).ready(function () {
     <li>
       <a href="vehicle.html">Static Charts</a>
     </li>
+    <li>
+      <a href="data_wrangle.html">Cost Estimation Analysis</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -267,9 +270,9 @@ pacman::<span class="kw">p_load</span>(scales,rCharts,knitr,grid, gridExtra,ggth
 
 <span class="co">#load data from google sheets</span>
 data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;</span>))
-pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))
-
-<span class="co">#summarise data</span>
+pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))</code></pre></div>
+<pre><code>Warning: Missing column names filled in: &#39;X1&#39; [1], &#39;X25&#39; [25]</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#summarise data</span>
 data_sum&lt;-data %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(Sponsor, ID, Title, Total.Project.Cost) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">psrc_funds =</span> <span class="kw">sum</span>(PSRC.Funds), <span class="dt">phases=</span><span class="kw">paste</span>(Phase.s., <span class="dt">collapse=</span><span class="st">&quot; &amp; &quot;</span>))
@@ -326,21 +329,21 @@ n2$<span class="kw">show</span>(<span class="st">&quot;iframesrc&quot;</span>, <
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = 'chart2e383be32d60' class = 'rChart nvd3'&gt;&lt;/div&gt;    
+    &lt;div id = 'chart257c2d652598' class = 'rChart nvd3'&gt;&lt;/div&gt;    
     &lt;script type='text/javascript'&gt;
  $(document).ready(function(){
-      drawchart2e383be32d60()
+      drawchart257c2d652598()
     });
-    function drawchart2e383be32d60(){  
+    function drawchart257c2d652598(){  
       var opts = {
- &quot;dom&quot;: &quot;chart2e383be32d60&quot;,
+ &quot;dom&quot;: &quot;chart257c2d652598&quot;,
 &quot;width&quot;:    800,
 &quot;height&quot;:    400,
 &quot;x&quot;: &quot;jurisdiction_size&quot;,
 &quot;y&quot;: &quot;psrc_funds&quot;,
 &quot;group&quot;: &quot;phases.y&quot;,
 &quot;type&quot;: &quot;multiBarChart&quot;,
-&quot;id&quot;: &quot;chart2e383be32d60&quot; 
+&quot;id&quot;: &quot;chart257c2d652598&quot; 
 },
         data = [
  {
@@ -1725,7 +1728,7 @@ n2$<span class="kw">show</span>(<span class="st">&quot;iframesrc&quot;</span>, <
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; " scrolling="no" frameBorder="0" seamless class="rChart  nvd3  " id="iframe-chart2e383be32d60">
+&lt;/html&gt; " scrolling="no" frameBorder="0" seamless class="rChart  nvd3  " id="iframe-chart257c2d652598">
 </iframe>
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
