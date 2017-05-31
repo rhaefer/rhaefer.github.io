@@ -3,12 +3,12 @@
   <title></title>
   <autotransaction active="0"/>
   <evaluateDefaultValues active="0"/>
-  <layer-tree-group expanded="1" checked="Qt::Checked" name="">
+  <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="tours_ski20170226202227871" name="tours_ski">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="OCM_Landscape20170226201533056" name="OCM Landscape">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="OCM_Landscape20170226201533056" name="OCM Landscape">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -16,10 +16,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>-13568376.8337189257144928</xmin>
-      <ymin>6235133.18482235074043274</ymin>
-      <xmax>-13562048.73502230271697044</xmax>
-      <ymax>6245416.42184916511178017</ymax>
+      <xmin>-13548146.28609509393572807</xmin>
+      <ymin>5670796.14192169159650803</ymin>
+      <xmax>-13540923.43483395501971245</xmax>
+      <ymax>5682640.10372894257307053</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -37,6 +37,7 @@
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
     <layer_coordinate_transform_info>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="hood_5_28_17_tracks20170531085716864"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="joffre_lakes_provincial_park_tracks20170418085610289"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20170227180635204"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="MapQuest_Open_Aerial20170227180729934"/>
@@ -51,9 +52,11 @@
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="tours_ski_backup20170309132127127"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="commonwealth_1820170309111812173"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="track_31917_93218am_tracks20170320080255583"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="bullion_3_1920170325192350328"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="baker_coleman_deming20170522121433163"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="bullion_3_1920170325192350328"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="hood_5_28_1720170531085739822"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20170227180545701"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="hood20170531093359437"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="tours_ski_120170226211522406"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="decker_glacier20170418085948517"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="joffre20170418085758601"/>
@@ -76,9 +79,9 @@
         <legendlayerfile isInOverview="0" layerid="tours_ski20170226202227871" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="OCM Landscape" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="OCM Landscape" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="OCM_Landscape20170226201533056" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="OCM_Landscape20170226201533056" visible="0"/>
       </filegroup>
     </legendlayer>
   </legend>
@@ -154,7 +157,7 @@
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <extent>
         <xmin>-122.95384400000000369</xmin>
-        <ymin>45.38848938495167573</ymin>
+        <ymin>45.33151800000000264</ymin>
         <xmax>-117.46734722079695246</xmax>
         <ymax>51.3047168545649086</ymax>
       </extent>
