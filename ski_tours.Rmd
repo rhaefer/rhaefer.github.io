@@ -10,11 +10,13 @@ output:
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
 pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
-                rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve)
+                rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras)
 
 setwd("/Users/reid/Documents/site/rhaefer.github.io/ski_tours")
 shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
+ski_points <- readOGR(dsn=".", layer="ski_points",verbose = FALSE)
+ski_points<-spTransform(ski_points, CRS("+proj=longlat +datum=WGS84"))
 
 data1<-read.xlsx("Ski Tours.xlsx", header=T, sheetName="Sheet1")
 data1<- data1[complete.cases(data1),]
@@ -36,7 +38,8 @@ mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a 
 #custom base map map created with Mapbox
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qzzwb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
-
+leaflet() %>% addTiles() %>%
+ 
 leaflet(width=900, height=700) %>%
  # addMarkers(
    # lng = -121.8144, lat = 48.7767,
@@ -60,7 +63,9 @@ leaflet(width=900, height=700) %>%
   addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
-  addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE))
+  addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE)) %>%
+   addCircleMarkers(data=ski_points, lng = ~MEAN_X, lat = ~MEAN_Y, radius=0 ,weight = 0, fillOpacity=0, label= ~UID, group ='ski_points') %>%
+  addSearchMarker( targetGroup = 'ski_points', options = searchMarkersOptions(zoom=12, openPopup = TRUE))
 ```
 
 ```{r message=FALSE, warning=FALSE}
