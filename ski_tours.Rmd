@@ -50,7 +50,7 @@ leaflet(width=900, height=700) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
   addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
-  addPolylines(data=shapefile1, weight=4, color="red",
+  addPolylines(data=shapefile1, weight=4, color="red", label=~paste(name,"-",general.area),
                popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile1$name),
                            paste("<b>Date:</b> ",shapefile1$date),
                            paste("<b>Location:</b> ",shapefile1$general.area),
@@ -64,9 +64,11 @@ leaflet(width=900, height=700) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
   addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE)) %>%
-   addCircleMarkers(data=ski_points, lng = ~MEAN_X, lat = ~MEAN_Y, radius=0 ,weight = 0, fillOpacity=0, label= ~UID, group ='ski_points') %>%
+   addCircleMarkers(data=ski_points, lng = ~MEAN_X, lat = ~MEAN_Y, label= ~UID, group ='ski_points',
+                     fill=F, stroke=FALSE) %>%
   addSearchMarker( targetGroup = 'ski_points', options = searchMarkersOptions(zoom=12, openPopup = TRUE))
 ```
+
 
 ```{r message=FALSE, warning=FALSE}
 
