@@ -66,7 +66,8 @@ leaflet(width=900, height=700) %>%
   addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE)) %>%
    addCircleMarkers(data=ski_points, lng = ~MEAN_X, lat = ~MEAN_Y, label= ~UID, group ='ski_points',
                      fill=F, stroke=FALSE) %>%
-  addSearchMarker( targetGroup = 'ski_points', options = searchMarkersOptions(zoom=12, openPopup = TRUE))
+  addSearchMarker( targetGroup = 'ski_points', options = searchMarkersOptions(zoom=12, openPopup = TRUE,
+        hideMarkerOnCollapse = TRUE))
 ```
 
 

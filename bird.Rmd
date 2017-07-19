@@ -9,7 +9,7 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, htmltools)
+pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, lubridate)
 
 bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_7_sfWFCYy0BCuic5iLayzpKsCGVyOE-5sQ/edit?usp=sharing"))
 bird$Location<-as.character(bird$Location)
@@ -25,14 +25,16 @@ table<-bird %>% select(Common.Name, Count, Scientific.Name, Location, Area, Date
 bird$url <- paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",bird$Common.Name), "/id")
 bird$html <- paste0("<a href=", "\"", bird$url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>")
 bird1<-bird
-bird$Date<-as.Date(bird$Date, "%m/%d/%Y")
-bird$Date1<-format(bird$Date, "%B %d, %Y")
+#bird$Date<-as.Date(bird$Date, "%m/%d/%Y")
 
-lat_recent<-bird%>% filter (Date==max(bird$Date)) %>% select (lat)
+bird$Date1<-mdy(bird$Date)
+#bird$Date1<-format(bird$Date1, "%B %d, %Y")
+
+lat_recent<-bird%>% filter (Date1==max(bird$Date1)) %>% select (lat)
 lat_recent<-lat_recent[1,]
 lat_recent <-lat_recent + .005
 
-lon_recent<-bird%>% filter (Date==max(bird$Date)) %>% select (lon)
+lon_recent<-bird%>% filter (Date1==max(bird$Date1)) %>% select (lon)
 lon_recent<-lon_recent[1,]
 
 #custom base map map created with Mapbox
@@ -44,7 +46,7 @@ inset_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qz
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
 leaflet (width=900, height=700) %>%
- addPopups(lon_recent, lat = lat_recent, "recent observation", options = popupOptions(closeButton = FALSE)) %>%
+ addPopups(lng=lon_recent, lat = lat_recent, "recent observation", options = popupOptions(closeButton = FALSE)) %>%
    addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
     addTiles(urlTemplate = base_map, attribution = mb_attribution)%>%
     addMarkers(bird$lon, bird$lat, 
@@ -63,7 +65,7 @@ leaflet (width=900, height=700) %>%
 ```
 ```{r message=FALSE, warning=FALSE}
 
-bird1$Date<-as.Date(bird1$Date, "%m/%d/%Y")
+bird1$Date<-mdy(bird1$Date)
 bird_table<-data.frame(bird1 %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & "),mydates=format(max(Date), '%m/%d/%Y')))
 bird_table$Location<- gsub("US-WA","Washington State",bird_table$Location)
 bird_table$Location<- gsub("US-OR","Oregon",bird_table$Location)
