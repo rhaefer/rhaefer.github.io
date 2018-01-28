@@ -9,7 +9,7 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, dplyr, xlsx, maptools,
+pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools,
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras)
 
 setwd("/Users/reid/Documents/site/rhaefer.github.io/ski_tours")
@@ -18,9 +18,10 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 ski_points <- readOGR(dsn=".", layer="ski_points",verbose = FALSE)
 ski_points<-spTransform(ski_points, CRS("+proj=longlat +datum=WGS84"))
 
-data1<-read.xlsx("Ski Tours.xlsx", header=T, sheetName="Sheet1")
+#data1<-read_xlsx("Ski Tours.xlsx", sheet="Sheet1")
+data1<-read_csv("Ski Tours.csv")
 data1<- data1[complete.cases(data1),]
-data1$tour.name <- tolower(data1$tour.name)
+data1$tour.name <- tolower(data1$`tour name`)
 data1$id<- as.factor(data1$id)
 shapefile@data <- left_join(shapefile@data, data1, by="id")
 
@@ -45,15 +46,15 @@ leaflet(width=900, height=700) %>%
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-119.256712, lat = 38.051217, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-119.006009, lat = 37.623967, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
   addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
-  addPolylines(data=shapefile1, weight=4, color="red", label=~paste(name,"-",general.area),
+  addPolylines(data=shapefile1, weight=4, color="red", label=~paste(name,"-",`general area`),
                popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile1$name),
                            paste("<b>Date:</b> ",shapefile1$date),
-                           paste("<b>Location:</b> ",shapefile1$general.area),
+                           paste("<b>Location:</b> ",shapefile1$`general area`),
                            paste("<b>Distance:</b> ",shapefile1$distance..mile., "miles"),
                            paste("<b>Elevation Gained:</b> ",shapefile1$elevation.gain..ft., "feet"),
                            paste("<b>Weather:</b> ",shapefile1$weather),
@@ -73,12 +74,12 @@ leaflet(width=900, height=700) %>%
 
 ```{r message=FALSE, warning=FALSE}
 
-data_table<-data1 %>% select(date, general.area, tour.name, nwac.avy.rating, weather, duration, elevation.gain..ft., distance..mile., photos )
+data_table<-data1 %>% select(date, `general area`, tour.name, `nwac avy rating`, weather, duration, `elevation gain (ft)`, `distance (mile)`, photos )
 data_table$photos <- paste0("<a href=", "\"", data_table$photos, "\"", "target=", "\"","blank", "\"", ">", data_table$tour.name, "</a>")
-data_table$distance..mile.<- paste(data_table$distance..mile., "miles")
-data_table$elevation.gain..ft.<- paste(data_table$elevation.gain..ft., "ft")
+data_table$`distance (mile)`<- paste(data_table$`distance (mile)`, "miles")
+data_table$`elevation gain (ft)`<- paste(data_table$`elevation gain (ft)`, "ft")
 colnames(data_table)<-c("Date", "Area", "Tour Name", "Avalanche Danger", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
-data_table$Date <- format(as.Date(data_table$Date), "%m/%d/%Y")
+data_table$Date <- as.Date(data_table$Date, "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
 data_table$Date<-as.Date(data_table$Date, "%m/%d/%Y")
 data_table$Date<-format(data_table$Date, "%B %d, %Y")

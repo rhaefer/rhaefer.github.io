@@ -1,34 +1,38 @@
-name: "my-website"
-output_dir: "."
+name: my-website
+output_dir: '.'
 navbar:
-  title: "Reid Haefer"
+  title: Reid Haefer
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
-      href: about.html
-    - text: "Research"
-      href: research.html
-    - text: "Data Viz/Analysis"
-      menu:
-        - text: "Bird Observation Map"
-          href: bird.html
-        - text: "Transportation Project Map"
-          href: transportation.html
-        - text: "Backcountry Ski Tours"
-          href: ski_tours.html
-        - text: "Tableau Dashboard"
-          href: tableau.html
-        - text: "Static Charts"
-          href: vehicle.html
-        - text: "Cost Estimation Analysis"
-          href: data_wrangle.html
-    - text: "Blog"
-      href: blog.html
+  - text: Home
+    href: index.html
+  - text: About
+    href: about.html
+  - text: Research
+    href: research.html
+  - text: Data Viz/Analysis
+    menu:
+    - text: Bird Observation Map
+      href: bird.html
+    - text: Transportation Project Map
+      href: transportation.html
+    - text: Backcountry Ski Tours
+      href: ski_tours.html
+    - text: Tableau Dashboard
+      href: tableau.html
+    - text: Static Charts
+      href: vehicle.html
+    - text: Cost Estimation Analysis
+      href: data_wrangle.html
+  - text: Blog
+    href: blog.html
   right:
-    - icon: fa-github fa-lg
-      href: https://github.com/rhaefer/rhaefer.github.io
-  output:
+  - icon: fa-github fa-lg
+    href: https://github.com/rhaefer/rhaefer.github.io
+  output: ~
   html_document:
     css: style.css
+output:
+  html_document:
+    lib_dir: site_libs
+    self_contained: no
 
