@@ -39,14 +39,13 @@ mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a 
 #custom base map map created with Mapbox
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qzzwb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
-leaflet() %>% addTiles() %>%
- 
+
 leaflet(width=900, height=700) %>%
  # addMarkers(
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-119.006009, 38.897636, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-119.971845, 38.796056, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
@@ -55,10 +54,10 @@ leaflet(width=900, height=700) %>%
                popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile1$name),
                            paste("<b>Date:</b> ",shapefile1$date),
                            paste("<b>Location:</b> ",shapefile1$`general area`),
-                           paste("<b>Distance:</b> ",shapefile1$distance..mile., "miles"),
-                           paste("<b>Elevation Gained:</b> ",shapefile1$elevation.gain..ft., "feet"),
+                           paste("<b>Distance:</b> ",shapefile1$`distance (mile)`, "miles"),
+                           paste("<b>Elevation Gained:</b> ",shapefile1$`elevation gain (ft)`, "feet"),
                            paste("<b>Weather:</b> ",shapefile1$weather),
-                           paste("<b>Avalanche Forecast:</b> ",shapefile1$nwac.avy.rating),
+                           paste("<b>Avalanche Forecast:</b> ",shapefile1$`nwac avy rating`),
                            paste0("<a href=", "\"", shapefile1$photos, "\"", "target=", "\"","blank", "\"", ">","Photos" ,"</a>")),
                highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
   addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
