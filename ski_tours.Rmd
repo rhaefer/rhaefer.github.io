@@ -12,7 +12,7 @@ library(pacman)
 pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools,
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras)
 
-setwd("/Users/reid/Documents/site/rhaefer.github.io/ski_tours")
+setwd("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/ski_tours")
 shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 ski_points <- readOGR(dsn=".", layer="ski_points",verbose = FALSE)
@@ -46,7 +46,7 @@ leaflet(width=900, height=700) %>%
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-119.006009, lat = 37.623967, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-119.006009, 38.897636, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
