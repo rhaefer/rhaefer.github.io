@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.0.0-Girona" projectname="">
+<qgis projectname="" version="3.0.0-Girona">
   <title></title>
   <autotransaction active="0"/>
   <evaluateDefaultValues active="0"/>
@@ -7,10 +7,10 @@
   <projectCrs>
     <spatialrefsys>
       <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</proj4>
-      <srsid>0</srsid>
+      <srsid>100000</srsid>
       <srid>0</srid>
-      <authid></authid>
-      <description></description>
+      <authid>USER:100000</authid>
+      <description> * Generated CRS (+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs)</description>
       <projectionacronym>merc</projectionacronym>
       <ellipsoidacronym></ellipsoidacronym>
       <geographicflag>false</geographicflag>
@@ -18,35 +18,35 @@
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-layer checked="Qt::Checked" providerKey="ogr" id="tours_ski20170226202227871" source="./tours_ski.shp" name="tours_ski" expanded="1">
+    <layer-tree-layer checked="Qt::Checked" source="./tours_ski.shp" name="tours_ski" providerKey="ogr" id="tours_ski20170226202227871" expanded="1">
       <customproperties/>
     </layer-tree-layer>
     <custom-order enabled="0">
       <item>tours_ski20170226202227871</item>
     </custom-order>
   </layer-tree-group>
-  <snapping-settings type="1" unit="2" tolerance="0" enabled="1" mode="3" intersection-snapping="0">
+  <snapping-settings intersection-snapping="0" mode="3" tolerance="0" enabled="1" type="1" unit="2">
     <individual-layer-settings>
-      <layer-setting type="1" tolerance="0" enabled="1" units="0" id="tours_ski20170226202227871"/>
+      <layer-setting tolerance="0" units="0" enabled="1" type="1" id="tours_ski20170226202227871"/>
     </individual-layer-settings>
   </snapping-settings>
   <relations/>
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>meters</units>
     <extent>
-      <xmin>-13702428.15584808960556984</xmin>
-      <ymin>4468591.84490116871893406</ymin>
-      <xmax>-13061136.42676327750086784</xmax>
-      <ymax>6729196.56196526251733303</ymax>
+      <xmin>-13388383.79476999118924141</xmin>
+      <ymin>4754253.09867422468960285</ymin>
+      <xmax>-13386715.02098143100738525</xmax>
+      <ymax>4755339.40685192681849003</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
       <spatialrefsys>
         <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</proj4>
-        <srsid>0</srsid>
+        <srsid>100000</srsid>
         <srid>0</srid>
-        <authid></authid>
-        <description></description>
+        <authid>USER:100000</authid>
+        <description> * Generated CRS (+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs)</description>
         <projectionacronym>merc</projectionacronym>
         <ellipsoidacronym></ellipsoidacronym>
         <geographicflag>false</geographicflag>
@@ -55,8 +55,8 @@
     <rendermaptile>0</rendermaptile>
   </mapcanvas>
   <legend updateDrawingOrder="true">
-    <legendlayer checked="Qt::Checked" open="true" drawingOrder="-1" showFeatureCount="0" name="tours_ski">
-      <filegroup open="true" hidden="false">
+    <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" name="tours_ski" open="true">
+      <filegroup hidden="false" open="true">
         <legendlayerfile layerid="tours_ski20170226202227871" isInOverview="0" visible="1"/>
       </filegroup>
     </legendlayer>
@@ -64,7 +64,7 @@
   <mapViewDocks/>
   <mapViewDocks3D/>
   <projectlayers>
-    <maplayer maxScale="0" simplifyLocal="1" autoRefreshTime="0" type="vector" readOnly="0" refreshOnNotifyEnabled="0" simplifyDrawingTol="1" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" labelsEnabled="1" minScale="1e+8" simplifyMaxScale="1" simplifyDrawingHints="1" geometry="Line" simplifyAlgorithm="0">
+    <maplayer simplifyDrawingHints="1" geometry="Line" readOnly="0" minScale="1e+8" simplifyMaxScale="1" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" autoRefreshEnabled="0" simplifyLocal="1" simplifyAlgorithm="0" maxScale="0" type="vector" labelsEnabled="1" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" simplifyDrawingTol="1">
       <extent>
         <xmin>-122.95384400000000369</xmin>
         <ymin>37.5953269999999975</ymin>
@@ -107,7 +107,7 @@
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>false</geographicflag>
+            <geographicflag>true</geographicflag>
           </spatialrefsys>
         </crs>
         <extent/>
@@ -122,10 +122,10 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 type="singleSymbol" enableorderby="0" symbollevels="0" forceraster="0">
+      <renderer-v2 symbollevels="0" enableorderby="0" forceraster="0" type="singleSymbol">
         <symbols>
-          <symbol alpha="1" type="line" clip_to_extent="1" name="0">
-            <layer pass="0" class="SimpleLine" enabled="1" locked="0">
+          <symbol alpha="1" clip_to_extent="1" name="0" type="line">
+            <layer pass="0" class="SimpleLine" locked="0" enabled="1">
               <prop v="square" k="capstyle"/>
               <prop v="5;2" k="customdash"/>
               <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
@@ -143,9 +143,9 @@
               <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
               <data_defined_properties>
                 <Option type="Map">
-                  <Option type="QString" value="" name="name"/>
+                  <Option value="" name="name" type="QString"/>
                   <Option name="properties"/>
-                  <Option type="QString" value="collection" name="type"/>
+                  <Option value="collection" name="type" type="QString"/>
                 </Option>
               </data_defined_properties>
             </layer>
@@ -159,26 +159,27 @@
           <value>COALESCE( "name", '&lt;NULL>' )</value>
           <value>COALESCE( "name", '&lt;NULL>' )</value>
           <value>COALESCE( "name", '&lt;NULL>' )</value>
+          <value>COALESCE( "name", '&lt;NULL>' )</value>
         </property>
-        <property key="embeddedWidgets/count" value="0"/>
-        <property key="variableNames" value=""/>
-        <property key="variableValues" value=""/>
+        <property value="0" key="embeddedWidgets/count"/>
+        <property value="" key="variableNames"/>
+        <property value="" key="variableValues"/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory labelPlacementMethod="XHeight" enabled="1" barWidth="5" minScaleDenominator="inf" maxScaleDenominator="1e+8" minimumSize="0" width="15" rotationOffset="270" scaleDependency="Area" lineSizeType="MM" backgroundColor="#ffffff" opacity="1" penAlpha="255" scaleBasedVisibility="1" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" penColor="#000000" lineSizeScale="3x:0,0,0,0,0,0" sizeType="MM" height="15" penWidth="0" diagramOrientation="Up">
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory rotationOffset="270" backgroundColor="#ffffff" minimumSize="0" diagramOrientation="Up" penAlpha="255" height="15" lineSizeScale="3x:0,0,0,0,0,0" minScaleDenominator="inf" backgroundAlpha="255" maxScaleDenominator="1e+8" opacity="1" sizeScale="3x:0,0,0,0,0,0" scaleBasedVisibility="1" lineSizeType="MM" width="15" sizeType="MM" penWidth="0" labelPlacementMethod="XHeight" penColor="#000000" barWidth="5" scaleDependency="Area" enabled="1">
           <fontProperties description=",13,-1,5,50,0,0,0,0,0" style=""/>
-          <attribute field="" label="" color="#000000"/>
+          <attribute color="#000000" field="" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings obstacle="0" priority="0" linePlacementFlags="10" zIndex="0" placement="2" dist="0" showAll="0">
+      <DiagramLayerSettings dist="0" linePlacementFlags="10" showAll="0" placement="2" priority="0" obstacle="0" zIndex="0">
         <properties>
           <Option type="Map">
-            <Option type="QString" value="" name="name"/>
+            <Option value="" name="name" type="QString"/>
             <Option name="properties"/>
-            <Option type="QString" value="collection" name="type"/>
+            <Option value="collection" name="type" type="QString"/>
           </Option>
         </properties>
       </DiagramLayerSettings>
@@ -187,8 +188,8 @@
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option type="QString" value="0" name="IsMultiline"/>
-                <Option type="QString" value="0" name="UseHtml"/>
+                <Option value="0" name="IsMultiline" type="QString"/>
+                <Option value="0" name="UseHtml" type="QString"/>
               </Option>
             </config>
           </editWidget>
@@ -197,39 +198,39 @@
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option type="QString" value="0" name="IsMultiline"/>
-                <Option type="QString" value="0" name="UseHtml"/>
+                <Option value="0" name="IsMultiline" type="QString"/>
+                <Option value="0" name="UseHtml" type="QString"/>
               </Option>
             </config>
           </editWidget>
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="name" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="name" name="" index="1"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="" field="id" applyOnUpdate="0"/>
-        <default expression="" field="name" applyOnUpdate="0"/>
+        <default field="id" expression="" applyOnUpdate="0"/>
+        <default field="name" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint unique_strength="0" field="id" notnull_strength="0" exp_strength="0" constraints="0"/>
-        <constraint unique_strength="0" field="name" notnull_strength="0" exp_strength="0" constraints="0"/>
+        <constraint unique_strength="0" field="id" constraints="0" notnull_strength="0" exp_strength="0"/>
+        <constraint unique_strength="0" field="name" constraints="0" notnull_strength="0" exp_strength="0"/>
       </constraints>
       <constraintExpressions>
         <constraint field="id" exp="" desc=""/>
         <constraint field="name" exp="" desc=""/>
       </constraintExpressions>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+      <attributetableconfig sortExpression="&quot;id&quot;" actionWidgetStyle="dropDown" sortOrder="1">
         <columns>
-          <column type="field" width="-1" hidden="0" name="id"/>
-          <column type="field" width="-1" hidden="0" name="name"/>
-          <column type="actions" width="-1" hidden="1"/>
+          <column hidden="0" name="id" width="-1" type="field"/>
+          <column hidden="0" name="name" width="-1" type="field"/>
+          <column hidden="1" width="-1" type="actions"/>
         </columns>
       </attributetableconfig>
       <editform>.</editform>
@@ -255,64 +256,64 @@
     <layer id="tours_ski20170226202227871"/>
   </layerorder>
   <properties>
+    <Gui>
+      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
+    </Gui>
     <Measurement>
-      <AreaUnits type="QString"></AreaUnits>
       <DistanceUnits type="QString"></DistanceUnits>
+      <AreaUnits type="QString"></AreaUnits>
     </Measurement>
     <PAL>
-      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
       <CandidatesLine type="int">50</CandidatesLine>
-      <DrawRectOnly type="bool">false</DrawRectOnly>
       <ShowingCandidates type="bool">false</ShowingCandidates>
       <CandidatesPoint type="int">16</CandidatesPoint>
-      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
       <SearchMethod type="int">0</SearchMethod>
       <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
-      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
     </PAL>
+    <SpatialRefSys>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+      <ProjectCRSID type="int">3857</ProjectCRSID>
+      <ProjectCrs type="QString">EPSG:3857</ProjectCrs>
+      <ProjectCRSProj4String type="QString">+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</ProjectCRSProj4String>
+    </SpatialRefSys>
     <Paths>
       <Absolute type="bool">false</Absolute>
     </Paths>
-    <SpatialRefSys>
-      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
-      <ProjectCrs type="QString">EPSG:3857</ProjectCrs>
-      <ProjectCRSProj4String type="QString">+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</ProjectCRSProj4String>
-      <ProjectCRSID type="int">3857</ProjectCRSID>
-    </SpatialRefSys>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
     <PositionPrecision>
       <Automatic type="bool">true</Automatic>
       <DecimalPlaces type="int">2</DecimalPlaces>
     </PositionPrecision>
-    <Legend>
-      <filterByMap type="bool">false</filterByMap>
-    </Legend>
-    <Gui>
-      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
-      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
-      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
-      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
-      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
-      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
-      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
-    </Gui>
     <Digitizing>
-      <AvoidIntersectionsList type="QStringList"/>
       <LayerSnappingEnabledList type="QStringList">
         <value>enabled</value>
       </LayerSnappingEnabledList>
+      <DefaultSnapToleranceUnit type="int">2</DefaultSnapToleranceUnit>
+      <AvoidIntersectionsList type="QStringList"/>
       <DefaultSnapTolerance type="double">0</DefaultSnapTolerance>
-      <LayerSnapToList type="QStringList">
-        <value>to_vertex</value>
-      </LayerSnapToList>
       <LayerSnappingList type="QStringList">
         <value>tours_ski20170226202227871</value>
       </LayerSnappingList>
-      <DefaultSnapToleranceUnit type="int">2</DefaultSnapToleranceUnit>
       <SnappingMode type="QString">advanced</SnappingMode>
+      <DefaultSnapType type="QString">off</DefaultSnapType>
+      <LayerSnapToList type="QStringList">
+        <value>to_vertex</value>
+      </LayerSnapToList>
       <LayerSnappingToleranceUnitList type="QStringList">
         <value>0</value>
       </LayerSnappingToleranceUnitList>
-      <DefaultSnapType type="QString">off</DefaultSnapType>
       <LayerSnappingToleranceList type="QStringList">
         <value>0.000000</value>
       </LayerSnappingToleranceList>
