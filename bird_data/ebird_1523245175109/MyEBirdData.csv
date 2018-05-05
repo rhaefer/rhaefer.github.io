@@ -54,6 +54,7 @@ S35218716,Great Blue Heron,Ardea herodias,2118,1,US-WA,King,US-WA-Seattle-Green 
 S30167940,Great Blue Heron,Ardea herodias,2118,1,US-WA,King,Union Bay Natural Area (Montlake Fill),47.65424,-122.29137,06-10-2016,04:19 PM,eBird - Traveling Count,60,1,1.207,,1,,,"<br />Submitted from eBird for iOS, version 1.2.1 Build 65"
 S34345229,Great Blue Heron,Ardea herodias,2118,2,US-WA,Thurston,"CA-Eld Inlet - 47.0573x-123.0057 - Feb 13, 2017, 9:02 AM",47.057313,-123.005657,02-11-2017,09:02 AM,eBird - Stationary Count,60,0,,,2
 S33406259,Great Blue Heron,Ardea herodias,2118,1,MX-BCS,,MX-BCS-La Paz-Isla Espiritu Santo - 24.4356x-110.3488,24.435604,-110.34878,12-31-2016,08:47 AM,eBird - Traveling Count,300,0,8.047,,1
+S44862306,Gray Heron (Gray),Ardea cinerea cinerea/jouyi,2128,1,ES-CT,Barcelona,"Park De La Ciutadella, Barcelona ES-Catalonia (41.3887,2.1877)",41.388698,2.187669,04-22-2018,04:05 PM,eBird - Traveling Count,120,0,8.047,,1
 S33183924,Great Egret,Ardea alba,2144,2,US-CA,Contra Costa,US-CA-Pleasant Hill-Contra Costa Canal Trl - 37.9287x-122.0747,37.928673,-122.074748,12-24-2016,11:35 AM,eBird - Traveling Count,60,0,12.875,,1
 S33406259,Great Egret,Ardea alba,2144,30,MX-BCS,,MX-BCS-La Paz-Isla Espiritu Santo - 24.4356x-110.3488,24.435604,-110.34878,12-31-2016,08:47 AM,eBird - Traveling Count,300,0,8.047,,1
 S30169147,Turkey Vulture,Cathartes aura,2362,12,US-OR,Deschutes,Smith Rock SP,44.3669375,-121.1371851,05-29-2016,01:00 PM,eBird - Traveling Count,240,1,8.047,,2
@@ -108,8 +109,10 @@ S32054982,Northern Flicker,Colaptes auratus,11308,1,US-WA,King,US-WA-Seattle-339
 S32076761,Northern Flicker,Colaptes auratus,11308,6,US-WA,King,US-WA-Seattle-4400 Interlake Ave N - 47.6593x-122.3405,47.65928,-122.340498,10-16-2016,01:31 PM,eBird - Traveling Count,5,0,.161,,1
 S30665718,Northern Flicker,Colaptes auratus,11308,2,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
 S33323975,Gilded Flicker,Colaptes chrysoides,11321,1,MX-BCS,,MX-BCS-El Pescadero-Calle Sn 38 - 23.3638x-110.1685,23.363831,-110.168471,12-29-2016,09:36 PM,eBird - Stationary Count,120,0,,,1
+S44988702,Eurasian Green Woodpecker (Iberian),Picus viridis sharpei,11487,1,ES-MD,,"ES-Madrid-Buen Retiro Park (40.4127,-3.6813)",40.412666,-3.681339,04-27-2018,02:46 PM,eBird - Traveling Count,60,0,3.219,,2
 S33323975,Crested Caracara,Caracara cheriway,11581.24,1,MX-BCS,,MX-BCS-El Pescadero-Calle Sn 38 - 23.3638x-110.1685,23.363831,-110.168471,12-29-2016,09:36 PM,eBird - Stationary Count,120,0,,,1
 S33398494,Crested Caracara,Caracara cheriway,11581.24,1,MX-BCS,,MX-BCS-La Paz-Carretera al Sargento - 24.0473x-109.9887,24.04728,-109.988655,01-02-2017,06:02 PM,eBird - Traveling Count,60,0,8.047,,1
+S44862306,Monk Parakeet,Myiopsitta monachus,11588.88,10,ES-CT,Barcelona,"Park De La Ciutadella, Barcelona ES-Catalonia (41.3887,2.1877)",41.388698,2.187669,04-22-2018,04:05 PM,eBird - Traveling Count,120,0,8.047,,1
 S30665718,Eastern Kingbird,Tyrannus tyrannus,15055,1,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
 S30935613,Gray Jay,Perisoreus canadensis,18722,2,US-WA,Chelan,US-WA-Leavenworth-Wenatchee National Forest - 47.5201x-120.8651,47.520105,-120.865144,07-31-2016,11:30 AM,eBird - Traveling Count,60,0,16.093,,4,,,"<br />Submitted from eBird for iOS, version 1.2.4 Build 72"
 S30204754,Gray Jay,Perisoreus canadensis,18722,1,US-WA,King,US-WA-North Bend-Snoqualmie National Forest - 47.4352x-121.5129,47.435197,-121.512883,06-12-2016,09:52 AM,eBird - Traveling Count,90,1,.161,,2,,,Pratt Lake in the Alpine Lakes Wilderness Area near Snoqualmie Pass
@@ -122,11 +125,13 @@ S30204754,Steller's Jay,Cyanocitta stelleri,18816,1,US-WA,King,US-WA-North Bend-
 S32050734,Steller's Jay,Cyanocitta stelleri,18816,1,US-WA,King,US-WA-Seattle-337 N 78th St - 47.6854x-122.3537,47.68542,-122.353672,10-15-2016,02:35 PM,eBird - Stationary Count,5,0,,,1
 S31637414,Steller's Jay,Cyanocitta stelleri,18816,1,US-WA,King,US-WA-Seattle-Burke Gilman Trl - 47.6524x-122.3289,47.652425,-122.328853,09-17-2016,03:01 PM,eBird - Traveling Count,60,0,8.047,,1,,,"<br />Submitted from eBird for iOS, version 1.2.6 Build 75"
 S31425802,Steller's Jay,Cyanocitta stelleri,18816,1,US-WA,Snohomish,US-WA-Sultan-704 Alder Ave - 47.8629x-121.8113,47.862899,-121.811346,09-04-2016,04:14 PM,eBird - Traveling Count,5,0,48.279,,1,,,"<br />Submitted from eBird for iOS, version 1.2.6 Build 75"
+S44988702,Eurasian Magpie (Eurasian),Pica pica [pica Group],18988,4,ES-MD,,"ES-Madrid-Buen Retiro Park (40.4127,-3.6813)",40.412666,-3.681339,04-27-2018,02:46 PM,eBird - Traveling Count,60,0,3.219,,2
 S30169147,Black-billed Magpie,Pica hudsonia,19000,2,US-OR,Deschutes,Smith Rock SP,44.3669375,-121.1371851,05-29-2016,01:00 PM,eBird - Traveling Count,240,1,8.047,,2
 S30665718,Black-billed Magpie,Pica hudsonia,19000,4,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
 S34636302,Black-billed Magpie,Pica hudsonia,19000,1,CA-BC,Thompson-Nicola,CA-BC-Kamloops-TC-1 E - 50.6616x-120.3440,50.661635,-120.344024,02-21-2017,09:43 AM,eBird - Stationary Count,15,0,,,1
 S30935613,Clark's Nutcracker,Nucifraga columbiana,19007,3,US-WA,Chelan,US-WA-Leavenworth-Wenatchee National Forest - 47.5201x-120.8651,47.520105,-120.865144,07-31-2016,11:30 AM,eBird - Traveling Count,60,0,16.093,,4,,,"<br />Submitted from eBird for iOS, version 1.2.4 Build 72"
 S38964988,Clark's Nutcracker,Nucifraga columbiana,19007,1,US-NV,Douglas,"Heavenly Mountain Resort, Stateline US-NV (38.9348,-119.9025)",38.934839,-119.902542,09-02-2017,03:34 PM,eBird - Traveling Count,100,0,3.219,,1
+S44712753,Clark's Nutcracker,Nucifraga columbiana,19007,1,US-CA,El Dorado,"Heavenly Mountain Resort, South Lake Tahoe US-CA (38.9237,-119.9174)",38.923722,-119.91739,04-13-2018,09:09 PM,eBird - Stationary Count,20,0,,,1
 S31761213,Clark's Nutcracker,Nucifraga columbiana,19007,2,US-WA,Kittitas,US-WA-Cle Elum-Wenatchee National Forest - 47.3585x-121.0292,47.358481,-121.029232,09-25-2016,11:55 AM,eBird - Traveling Count,20,0,.161,,1,,,"   Submitted from eBird for iOS, version 1.3.0 Build 86"
 S35157974,Tree Swallow,Tachycineta bicolor,19972,5,US-WA,King,US-WA-Black Diamond-98010 - 47.2976x-122.0126,47.297581,-122.012575,03-11-2017,12:14 PM,eBird - Traveling Count,60,0,8.047,,2
 S30665718,Tree Swallow,Tachycineta bicolor,19972,10,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
