@@ -9,7 +9,7 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools,
+pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, geojsonio,
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras)
 
 setwd("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/ski_tours")
@@ -18,7 +18,6 @@ shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 ski_points <- readOGR(dsn=".", layer="ski_points",verbose = FALSE)
 ski_points<-spTransform(ski_points, CRS("+proj=longlat +datum=WGS84"))
 
-#data1<-read_xlsx("Ski Tours.xlsx", sheet="Sheet1")
 data1<-read_csv("Ski Tours.csv")
 data1<- data1[complete.cases(data1),]
 data1$tour.name <- tolower(data1$`tour name`)
@@ -45,7 +44,7 @@ leaflet(width=900, height=700) %>%
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-119.971845, 38.796056, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-119.250479, 37.939091, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
