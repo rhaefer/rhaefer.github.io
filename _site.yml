@@ -9,7 +9,7 @@ navbar:
     href: about.html
   - text: Research
     href: research.html
-  - text: Data Viz/Analysis
+  - text: Projects
     menu:
     - text: Bird Observation Map
       href: bird.html
