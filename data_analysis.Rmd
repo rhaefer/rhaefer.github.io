@@ -9,7 +9,7 @@ output:
 
 ```{r results = "asis", comment = NA}
 library(pacman)
-pacman::p_load(scales,rCharts,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+pacman::p_load(scales,rCharts,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
 #load data from google sheets
 data <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing"))

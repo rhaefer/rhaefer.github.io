@@ -46,7 +46,7 @@ grid.arrange(g.top,g.bottom, heights = c(1/2, 4/5))
 
 ```
 ____________________________________________________________
-![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/psrcawardflowsSankey.png)
+![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/psrcawardflowsSankey.png)
 ____________________________________________________________
 ```{r message=FALSE, warning=FALSE}
 
@@ -94,10 +94,10 @@ ggplot(data_graph, aes(jurisdiction_size, psrc_funds, fill=phases.y)) +geom_bar(
 ```
 ____________________________________________________________
 
-![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/ProjectSelectionMultiplot.png)
+![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/ProjectSelectionMultiplot.png)
 
 ________________________________________________________________
-![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/PSRC_distribution_2014.png)
+![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/PSRC_distribution_2014.png)
 ________________________________________________________________
 
-![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/CountyWideSummary.png)
+![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/CountyWideSummary.png)

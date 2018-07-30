@@ -13,16 +13,12 @@ navbar:
     menu:
     - text: Bird Observation Map
       href: bird.html
-    - text: Transportation Project Map
-      href: transportation.html
     - text: Backcountry Ski Tours
       href: ski_tours.html
     - text: Tableau Dashboard
       href: tableau.html
     - text: Static Charts
       href: vehicle.html
-    - text: Cost Estimation Analysis
-      href: data_wrangle.html
   - text: Blog
     href: blog.html
   right:

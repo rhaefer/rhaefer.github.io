@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -215,16 +215,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Data Viz/Analysis
+    Projects
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="bird.html">Bird Observation Map</a>
-    </li>
-    <li>
-      <a href="transportation.html">Transportation Project Map</a>
     </li>
     <li>
       <a href="ski_tours.html">Backcountry Ski Tours</a>
@@ -234,9 +231,6 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="vehicle.html">Static Charts</a>
-    </li>
-    <li>
-      <a href="data_wrangle.html">Cost Estimation Analysis</a>
     </li>
   </ul>
 </li>
@@ -266,45 +260,45 @@ $(document).ready(function () {
 
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pacman)
-pacman::<span class="kw">p_load</span>(scales,rCharts,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, xlsx, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
+pacman<span class="op">::</span><span class="kw">p_load</span>(scales,rCharts,knitr,grid, gridExtra,ggthemes,gsheet,RCurl,dplyr, RODBC, ggmap, foreign, maptools, rgdal, ggplot2, devtools, broom, sp, maps, mapdata, googlesheets)
 
 <span class="co">#load data from google sheets</span>
 data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1tVtrA8s1iv19OKXAmShSqQcT71zT7_DOk0ICsm8brrE/edit?usp=sharing&quot;</span>))
 pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1xLc8rCkzZp5pqVh8LKzB9bsyeDNmnUXiZciAgvqOE88/edit?usp=sharing&quot;</span>))</code></pre></div>
 <pre><code>Warning: Missing column names filled in: &#39;X1&#39; [1], &#39;X25&#39; [25]</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#summarise data</span>
-data_sum&lt;-data %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Sponsor, ID, Title, Total.Project.Cost) %&gt;%
+data_sum&lt;-data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Sponsor, ID, Title, Total.Project.Cost) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">psrc_funds =</span> <span class="kw">sum</span>(PSRC.Funds), <span class="dt">phases=</span><span class="kw">paste</span>(Phase.s., <span class="dt">collapse=</span><span class="st">&quot; &amp; &quot;</span>))
 
 <span class="co">#join datasets</span>
-data_final&lt;-<span class="kw">left_join</span>(pop, data_sum, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">select</span> (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
+data_final&lt;-<span class="kw">left_join</span>(pop, data_sum, <span class="dt">by=</span><span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span> (X2010.Population, ID, phases.y, psrc_funds, Sponsor.y, Title.y)
 
 <span class="co">#clean data</span>
 data_final&lt;-data_final[<span class="kw">complete.cases</span>(data_final),]
-data_final$X2010.Population&lt;-<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>,data_final$X2010.Population)
-data_final$X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final$X2010.Population)</code></pre></div>
+data_final<span class="op">$</span>X2010.Population&lt;-<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>,<span class="st">&quot;&quot;</span>,data_final<span class="op">$</span>X2010.Population)
+data_final<span class="op">$</span>X2010.Population&lt;-<span class="kw">as.numeric</span>(data_final<span class="op">$</span>X2010.Population)</code></pre></div>
 <pre><code>Warning: NAs introduced by coercion</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#manipulate data</span>
-data_final &lt;-<span class="st"> </span>data_final %&gt;%<span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population &lt;<span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">50000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(
-  X2010.Population &gt;=<span class="st"> </span><span class="dv">100000</span> &amp;<span class="st"> </span>X2010.Population &lt;<span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population &gt;=<span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
+data_final &lt;-<span class="st"> </span>data_final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span> (<span class="dt">jurisdiction_size=</span> <span class="kw">ifelse</span>(X2010.Population <span class="op">&lt;</span><span class="dv">50000</span>, <span class="st">&quot;Small Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50000</span> <span class="op">&amp;</span><span class="st"> </span>X2010.Population <span class="op">&lt;</span><span class="st"> </span><span class="dv">100000</span>, <span class="st">&quot;Medium Size Jurisdictions&quot;</span>,<span class="kw">ifelse</span>(
+  X2010.Population <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100000</span> <span class="op">&amp;</span><span class="st"> </span>X2010.Population <span class="op">&lt;</span><span class="st"> </span><span class="dv">300000</span>, <span class="st">&quot;Large Size Jurisdiction&quot;</span>, <span class="kw">ifelse</span>(X2010.Population <span class="op">&gt;=</span><span class="st"> </span><span class="dv">300000</span> , <span class="st">&quot;Largest Size Jurisdiction&quot;</span>, <span class="st">&quot;Not Applicable&quot;</span>)))))
 
 <span class="co">#prepare data for display in table</span>
-data_final&lt;-data_final[<span class="kw">order</span>(data_final$psrc_funds),]
-data_final$jurisdiction_size[<span class="kw">is.na</span>(data_final$jurisdiction_size)] &lt;-<span class="st"> &quot;Transit Agency&quot;</span>
+data_final&lt;-data_final[<span class="kw">order</span>(data_final<span class="op">$</span>psrc_funds),]
+data_final<span class="op">$</span>jurisdiction_size[<span class="kw">is.na</span>(data_final<span class="op">$</span>jurisdiction_size)] &lt;-<span class="st"> &quot;Transit Agency&quot;</span>
 data_graph&lt;-data_final
-data_graph&lt;-data_graph %&gt;%<span class="st"> </span><span class="kw">filter</span>(phases.y %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;CN&quot;</span>,<span class="st">&quot;CN &amp; BUSR &amp; OTH&quot;</span>,<span class="st">&quot;OTH&quot;</span>, <span class="st">&quot;PE&quot;</span>, <span class="st">&quot;PE &amp; CN&quot;</span>, <span class="st">&quot;PE &amp; ROW&quot;</span>, <span class="st">&quot;PE &amp; ROW &amp; CN&quot;</span>))
-data_final$psrc_funds&lt;-<span class="kw">dollar</span>(data_final$psrc_funds)
+data_graph&lt;-data_graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(phases.y <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;CN&quot;</span>,<span class="st">&quot;CN &amp; BUSR &amp; OTH&quot;</span>,<span class="st">&quot;OTH&quot;</span>, <span class="st">&quot;PE&quot;</span>, <span class="st">&quot;PE &amp; CN&quot;</span>, <span class="st">&quot;PE &amp; ROW&quot;</span>, <span class="st">&quot;PE &amp; ROW &amp; CN&quot;</span>))
+data_final<span class="op">$</span>psrc_funds&lt;-<span class="kw">dollar</span>(data_final<span class="op">$</span>psrc_funds)
 <span class="kw">colnames</span>(data_final)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Population&quot;</span>, <span class="st">&quot;ID&quot;</span>,<span class="st">&quot;Phases&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Size&quot;</span>)
-data_final&lt;-data_final %&gt;%<span class="st"> </span><span class="kw">select</span>(Population, <span class="st">`</span><span class="dt">Funding Award</span><span class="st">`</span>, Jurisdiction, <span class="st">`</span><span class="dt">Project Title</span><span class="st">`</span>, Size)
-data_final$Population&lt;-<span class="kw">prettyNum</span>(data_final$Population,<span class="dt">big.mark=</span><span class="st">&quot;,&quot;</span>,<span class="dt">scientific=</span><span class="ot">FALSE</span>)
-data_final$Population&lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;NA&quot;</span>,<span class="st">&quot;Transit Agency&quot;</span>, data_final$Population)
+data_final&lt;-data_final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Population, <span class="st">`</span><span class="dt">Funding Award</span><span class="st">`</span>, Jurisdiction, <span class="st">`</span><span class="dt">Project Title</span><span class="st">`</span>, Size)
+data_final<span class="op">$</span>Population&lt;-<span class="kw">prettyNum</span>(data_final<span class="op">$</span>Population,<span class="dt">big.mark=</span><span class="st">&quot;,&quot;</span>,<span class="dt">scientific=</span><span class="ot">FALSE</span>)
+data_final<span class="op">$</span>Population&lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;NA&quot;</span>,<span class="st">&quot;Transit Agency&quot;</span>, data_final<span class="op">$</span>Population)
 data_final&lt;-data_final[<span class="kw">c</span>(<span class="st">&quot;Jurisdiction&quot;</span>, <span class="st">&quot;Project Title&quot;</span>, <span class="st">&quot;Funding Award&quot;</span>, <span class="st">&quot;Population&quot;</span>, <span class="st">&quot;Size&quot;</span>)]
 
-data_graph&lt;-<span class="st"> </span>data_graph %&gt;%<span class="st"> </span><span class="kw">select</span>(phases.y, psrc_funds,jurisdiction_size)
-n2 &lt;-<span class="st"> </span><span class="kw">nPlot</span>(psrc_funds ~<span class="st"> </span>jurisdiction_size, <span class="dt">group =</span> <span class="st">&quot;phases.y&quot;</span>, <span class="dt">data =</span> data_graph, 
+data_graph&lt;-<span class="st"> </span>data_graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(phases.y, psrc_funds,jurisdiction_size)
+n2 &lt;-<span class="st"> </span><span class="kw">nPlot</span>(psrc_funds <span class="op">~</span><span class="st"> </span>jurisdiction_size, <span class="dt">group =</span> <span class="st">&quot;phases.y&quot;</span>, <span class="dt">data =</span> data_graph, 
             <span class="dt">type =</span> <span class="st">&#39;multiBarChart&#39;</span>)
-n2$<span class="kw">show</span>(<span class="st">&quot;iframesrc&quot;</span>, <span class="dt">cdn =</span> <span class="ot">TRUE</span>)</code></pre></div>
+n2<span class="op">$</span><span class="kw">show</span>(<span class="st">&quot;iframesrc&quot;</span>, <span class="dt">cdn =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <iframe srcdoc=" &lt;!doctype HTML&gt;
 &lt;meta charset = 'utf-8'&gt;
 &lt;html&gt;
@@ -329,21 +323,21 @@ n2$<span class="kw">show</span>(<span class="st">&quot;iframesrc&quot;</span>, <
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = 'chart257c2d652598' class = 'rChart nvd3'&gt;&lt;/div&gt;    
+    &lt;div id = 'chart3a1045ab570f' class = 'rChart nvd3'&gt;&lt;/div&gt;    
     &lt;script type='text/javascript'&gt;
  $(document).ready(function(){
-      drawchart257c2d652598()
+      drawchart3a1045ab570f()
     });
-    function drawchart257c2d652598(){  
+    function drawchart3a1045ab570f(){  
       var opts = {
- &quot;dom&quot;: &quot;chart257c2d652598&quot;,
+ &quot;dom&quot;: &quot;chart3a1045ab570f&quot;,
 &quot;width&quot;:    800,
 &quot;height&quot;:    400,
 &quot;x&quot;: &quot;jurisdiction_size&quot;,
 &quot;y&quot;: &quot;psrc_funds&quot;,
 &quot;group&quot;: &quot;phases.y&quot;,
 &quot;type&quot;: &quot;multiBarChart&quot;,
-&quot;id&quot;: &quot;chart257c2d652598&quot; 
+&quot;id&quot;: &quot;chart3a1045ab570f&quot; 
 },
         data = [
  {
@@ -1728,7 +1722,7 @@ n2$<span class="kw">show</span>(<span class="st">&quot;iframesrc&quot;</span>, <
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; " scrolling="no" frameBorder="0" seamless class="rChart  nvd3  " id="iframe-chart257c2d652598">
+&lt;/html&gt; " scrolling="no" frameBorder="0" seamless class="rChart  nvd3  " id="iframe-chart3a1045ab570f">
 </iframe>
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -1755,7 +1749,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
