@@ -6,4 +6,4 @@ output:
 ---
 ________________________________________________________
 
-![](images/cv.pdf){ width="700px" height="950px" }
+![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/cv.pdf){ width="700px" height="950px" }

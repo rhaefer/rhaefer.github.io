@@ -280,22 +280,9 @@ $(document).ready(function () {
 
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pacman)
-pacman<span class="op">::</span><span class="kw">p_load</span> (gsheet,ggthemes,ggplot2,dplyr,reshape2,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)</code></pre></div>
-<pre><code>## package &#39;extrafontdb&#39; successfully unpacked and MD5 sums checked
-## package &#39;Rttf2pt1&#39; successfully unpacked and MD5 sums checked
-## package &#39;extrafont&#39; successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\reidh\AppData\Local\Temp\RtmpQ18gdl\downloaded_packages
-## package &#39;TeachingDemos&#39; successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\reidh\AppData\Local\Temp\RtmpQ18gdl\downloaded_packages
-## package &#39;pastecs&#39; successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\reidh\AppData\Local\Temp\RtmpQ18gdl\downloaded_packages</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1LtNkmJpLy4nua9raN0vmytced9rhnP-buKgT_PTJ3iE/edit?usp=sharing&quot;</span>))
+pacman<span class="op">::</span><span class="kw">p_load</span> (gsheet,ggthemes,ggplot2,dplyr,reshape2,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)
+
+ii &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">gsheet2tbl</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/1LtNkmJpLy4nua9raN0vmytced9rhnP-buKgT_PTJ3iE/edit?usp=sharing&quot;</span>))
 fourteen&lt;-<span class="st"> </span>ii <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(ageID) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">total=</span><span class="kw">sum</span>(count))
 <span class="kw">colnames</span>(fourteen)&lt;-<span class="kw">c</span>(<span class="st">&quot;age&quot;</span>,<span class="st">&quot;total&quot;</span>) 
 fourteen&lt;-fourteen[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>,]

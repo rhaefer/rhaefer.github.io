@@ -5,7 +5,7 @@ output:
     theme: yeti
     highlight: tango
 ---
-![](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/india2.jpg)
+![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/india2.jpg)
 
 
 
