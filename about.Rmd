@@ -8,7 +8,6 @@ output:
 
 ### SUMMARY 
 
-
 <style>
 div.blue { background-color:#e3ede6; border-radius: 5px; padding: 20px;}
 </style>
