@@ -4,14 +4,24 @@ output:
     theme: yeti
     highlight: tango
 ---
-________________________________________________________
+***
+
+### SUMMARY 
 
 
-### SUMMARY  
+<style>
+div.blue { background-color:#e3ede6; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
 * An interdisciplinary education and professional background that includes urban planning, data science, GIS, travel demand modeling, public policy, sustainability, environmental science, & statistics
 * Proficiency utilizing myriad computer programs for data visualization, mapping, and analysis
 * Ability to communicate publicly through community outreach and public speaking
 * Success collaborating in group-oriented environments with professionals of diverse backgrounds
+
+</div>
+
+***
 
 ### EDUCATION 
 
@@ -23,12 +33,16 @@ B.A., Environmental Studies (2010)
 Western Washington University  
 Huxley College of the Environment  
 
+***
+
 ### SKILLS 
 * Data analysis, data collection, and visualization: R, Python, Tableau, SQL, Microsoft Access, Microsoft Excel  
 * Digital design: Adobe Illustrator/Photoshop, Google Sketch Up, Rhinoceros 3-D Modeling  
 * Geospatial analysis & mapping: ArcGIS, QGIS, Tableau  
 * Writing and publication: Adobe InDesign, Microsoft Word, LaTeX . Web Design: HTML, CSS, Javascript, Markdown  
-* Foreign Language: Spanish (intermediate)  
+* Foreign Language: Spanish (intermediate) 
+
+***
 
 ### PROFESSIONAL EXPERIENCE 
 * Data Modeler/Analyst, Tahoe Regional Planning Agency, (July 2017 - Present) 
@@ -37,18 +51,26 @@ Huxley College of the Environment
 * Communication Specialist, University of Washington, (Sept. 2012-June 2013) 
 * Assistant, Solar Energy International (SEI), (2011) . Green the Capitol Intern, United States House of Representatives, (2010) 
 
+***
+
 ### RESEARCH 
 * Master's Thesis: Assessing the relationship between city growth and electricity use over time: A comparative analysis of Chandigarh and Seattle (University of Washington, 2014) 
 * Public Street and Area Lighting Inventory Phase 1: Survey Results, Municipal Solid-State Street Lighting Consortium (Seattle City Light, 2014)
+
+***
 
 ### VOLUNTEER
 * Commissioner, City of Seattle Urban Forestry Commission (Seattle, WA, 2016-Present)
 * Founder, Friends of North Lake Union - FONLU (Seattle, WA, 2015-Present) 
 * Seattle Audobon Society - Puget Sound Seabird Study (Seattle, WA, 2015-Present) . Board Member, Wallingford Community Council (Seattle, WA, 2015-2016)
 
+***
+
 ### AWARDS
 * 1st Place Winner, 2010 AWMA Environmental Challenge International (Eci) (Calgary, Canada, 2010) 
 * 1st Place Winner, 2009 PNWIS/AWMA Environmental Challenge, (Cle Elum, Washington, 2009)
+
+***
 
 ### PROJECTS 
 * Chandigarh Urban Lab: Solar Spine Site Plan (University of Washington, 2014) 
@@ -59,6 +81,8 @@ Huxley College of the Environment
 * Yew Street Urbanization Environmental Impact Assessment (Western Washington University, 2010) 
 * Downtown Bellingham Revitalization Plan, (Western Washington University, 2010)
 
+***
+
 ### CONTINUED EDUCATION
 * Solar Energy International: Records of Completion (RoC) 
 * PV 101: Solar Electric Design and Installation (online) 
@@ -67,6 +91,8 @@ Huxley College of the Environment
 * RD 205: Sustainable Community Development: Renewable Energy for Rural Communities (Totogalpa, Nicaragua, 2011)
 * RD 101: Renewable Energy for the Developing World (online) 
 * American Institute for Avalanche Research and Education (AIARE): AIARE I Certification (Pro Guiding Service, 2016)
+
+***
 
 ### INTERNATIONAL EXPERIENCE
 * Chandigarh Urban Lab (Chandigarh, India, 2014): Graduate research on urbanization, sustainable development, and historic preservation
