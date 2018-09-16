@@ -6,4 +6,7 @@ output:
     highlight: tango
 ---
 
-[![Alt text](X:/Trans/STAFF/Reid/viz/rhaefer.github.io/images/tableau_dashboard.png)](https://public.tableau.com/views/project_selection_RH/Story1?:embed=y&:display_count=yes)
+[<img src="C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/tableau_dashboard.png">](https://public.tableau.com/views/project_selection_RH/Story1?:embed=y&:display_count=yes)
+
+![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/tableau_dashboard.png)
+
