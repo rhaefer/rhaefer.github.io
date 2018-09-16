@@ -15,9 +15,9 @@ navbar:
       href: bird.html
     - text: Backcountry Ski Tours
       href: ski_tours.html
-    - text: Tableau Dashboard
+    - text: Tableau
       href: tableau.html
-    - text: Static Charts
+    - text: Other Data Viz
       href: vehicle.html
   - text: Blog
     href: blog.html

@@ -1,5 +1,5 @@
 ---
-title: "Tableau Dashboard"
+title: "Tableau"
 output:
   html_document:
     theme: yeti

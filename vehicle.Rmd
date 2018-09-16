@@ -1,5 +1,5 @@
 ---
-title: "Static Charts"
+title: "Other Data Viz"
 output:
   html_document:
     theme: yeti
@@ -7,7 +7,7 @@ output:
     code_folding: hide
 ---
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, echo=FALSE}
 
 library(pacman)
 pacman::p_load (gsheet,ggthemes,ggplot2,dplyr,reshape2,grid,devtools,gridExtra,extrafont,lattice,png,curl,TeachingDemos,pastecs,scales)
@@ -48,7 +48,7 @@ grid.arrange(g.top,g.bottom, heights = c(1/2, 4/5))
 ____________________________________________________________
 ![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/psrcawardflowsSankey.png)
 ____________________________________________________________
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, echo=FALSE}
 
 #load required packages
 library(pacman)
