@@ -11,7 +11,7 @@ navbar:
     href: research.html
   - text: Projects
     menu:
-    - text: Bird Observation Map
+    - text: Bird Observations
       href: bird.html
     - text: Backcountry Ski Tours
       href: ski_tours.html
