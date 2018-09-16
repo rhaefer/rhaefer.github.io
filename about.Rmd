@@ -12,6 +12,14 @@ Professionally, I spend my time working with data related to *urban planning*, *
 
 ***
 
+### SKILLS 
+* Data analysis, data collection, and visualization: R, Python, Tableau, SQL, Microsoft Access, Microsoft Excel  
+* Digital design: Adobe Illustrator/Photoshop, Google Sketch Up, Rhinoceros 3-D Modeling  
+* Geospatial analysis & mapping: R, ArcGIS, QGIS, Tableau  
+* Writing and publication: Adobe InDesign, Microsoft Word, LaTeX
+* Web Design: HTML, CSS, Javascript, Markdown  
+* Foreign Language: Spanish (intermediate) 
+
 ### EDUCATION 
 
 University of Washington - Master of Urban Planning (MUP) - College of the Built Environment (2014)
@@ -20,13 +28,6 @@ Western Washington University - BA Environmental Studies - Huxley College of the
 
 ***
 
-### SKILLS 
-* Data analysis, data collection, and visualization: R, Python, Tableau, SQL, Microsoft Access, Microsoft Excel  
-* Digital design: Adobe Illustrator/Photoshop, Google Sketch Up, Rhinoceros 3-D Modeling  
-* Geospatial analysis & mapping: ArcGIS, QGIS, Tableau  
-* Writing and publication: Adobe InDesign, Microsoft Word, LaTeX
-* Web Design: HTML, CSS, Javascript, Markdown  
-* Foreign Language: Spanish (intermediate) 
 
 ***
 
