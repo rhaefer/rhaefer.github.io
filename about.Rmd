@@ -8,29 +8,15 @@ output:
 
 ### SUMMARY 
 
-<style>
-div.blue { background-color:#e3ede6; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-* An interdisciplinary education and professional background that includes urban planning, data science, GIS, travel demand modeling, public policy, sustainability, environmental science, & statistics
-* Proficiency utilizing myriad computer programs for data visualization, mapping, and analysis
-* Ability to communicate publicly through community outreach and public speaking
-* Success collaborating in group-oriented environments with professionals of diverse backgrounds
-
-</div>
+Professionally, I spend my time working with data related to *urban planning*, *transportation*, *public policy*, *sustainability*, and *environmental science*. I enjoy using the [R programming language](https://www.r-project.org/about.html) for data wrangling, modeling, analysis, visualization, and statistics. I am currently employed at the Tahoe Regional Planning Agency as a Data Modeler/Analyst. 
 
 ***
 
 ### EDUCATION 
 
-M.U.P., Master of Urban Planning (2014)   
-University of Washington  
-College of the Built Environment  
+University of Washington - Master of Urban Planning (MUP) - College of the Built Environment (2014)
 
-B.A., Environmental Studies (2010)  
-Western Washington University  
-Huxley College of the Environment  
+Western Washington University - BA Environmental Studies - Huxley College of the Environment (2010)
 
 ***
 
@@ -38,7 +24,8 @@ Huxley College of the Environment
 * Data analysis, data collection, and visualization: R, Python, Tableau, SQL, Microsoft Access, Microsoft Excel  
 * Digital design: Adobe Illustrator/Photoshop, Google Sketch Up, Rhinoceros 3-D Modeling  
 * Geospatial analysis & mapping: ArcGIS, QGIS, Tableau  
-* Writing and publication: Adobe InDesign, Microsoft Word, LaTeX . Web Design: HTML, CSS, Javascript, Markdown  
+* Writing and publication: Adobe InDesign, Microsoft Word, LaTeX
+* Web Design: HTML, CSS, Javascript, Markdown  
 * Foreign Language: Spanish (intermediate) 
 
 ***
