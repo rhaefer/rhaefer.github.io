@@ -60,7 +60,7 @@ leaflet (width=900, height=700) %>%
                clusterOptions = markerClusterOptions())  %>%
     addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
    addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(3); }"))) %>%
-    addLegend("topright", title= "Recent Bird Observations", colors= "#3487db", labels= "birds observed")
+    addLegend("topright", title= "Recent Bird Observations_test", colors= "#3487db", labels= "birds observed")
 
 ```
 ```{r message=FALSE, warning=FALSE}
