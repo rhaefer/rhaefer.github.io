@@ -9,7 +9,7 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load( gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, geojsonio,
+p_load(gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, geojsonio,
                 rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras)
 
 setwd("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/ski_tours")
@@ -28,8 +28,6 @@ shapefile1<-shapefile
 shapefile1$name<-gsub("South Trail to Bullion Basin Trail, Pierce County, WA, USA", "east peak circumnaviation",shapefile1$name )
 shapefile1$date<-as.Date(shapefile1$date, "%m/%d/%Y")
 shapefile1$date<-format(shapefile1$date, "%B %d, %Y")
-
-
 
 #custom topographic map created with Mapbox
 topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
@@ -64,9 +62,7 @@ leaflet(width=900, height=700) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
   addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE)) %>%
    addCircleMarkers(data=ski_points, lng = ~MEAN_X, lat = ~MEAN_Y, label= ~UID, group ='ski_points',
-                     fill=F, stroke=FALSE) %>%
-  addSearchMarker( targetGroup = 'ski_points', options = searchMarkersOptions(zoom=12, openPopup = TRUE,
-        hideMarkerOnCollapse = TRUE))
+                     fill=F, stroke=FALSE) 
 ```
 
 
