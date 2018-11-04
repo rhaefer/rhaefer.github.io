@@ -9,7 +9,7 @@ navbar:
     href: about.html
   - text: Projects
     href: research.html
-  - text: Blog
+  - text: Other
     href: blog.html
   right:
   - icon: fa-github fa-lg
