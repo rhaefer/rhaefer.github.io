@@ -68,7 +68,7 @@ leaflet(width=900, height=700) %>%
 
 ```{r message=FALSE, warning=FALSE}
 
-data_table<-data1 %>% select(date, `general area`, tour.name, `nwac avy rating`, weather, duration, `elevation gain (ft)`, `distance (mile)`, photos )
+data_table<-data1 %>% dplyr::select(date, `general area`, tour.name, `nwac avy rating`, weather, duration, `elevation gain (ft)`, `distance (mile)`, photos )
 data_table$photos <- paste0("<a href=", "\"", data_table$photos, "\"", "target=", "\"","blank", "\"", ">", data_table$tour.name, "</a>")
 data_table$`distance (mile)`<- paste(data_table$`distance (mile)`, "miles")
 data_table$`elevation gain (ft)`<- paste(data_table$`elevation gain (ft)`, "ft")

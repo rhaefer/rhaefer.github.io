@@ -7,18 +7,8 @@ navbar:
     href: index.html
   - text: About
     href: about.html
-  - text: Research
-    href: research.html
   - text: Projects
-    menu:
-    - text: Bird Observations
-      href: bird.html
-    - text: Backcountry Ski Tours
-      href: ski_tours.html
-    - text: Tableau
-      href: tableau.html
-    - text: Other Data Viz
-      href: vehicle.html
+    href: research.html
   - text: Blog
     href: blog.html
   right:
