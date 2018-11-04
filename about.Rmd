@@ -13,11 +13,10 @@ Professionally, I spend my time collecting, analyzing, modeling, and visualizing
 ***
 
 ### SKILLS 
-* Data analysis, data collection, and visualization: R, Python, Tableau, SQL, Microsoft Access, Microsoft Excel  
-* Digital design: Adobe Illustrator/Photoshop, Google Sketch Up, Rhinoceros 3-D Modeling  
+* Data analysis, data collection, and visualization: R, Python, Tableau, SQL, Microsoft Access, Microsoft Excel 
 * Geospatial analysis & mapping: R, ArcGIS, QGIS, Tableau  
-* Writing and publication: Adobe InDesign, Microsoft Word, LaTeX
-* Web Design: HTML, CSS, Javascript, Markdown  
+* Writing and publication: RMarkdown, Adobe InDesign, Microsoft Word, LaTeX
+* Web Design: Rmarkdown
 * Foreign Language: Spanish (intermediate) 
 
 ***
