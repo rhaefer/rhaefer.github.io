@@ -18,7 +18,7 @@ output:
 
 * [Travel Behavior Survey](http://www.trpa.org/wp-content/uploads/travel_survey_report.html) - an interactive summary of TRPA's 2018 travel behavior survey
 
-* Census Data - an interactive exploration of the Census APIs through the tidycensus package
+* [Census Data](https://github.com/trpa-reid/census) - an interactive exploration of the Census APIs through the tidycensus package
 
 ***
 
