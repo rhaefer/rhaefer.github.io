@@ -13,7 +13,7 @@ Professionally, I spend my time collecting, analyzing, modeling, and visualizing
 ***
 
 ### SKILLS 
-* Data Science: R, Python, SQL, Tableau, Microsoft Access, Microsoft Excel
+* Data Science: R, Python, SQL, Tableau, Git, Github
 * Geospatial analysis & mapping: R, ArcGIS, QGIS, Tableau
 * Travel Demand Modeling: TransCAD
 * Writing and publication: RMarkdown, Adobe InDesign, Microsoft Word, LaTeX
