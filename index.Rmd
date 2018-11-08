@@ -5,7 +5,7 @@ output:
     highlight: tango
 ---
 
-```{r, out.width = "700px", echo=F}
+```{r, out.width = "650px", echo=F}
 knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/india2.jpg")
 ```
 
