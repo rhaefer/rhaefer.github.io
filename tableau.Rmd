@@ -2,7 +2,6 @@
 title: "Tableau"
 output:
   html_document:
-    theme: yeti
     highlight: tango
 ---
 

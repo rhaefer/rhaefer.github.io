@@ -13,12 +13,13 @@ navbar:
     href: blog.html
   right:
   - icon: fa-github fa-lg
-    href: https://github.com/rhaefer/rhaefer.github.io
+    href: https://github.com/rhaefer
   output: ~
   html_document:
     css: style.css
 output:
   html_document:
+    theme: yeti
     lib_dir: site_libs
     self_contained: no
 

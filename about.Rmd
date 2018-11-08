@@ -1,9 +1,13 @@
 ---
 output:
   html_document:
-    theme: yeti
     highlight: tango
 ---
+***
+## *Reid Haefer*
+##### https://github.com/rhaefer
+
+
 ***
 
 ### SUMMARY 

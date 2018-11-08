@@ -2,7 +2,6 @@
 title: "Backcountry Ski Tours"
 output:
   html_document:
-    theme: yeti
     highlight: tango
     code_folding: hide
 ---
