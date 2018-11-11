@@ -6,13 +6,19 @@ output:
 
 _______________________________________________________________________________________
 
-![](C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/hood.jpg)
+
+```{r, out.width = "630px", echo=F}
+knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/hood.jpg")
+```
 
 _Approaching the Pearly Gates on Mount Hood (2016)_
 
 ______________________________________________________________________________________
 
-<a href='https://photos.google.com/share/AF1QipO_nL65SQkgSheL6hX_6WBmFYuf3QdJ8bS-DugQo9W6fhgrq4XUAuNsAUriDZdVnw?key=eE95TjlLLVRnTkhCdzU5RGhuMk5DR2JtM19hSkxn&source=ctrlq.org'><img src='https://lh3.googleusercontent.com/DGwzlU7ptqL6tNBrXmnj2o8a6y84UB1ukYzxpn34q1jKZ5RdRp-ejourAs_rHBszoLNB6RyWVeliINW-rlkOfnQOsmp5xBuNL0N9Pn6BbPG6xi1-gm-YfdZbcaoRfoRcUtmjn785Jg=w2400' /></a>
-
+```{r, out.width = "630px", echo=F}
+knitr::include_graphics('C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/montserrat.jpg')
+```
 
 _Monserrat, Spain (April, 2018)_
+
+
