@@ -3,10 +3,10 @@ output_dir: '.'
 navbar:
   title: Reid Haefer
   left:
-  - text: About
-    href: about.html
   - text: Projects
     href: research.html
+  - text: About
+    href: about.html
   - text: Other
     href: blog.html
   right:
