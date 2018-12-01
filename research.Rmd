@@ -15,7 +15,7 @@ output:
 
 ### *2018*
 
-* [Travel Behavior Survey](http://www.trpa.org/wp-content/uploads/travel_survey_report.html) - an interactive summary of TRPA's 2018 travel behavior survey
+* [Travel Behavior Survey](https://rhaefer.github.io/travel_survey_report.html) - an interactive summary of TRPA's 2018 travel behavior survey
 
 * [Census Data](https://rhaefer.github.io/census_101.html) - an interactive exploration of the Census APIs through the tidycensus package
 
