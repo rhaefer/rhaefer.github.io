@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1124418771",
+    "hash" : "3752139015",
     "id" : "791F56BE",
-    "lastKnownWriteTime" : 1543805355,
-    "last_content_update" : 1543805355438,
+    "lastKnownWriteTime" : 1543805508,
+    "last_content_update" : 1543805508891,
     "path" : "~/GitHub/rhaefer.github.io/ski_tours.Rmd",
     "project_path" : "ski_tours.Rmd",
     "properties" : {
-        "cursorPosition" : "86,21",
-        "scrollLine" : "70"
+        "cursorPosition" : "83,0",
+        "scrollLine" : "36"
     },
     "relative_order" : 6,
     "source_on_save" : false,
