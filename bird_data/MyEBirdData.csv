@@ -2,6 +2,7 @@ Submission ID,Common Name,Scientific Name,Taxonomic Order,Count,State/Province,C
 S32089819,Wood Duck,Aix sponsa,392,1,US-WA,King,US-WA-Seattle-Union Bay - 47.6433x-122.2876,47.64329,-122.287578,10-16-2016,12:29 PM,eBird - Traveling Count,5,0,.161,,2
 S34938247,Wood Duck,Aix sponsa,392,6,US-WA,King,US-WA-Seattle-University of Washington - 47.6543x-122.2945,47.654333,-122.294485,03-03-2017,01:29 PM,eBird - Traveling Count,30,1,.805,,1
 S34938247,Northern Shoveler,Spatula clypeata,427,8,US-WA,King,US-WA-Seattle-University of Washington - 47.6543x-122.2945,47.654333,-122.294485,03-03-2017,01:29 PM,eBird - Traveling Count,30,1,.805,,1
+S50734297,Gadwall,Mareca strepera,431,5,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S45867884,Gadwall,Mareca strepera,431,2,US-CA,El Dorado,"South Lake Tahoe, CA  96150, South Lake Tahoe US-CA (38.9400,-120.0036)",38.940048,-120.003616,05-20-2018,10:28 AM,eBird - Traveling Count,150,0,1.609,,1
 S34152310,Gadwall,Mareca strepera,431,4,US-WA,King,Seward Park,47.5538089,-122.2501301,02-04-2017,09:00 AM,eBird - Stationary Count,30,0,,,2
 S30167940,Gadwall,Mareca strepera,431,3,US-WA,King,Union Bay Natural Area (Montlake Fill),47.65424,-122.29137,06-10-2016,04:19 PM,eBird - Traveling Count,60,1,1.207,,1,,,"<br />Submitted from eBird for iOS, version 1.2.1 Build 65"
@@ -9,6 +10,7 @@ S32786239,American Wigeon,Mareca americana,438,15,US-WA,Clallam,US-WA-Port Angel
 S35218716,American Wigeon,Mareca americana,438,30,US-WA,King,US-WA-Seattle-Green Lake - 47.6766x-122.3388,47.676597,-122.338772,03-16-2017,08:48 AM,eBird - Traveling Count,30,0,6.437,,1
 S34938247,Green-winged Teal,Anas crecca,517,2,US-WA,King,US-WA-Seattle-University of Washington - 47.6543x-122.2945,47.654333,-122.294485,03-03-2017,01:29 PM,eBird - Traveling Count,30,1,.805,,1
 S42884387,Redhead,Aythya americana,565,5,US-CA,El Dorado,"2240 Dover Dr, South Lake Tahoe US-CA (38.9286,-120.0048)",38.928577,-120.004783,02-17-2018,10:38 AM,eBird - Stationary Count,10,0,,,2
+S50734297,Ring-necked Duck,Aythya collaris,569,1,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S42884387,Greater/Lesser Scaup,Aythya marila/affinis,595,20,US-CA,El Dorado,"2240 Dover Dr, South Lake Tahoe US-CA (38.9286,-120.0048)",38.928577,-120.004783,02-17-2018,10:38 AM,eBird - Stationary Count,10,0,,,2
 S25505711,Harlequin Duck,Histrionicus histrionicus,614,3,US-WA,Clallam,Ediz Hook,48.14035,-123.44711,10-18-2015,04:30 PM,eBird - Stationary Count,60,0,,,2
 S25505711,Surf Scoter,Melanitta perspicillata,616,20,US-WA,Clallam,Ediz Hook,48.14035,-123.44711,10-18-2015,04:30 PM,eBird - Stationary Count,60,0,,,2
@@ -20,13 +22,16 @@ S34938247,Bufflehead,Bucephala albeola,629,6,US-WA,King,US-WA-Seattle-University
 S40684070,Bufflehead,Bucephala albeola,629,8,US-WA,Thurston,"CA-Eld Inlet (47.0589,-123.0051)",47.058877,-123.005138,11-23-2017,11:59 AM,eBird - Stationary Count,15,1,,,3
 S34345229,Bufflehead,Bucephala albeola,629,20,US-WA,Thurston,"CA-Eld Inlet - 47.0573x-123.0057 - Feb 13, 2017, 9:02 AM",47.057313,-123.005657,02-11-2017,09:02 AM,eBird - Stationary Count,60,0,,,2
 S42324092,Common Goldeneye,Bucephala clangula,630,1,US-CA,El Dorado,"3737 Beach Rd, South Lake Tahoe US-CA (38.9510,-119.9594)",38.950979,-119.959359,01-28-2018,11:40 AM,eBird - Stationary Count,60,0,,,1
+S50734297,Common Goldeneye,Bucephala clangula,630,3,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S40684070,Common Goldeneye,Bucephala clangula,630,1,US-WA,Thurston,"CA-Eld Inlet (47.0589,-123.0051)",47.058877,-123.005138,11-23-2017,11:59 AM,eBird - Stationary Count,15,1,,,3
 S34345229,Common Goldeneye,Bucephala clangula,630,5,US-WA,Thurston,"CA-Eld Inlet - 47.0573x-123.0057 - Feb 13, 2017, 9:02 AM",47.057313,-123.005657,02-11-2017,09:02 AM,eBird - Stationary Count,60,0,,,2
+S50734297,Hooded Merganser,Lophodytes cucullatus,639,6,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S34152310,Hooded Merganser,Lophodytes cucullatus,639,4,US-WA,King,Seward Park,47.5538089,-122.2501301,02-04-2017,09:00 AM,eBird - Stationary Count,30,0,,,2
 S40684070,Hooded Merganser,Lophodytes cucullatus,639,2,US-WA,Thurston,"CA-Eld Inlet (47.0589,-123.0051)",47.058877,-123.005138,11-23-2017,11:59 AM,eBird - Stationary Count,15,1,,,3
 S30169128,Common Merganser,Mergus merganser,646,1,US-OR,Deschutes,Devil's Lake,44.0346655,-121.7622042,03-30-2016,05:00 PM,eBird - Stationary Count,60,1,,,2
 S30169147,Common Merganser,Mergus merganser,646,6,US-OR,Deschutes,Smith Rock SP,44.3669375,-121.1371851,05-29-2016,01:00 PM,eBird - Traveling Count,240,1,8.047,,2
 S42324092,Common Merganser,Mergus merganser,646,3,US-CA,El Dorado,"3737 Beach Rd, South Lake Tahoe US-CA (38.9510,-119.9594)",38.950979,-119.959359,01-28-2018,11:40 AM,eBird - Stationary Count,60,0,,,1
+S50734297,Common Merganser,Mergus merganser,646,3,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S38634983,Common Merganser,Mergus merganser,646,2,US-CA,El Dorado,"Eldorado National Forest, Echo Lake US-CA (38.8562,-120.1365)",38.856162,-120.136465,08-13-2017,10:36 AM,eBird - Stationary Count,30,0,,,1
 S34152310,Common Merganser,Mergus merganser,646,1,US-WA,King,Seward Park,47.5538089,-122.2501301,02-04-2017,09:00 AM,eBird - Stationary Count,30,0,,,2
 S30097148,Common Merganser,Mergus merganser,646,6,US-WA,King,US-WA-Renton-Cedar River Park - 47.4656x-122.1338,47.465567,-122.133835,06-05-2016,03:58 PM,eBird - Stationary Count,120,1,,,2,,,"Cesar river park along the cedar river  <br />Submitted from eBird for iOS, version 1.2.1 Build 65"
@@ -52,6 +57,7 @@ S30665718,American Coot (Red-shielded),Fulica americana (Red-shielded),5282,1,US
 S31158888,Killdeer,Charadrius vociferus,5701,3,US-WA,King,Carkeek Park,47.7126411,-122.377647,08-19-2016,08:13 PM,eBird - Traveling Count,60,0,.322,,2,,,"<br />Submitted from eBird for iOS, version 1.2.6 Build 75"
 S34938247,Killdeer,Charadrius vociferus,5701,1,US-WA,King,US-WA-Seattle-University of Washington - 47.6543x-122.2945,47.654333,-122.294485,03-03-2017,01:29 PM,eBird - Traveling Count,30,1,.805,,1
 S30665718,Killdeer,Charadrius vociferus,5701,1,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
+S50734297,Wilson's Snipe,Gallinago delicata,5902,1,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S46255832,Spotted Sandpiper,Actitis macularius,5930,1,US-CA,El Dorado,"South Lake Tahoe, CA  96150, South Lake Tahoe US-CA (38.9006,-119.9344)",38.900619,-119.934382,06-02-2018,03:32 PM,eBird - Traveling Count,160,0,14.484,,2
 S45867884,Spotted Sandpiper,Actitis macularius,5930,1,US-CA,El Dorado,"South Lake Tahoe, CA  96150, South Lake Tahoe US-CA (38.9400,-120.0036)",38.940048,-120.003616,05-20-2018,10:28 AM,eBird - Traveling Count,150,0,1.609,,1
 S30097148,Spotted Sandpiper,Actitis macularius,5930,2,US-WA,King,US-WA-Renton-Cedar River Park - 47.4656x-122.1338,47.465567,-122.133835,06-05-2016,03:58 PM,eBird - Stationary Count,120,1,,,2,,,"Cesar river park along the cedar river  <br />Submitted from eBird for iOS, version 1.2.1 Build 65"
@@ -88,6 +94,7 @@ S30167940,Osprey,Pandion haliaetus,7294,1,US-WA,King,Union Bay Natural Area (Mon
 S30665718,Osprey,Pandion haliaetus,7294,5,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
 S30429570,Cooper's Hawk,Accipiter cooperii,7772,1,US-WA,King,North Seattle,47.6926129,-122.3349671,06-24-2016,05:00 PM,eBird - Stationary Count,5,0,,,1
 S25505711,Bald Eagle,Haliaeetus leucocephalus,7828,1,US-WA,Clallam,Ediz Hook,48.14035,-123.44711,10-18-2015,04:30 PM,eBird - Stationary Count,60,0,,,2
+S50734297,Bald Eagle,Haliaeetus leucocephalus,7828,1,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S40369774,Bald Eagle,Haliaeetus leucocephalus,7828,1,US-CA,El Dorado,"South Lake Tahoe, CA  96150, South Lake Tahoe US-CA (38.9179,-119.9894)",38.917919,-119.989393,10-29-2017,03:29 PM,eBird - Traveling Count,60,0,1.609,,2
 S35157974,Bald Eagle,Haliaeetus leucocephalus,7828,2,US-WA,King,US-WA-Black Diamond-98010 - 47.2976x-122.0126,47.297581,-122.012575,03-11-2017,12:14 PM,eBird - Traveling Count,60,0,8.047,,2
 S25505775,Bald Eagle,Haliaeetus leucocephalus,7828,2,US-WA,King,Union Bay Natural Area (Montlake Fill),47.65424,-122.29137,10-16-2015,03:30 PM,eBird - Stationary Count,60,1,,,2
@@ -151,15 +158,19 @@ S30167940,Barn Swallow,Hirundo rustica,21491,8,US-WA,King,Union Bay Natural Area
 S30665718,Barn Swallow,Hirundo rustica,21491,10,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
 S30204754,Chestnut-backed Chickadee,Poecile rufescens,21834,1,US-WA,King,US-WA-North Bend-Snoqualmie National Forest - 47.4352x-121.5129,47.435197,-121.512883,06-12-2016,09:52 AM,eBird - Traveling Count,90,1,.161,,2,,,Pratt Lake in the Alpine Lakes Wilderness Area near Snoqualmie Pass
 S30935613,Red-breasted Nuthatch,Sitta canadensis,22150,2,US-WA,Chelan,US-WA-Leavenworth-Wenatchee National Forest - 47.5201x-120.8651,47.520105,-120.865144,07-31-2016,11:30 AM,eBird - Traveling Count,60,0,16.093,,4,,,"<br />Submitted from eBird for iOS, version 1.2.4 Build 72"
+S50734297,Red-breasted Nuthatch,Sitta canadensis,22150,1,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S38179270,White-breasted Nuthatch,Sitta carolinensis,22153,1,US-CA,El Dorado,"3622 Birch Ave, South Lake Tahoe US-CA (38.9437,-119.9553)",38.943736,-119.955329,07-16-2017,06:46 PM,eBird - Stationary Count,5,0,,,1
 S42883652,Pygmy Nuthatch,Sitta pygmaea,22165,1,US-NV,Douglas,"300 US Highway 50, Round Hill US-NV (38.9783,-119.9423)",38.978252,-119.942271,02-17-2018,09:20 AM,eBird - Traveling Count,90,0,37.015,,2
 S42883652,Brown Creeper,Certhia americana,22241,1,US-NV,Douglas,"300 US Highway 50, Round Hill US-NV (38.9783,-119.9423)",38.978252,-119.942271,02-17-2018,09:20 AM,eBird - Traveling Count,90,0,37.015,,2
 S48459319,Brown Creeper,Certhia americana,22241,1,US-CA,El Dorado,"1187 Lodi Ave, South Lake Tahoe US-CA (38.9191,-119.9833)",38.91913,-119.98326,08-01-2018,07:24 PM,eBird - Traveling Count,1,0,1.609,,1
+S50734297,Brown Creeper,Certhia americana,22241,1,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S30169147,House Wren,Troglodytes aedon,22326,2,US-OR,Deschutes,Smith Rock SP,44.3669375,-121.1371851,05-29-2016,01:00 PM,eBird - Traveling Count,240,1,8.047,,2
 S30167940,wren sp.,Troglodytidae sp.,22778,4,US-WA,King,Union Bay Natural Area (Montlake Fill),47.65424,-122.29137,06-10-2016,04:19 PM,eBird - Traveling Count,60,1,1.207,,1,,,"<br />Submitted from eBird for iOS, version 1.2.1 Build 65"
 S34615551,American Dipper,Cinclus mexicanus,22880,2,CA-BC,Columbia-Shuswap,"CA-BC-Glacier National Park - 51.2609x-117.4922 - Feb 21, 2017, 8:37 AM",51.260884,-117.492168,02-20-2017,08:37 AM,eBird - Traveling Count,120,1,8.047,,2
 S44387921,Mountain Bluebird,Sialia currucoides,27588,1,US-NV,Douglas,"300 US Highway 50, Round Hill US-NV (38.9765,-119.9432)",38.976532,-119.943235,04-08-2018,05:10 PM,eBird - Traveling Count,60,0,.853,,2
 S47578103,Mountain Bluebird,Sialia currucoides,27588,3,US-CA,El Dorado,"Lake Tahoe Airport, South Lake Tahoe US-CA (38.9088,-119.9884)",38.908812,-119.98837,07-31-2018,06:15 PM,eBird - Traveling Count,45,0,6.437,,1
+S49689754,Townsend's Solitaire,Myadestes townsendi,27606,1,US-CA,El Dorado,"95634, Georgetown US-CA (38.9476,-120.1152)",38.947568,-120.115166,10-22-2018,10:15 PM,eBird - Stationary Count,60,0,,,1
+S50734297,Townsend's Solitaire,Myadestes townsendi,27606,1,US-CA,El Dorado,"96150, South Lake Tahoe US-CA (38.9369,-120.0566)",38.936938,-120.05658,12-16-2018,10:52 AM,eBird - Traveling Count,90,0,4.828,,7
 S36061867,Varied Thrush,Ixoreus naevius,27695,2,CA-BC,Squamish-Lillooet,CA-BC-Whistler-4660 Blackcomb Way - 50.1226x-122.9346,50.122606,-122.934554,04-17-2017,11:32 AM,eBird - Stationary Count,30,0,,,2
 S30665718,Gray Catbird,Dumetella carolinensis,28195,1,US-MT,Lake,Flathead Lake,47.9088353,-114.116397,07-02-2016,09:00 AM,eBird - Traveling Count,480,0,64.374,,2
 S33323975,Gray Thrasher,Toxostoma cinereum,28245,2,MX-BCS,,MX-BCS-El Pescadero-Calle Sn 38 - 23.3638x-110.1685,23.363831,-110.168471,12-29-2016,09:36 PM,eBird - Stationary Count,120,0,,,1

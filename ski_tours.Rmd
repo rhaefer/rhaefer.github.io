@@ -7,11 +7,14 @@ output:
 ---
 
 ```{r message=FALSE, warning=FALSE}
+
+
 library(pacman)
 p_load(gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, geojsonio,
-                rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras)
+  rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras, sf)
 
 setwd("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/ski_tours")
+
 shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
 shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
 ski_points <- readOGR(dsn=".", layer="ski_points",verbose = FALSE)
@@ -81,8 +84,16 @@ data_table <- data_table[complete.cases(data_table),]
 DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 100, dom = 'ft'))
 ```
 
-# Photos {#test}
+# Paradise 11/24/2018 {#test1}
 
-teststgsdfgsdfgsdfgdg'
+```{r, out.width = "630px", echo=F}
+knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/india2.jpg")
 
-# Test {#reid}
+knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise2_11_24_18.jpg")
+knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise3_11_24_18.jpg")
+knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise4_11_24_18.jpg")
+```
+
+```{r, out.width = "630px", echo=F}
+knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise1_11_24_18.jpg")
+```

@@ -1,0 +1,16 @@
+library(osmdata)
+
+
+q1 <- opq('South Lake Tahoe') %>%
+  add_osm_feature(key = 'highway', value = '!cycleway')
+
+cway_sev <- osmdata_sp(q1)
+
+sp::plot(cway_sev$osm_lines)
+
+
+not_so_much_data <- opq(bbox = 'south lake tahoe') %>%
+  add_osm_feature(key = 'highway') %>%
+  add_osm_feature(key = 'name') %>%
+  osmdata_sf()
+

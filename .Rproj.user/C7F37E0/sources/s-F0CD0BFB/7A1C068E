@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1545010865480.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3233415168",
+    "id" : "7A1C068E",
+    "lastKnownWriteTime" : 1541653657,
+    "last_content_update" : 1545011336067,
+    "path" : "~/GitHub/rhaefer.github.io/bird.Rmd",
+    "project_path" : "bird.Rmd",
+    "properties" : {
+        "cursorPosition" : "11,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
