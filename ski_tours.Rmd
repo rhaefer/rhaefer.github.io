@@ -39,13 +39,12 @@ mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a 
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qzzwb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
-
 leaflet(width=900, height=700) %>%
  # addMarkers(
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-119.250479, 37.939091, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-120.040271, 38.861944, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
