@@ -7,30 +7,30 @@ output:
 ---
 
 ```{r message=FALSE, warning=FALSE}
-
-
 library(pacman)
 p_load(gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, geojsonio,
   rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras, sf)
 
-setwd("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/ski_tours")
+all<-geojson_read("ski_tours/all_ski_tours.geojson", what="sp") %>% st_as_sf()
 
-shapefile <- readOGR(dsn=".", layer="tours_ski",verbose = FALSE)
-shapefile<-spTransform(shapefile, CRS("+proj=longlat +datum=WGS84"))
-ski_points <- readOGR(dsn=".", layer="ski_points",verbose = FALSE)
-ski_points<-spTransform(ski_points, CRS("+proj=longlat +datum=WGS84"))
+#load new tour geojson tracks
+#edith<-geojson_read("ski_tours/edith creek rainier.geojson", what="sp") %>% st_as_sf() %>%
+ # mutate(name= "edith creek", id=45)
+#rlp<-geojson_read("ski_tours/red lake peak.geojson", what="sp") %>% st_as_sf() %>%
+#  mutate(name= "red lake peak", id=46)
+#new <- rbind(tallac, talking, echo, rlp, edith) %>%
+  #select(id, name)
 
-data1<-read_csv("Ski Tours.csv")
-data1<- data1[complete.cases(data1),]
-data1$tour.name <- tolower(data1$`tour name`)
-data1$id<- as.factor(data1$id)
-shapefile@data <- left_join(shapefile@data, data1, by="id")
+#combine the new tracks with the all the other
+#all <- rbind(all, new)
 
-shapefile1<-shapefile
-shapefile1$name<-gsub("South Trail to Bullion Basin Trail, Pierce County, WA, USA", "east peak circumnaviation",shapefile1$name )
-shapefile1$date<-as.Date(shapefile1$date, "%m/%d/%Y")
-shapefile1$date<-format(shapefile1$date, "%B %d, %Y")
+#st_write(shapefile, dsn="ski_tours/all_ski_tours.geojson", driver="GeoJSON")
 
+data1 <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/151RiUSQP0qMcUCGk9iO2zz7cdMbmOt64IiwzndeFWbI/edit?usp=sharing"))
+all1 <- all %>% left_join(data1,  by="id")
+```
+
+```{r message=FALSE, warning=FALSE}
 #custom topographic map created with Mapbox
 topo <- "https://api.mapbox.com/styles/v1/reidhaefer/cizzrfkq7007d2ss1ob7e2j43/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
@@ -38,6 +38,7 @@ mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a 
 #custom base map map created with Mapbox
 base_map <- "https://api.mapbox.com/styles/v1/reidhaefer/cj04a1fmm00332sroid5qzzwb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVpZGhhZWZlciIsImEiOiJjaW80bW92cGowMW8zdjRrcWlsMzg5dGVjIn0.TxdQscN__5Nlu_jSYxZplA"
 mb_attribution <- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+
 
 leaflet(width=900, height=700) %>%
  # addMarkers(
@@ -49,31 +50,28 @@ leaflet(width=900, height=700) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%
   addProviderTiles("Esri.WorldImagery", group="Satellite") %>%
-  addPolylines(data=shapefile1, weight=4, color="red", label=~paste(name,"-",`general area`),
-               popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",shapefile1$name),
-                           paste("<b>Date:</b> ",shapefile1$date),
-                           paste("<b>Location:</b> ",shapefile1$`general area`),
-                           paste("<b>Distance:</b> ",shapefile1$`distance (mile)`, "miles"),
-                           paste("<b>Elevation Gained:</b> ",shapefile1$`elevation gain (ft)`, "feet"),
-                           paste("<b>Weather:</b> ",shapefile1$weather),
-                           paste("<b>Avalanche Forecast:</b> ",shapefile1$`nwac avy rating`),
-                           paste0("<a href=", "\"", shapefile1$photos, "\"", "target=", "\"","blank", "\"", ">","Photos" ,"</a>")),
+  addPolylines(data=all1, weight=4, color="red", label=~paste(name,"-",general.area),
+               popup=paste(sep="<br/>",paste("<b>Tour Name:</b> ",all1$name),
+                           paste("<b>Date:</b> ",all1$date),
+                           paste("<b>Location:</b> ",all1$general.area),
+                           paste("<b>Distance:</b> ",all1$distance..mile., "miles"),
+                           paste("<b>Elevation Gained:</b> ",all1$elevation.gain..ft., "feet"),
+                           paste("<b>Weather:</b> ",all1$weather),
+                           paste("<b>Avalanche Forecast:</b> ",all1$nwac.avy.rating),
+                           paste0("<a href=", "\"", all1$photos, "\"", "target=", "\"","blank", "\"", ">","Photos" ,"</a>")),
                highlightOptions = highlightOptions(color = "#02f9dd", weight = 2, bringToFront = TRUE)) %>%
   addMiniMap(toggleDisplay = TRUE, tiles=providers$OpenStreetMap.BlackAndWhite) %>%
   addEasyButton(easyButton(icon="fa-globe", title="Zoom to Level 1", onClick=JS("function(btn, map){ map.setZoom(6); }"))) %>%
   addLegend("topright", title= "Backcountry Ski Tours", colors= "#c60905", labels= "ski tour") %>%
-  addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE)) %>%
-   addCircleMarkers(data=ski_points, lng = ~MEAN_X, lat = ~MEAN_Y, label= ~UID, group ='ski_points',
-                     fill=F, stroke=FALSE) 
+  addLayersControl(baseGroups = c("Topographic","Base Map",  "Satellite"), options = layersControlOptions(collapsed = FALSE))
 ```
-
 
 ```{r message=FALSE, warning=FALSE}
 
-data_table<-data1 %>% dplyr::select(date, `general area`, tour.name, `nwac avy rating`, weather, duration, `elevation gain (ft)`, `distance (mile)`, photos )
+data_table<-all1 %>% data.frame() %>% dplyr::select(date, general.area, tour.name, nwac.avy.rating, weather, duration, elevation.gain..ft., distance..mile., photos )
 data_table$photos <- paste0("<a href=", "\"", data_table$photos, "\"", "target=", "\"","blank", "\"", ">", data_table$tour.name, "</a>")
-data_table$`distance (mile)`<- paste(data_table$`distance (mile)`, "miles")
-data_table$`elevation gain (ft)`<- paste(data_table$`elevation gain (ft)`, "ft")
+data_table$distance..mile.<- paste(data_table$distance..mile., "miles")
+data_table$elevation.gain..ft.<- paste(data_table$elevation.gain..ft., "ft")
 colnames(data_table)<-c("Date", "Area", "Tour Name", "Avalanche Danger", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
 data_table$Date <- as.Date(data_table$Date, "%m/%d/%Y")
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
@@ -82,18 +80,4 @@ data_table$Date<-format(data_table$Date, "%B %d, %Y")
 data_table <- data_table[complete.cases(data_table),]
 
 DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 100, dom = 'ft'))
-```
-
-# Paradise 11/24/2018 {#test1}
-
-```{r, out.width = "630px", echo=F}
-knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/india2.jpg")
-
-knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise2_11_24_18.jpg")
-knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise3_11_24_18.jpg")
-knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise4_11_24_18.jpg")
-```
-
-```{r, out.width = "630px", echo=F}
-knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/paradise1_11_24_18.jpg")
 ```

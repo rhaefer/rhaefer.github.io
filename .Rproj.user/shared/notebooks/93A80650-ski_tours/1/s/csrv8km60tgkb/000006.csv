@@ -1,0 +1,7 @@
+"0","all2<-all1
+all2$name<-gsub(""South Trail to Bullion Basin Trail, Pierce County, WA, USA"", ""east peak circumnaviation"",all2$name )
+shapefile1$date<-as.Date(all2$date, ""%m/%d/%Y"")
+"
+"2","Error in `[[<-.data.frame`(`*tmp*`, name, value = c(17222, 17215, 17216,  : 
+  replacement has 49 rows, data has 44
+"

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548022124863.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F6DEE68C",
+    "lastKnownWriteTime" : 7579103479314278759,
+    "last_content_update" : 1548022124863,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7E45C687",
+        "caption" : "edith",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=edith&cache_key=7E45C687",
+        "displayedObservations" : 1,
+        "environment" : "",
+        "object" : "edith",
+        "preview" : 0,
+        "totalObservations" : 1,
+        "variables" : 39
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
