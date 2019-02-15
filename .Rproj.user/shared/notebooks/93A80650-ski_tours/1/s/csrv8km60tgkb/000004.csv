@@ -1,0 +1,38 @@
+"0","all<-geojson_read(""ski_tours/all_ski_tours.geojson"", what=""sp"") %>% st_as_sf()
+#load new tour geojson tracks
+flagpole<-geojson_read(""ski_tours/flagpole.geojson"", what=""sp"") %>% st_as_sf() %>%
+ mutate(name= ""flagpole peak"", id=51)
+new <- rbind(flagpole) %>%
+  select(id, name)
+#combine the new tracks with the all the other
+all <- rbind(all, new)
+st_write(all, dsn=""ski_tours/all_ski_tours.geojson"", driver=""GeoJSON"", delete_dsn = T)
+"
+"1","Deleting source `"
+"1","ski_tours/all_ski_tours.geojson"
+"1","' using driver `"
+"1","GeoJSON"
+"1","'"
+"1","
+"
+"1","Writing layer `"
+"1","all_ski_tours"
+"1","' to data source `"
+"1","ski_tours/all_ski_tours.geojson"
+"1","' using driver `"
+"1","GeoJSON"
+"1","'"
+"1","
+"
+"1","features:       "
+"1","51"
+"1","
+"
+"1","fields:         "
+"1","2"
+"1","
+"
+"1","geometry type:  "
+"1","Unknown (any)"
+"1","
+"

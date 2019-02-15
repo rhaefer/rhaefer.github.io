@@ -12,19 +12,14 @@ p_load(gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, ge
   rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras, sf)
 
 all<-geojson_read("ski_tours/all_ski_tours.geojson", what="sp") %>% st_as_sf()
-
 #load new tour geojson tracks
-#edith<-geojson_read("ski_tours/edith creek rainier.geojson", what="sp") %>% st_as_sf() %>%
- # mutate(name= "edith creek", id=45)
-#rlp<-geojson_read("ski_tours/red lake peak.geojson", what="sp") %>% st_as_sf() %>%
-#  mutate(name= "red lake peak", id=46)
-#new <- rbind(tallac, talking, echo, rlp, edith) %>%
-  #select(id, name)
-
+#flagpole<-geojson_read("ski_tours/flagpole.geojson", what="sp") %>% st_as_sf() %>%
+# mutate(name= "flagpole peak", id=51)
+#new <- rbind(flagpole) %>%
+ # select(id, name)
 #combine the new tracks with the all the other
 #all <- rbind(all, new)
-
-#st_write(shapefile, dsn="ski_tours/all_ski_tours.geojson", driver="GeoJSON")
+#st_write(all, dsn="ski_tours/all_ski_tours.geojson", driver="GeoJSON", delete_dsn = T)
 
 data1 <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/151RiUSQP0qMcUCGk9iO2zz7cdMbmOt64IiwzndeFWbI/edit?usp=sharing"))
 all1 <- all %>% left_join(data1,  by="id")
