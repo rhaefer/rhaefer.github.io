@@ -1,10 +1,12 @@
 ---
-title: Reid Haefer
+title: "Reid Haefer"
 output:
+  pdf_document: default
+  word_document: default
   html_document:
     highlight: tango
 ---
-##### https://github.com/rhaefer
+##### https://rhaefer.github.io --- https://github.com/rhaefer
 
 Professionally, I spend my time collecting, analyzing, modeling, and visualizing data related to *urban planning*, *transportation*, *public policy*, *sustainability*, and *environmental science*. For much of this work I use the [R programming language](https://www.r-project.org/about.html). I am currently employed at the Tahoe Regional Planning Agency as a Data Modeler/Analyst. 
 
