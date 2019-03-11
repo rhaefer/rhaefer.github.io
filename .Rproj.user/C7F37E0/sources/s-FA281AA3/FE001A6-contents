@@ -9,13 +9,13 @@ output:
 
 ### *2019*
 
-* Activity-Based Travel Demand Model - TBD
+* Travel Demand Modeling
 
 ***
 
 ### *2018*
 
-* [Travel Behavior Survey](https://rhaefer.github.io/travel_survey_report.html) - an interactive summary of TRPA's 2018 travel behavior survey
+* [Travel Behavior Survey](https://rhaefer.github.io/travel_survey_report.html) - an interactive summary of travel behavior survey data
 
 * [Census Data](https://rhaefer.github.io/census_101.html) - an interactive exploration of the Census APIs through the tidycensus package
 

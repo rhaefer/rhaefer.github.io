@@ -1,4 +1,12 @@
-"0","st_write(all, dsn=""ski_tours/all_ski_tours.geojson"", driver=""GeoJSON"", delete_dsn = T)
+"0","all<-geojson_read(""ski_tours/all_ski_tours.geojson"", what=""sp"") %>% st_as_sf() 
+#load new tour geojson tracks
+maggies<-geojson_read(""ski_tours/track-31019-93430am.geojson"", what=""sp"") %>% st_as_sf() %>%
+ mutate(name= ""maggies"", id=53)
+new <- rbind(maggies) %>%
+ select(id, name)
+#combine the new tracks with the all the other
+all <- rbind(all, new)
+st_write(all, dsn=""ski_tours/all_ski_tours.geojson"", driver=""GeoJSON"", delete_dsn = T)
 "
 "1","Deleting source `"
 "1","ski_tours/all_ski_tours.geojson"
@@ -17,7 +25,7 @@
 "1","
 "
 "1","features:       "
-"1","52"
+"1","53"
 "1","
 "
 "1","fields:         "
@@ -25,6 +33,6 @@
 "1","
 "
 "1","geometry type:  "
-"1","Multi Line String"
+"1","Unknown (any)"
 "1","
 "

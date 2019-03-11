@@ -13,10 +13,10 @@ p_load(gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, ge
 
 all<-geojson_read("ski_tours/all_ski_tours.geojson", what="sp") %>% st_as_sf() 
 #load new tour geojson tracks
-#ralston<-geojson_read("ski_tours/track-22319-81629am.geojson", what="sp") %>% st_as_sf() %>%
- #(name= "ralston to echo", id=52)
-#new <- rbind(ralston) %>%
- # select(id, name)
+#maggies<-geojson_read("ski_tours/track-31019-93430am.geojson", what="sp") %>% st_as_sf() %>%
+ #mutate(name= "maggies", id=53)
+#new <- rbind(maggies) %>%
+ #select(id, name)
 #combine the new tracks with the all the other
 #all <- rbind(all, new)
 #st_write(all, dsn="ski_tours/all_ski_tours.geojson", driver="GeoJSON", delete_dsn = T)
@@ -39,7 +39,7 @@ leaflet(width=900, height=700) %>%
    # lng = -121.8144, lat = 48.7767,
    # label = "Label w/o surrounding box",
    # labelOptions = labelOptions(noHide = T, textOnly = TRUE)) %>%
-  addPopups(-120.086919, 38.812798, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
+  addPopups(-120.098557, 38.946174, "recent trip", options = popupOptions(closeButton = FALSE)) %>%
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
   addTiles(urlTemplate = base_map, attribution = mb_attribution, group="Base Map") %>%
   addTiles(urlTemplate = topo, attribution = mb_attribution, group="Topographic") %>%

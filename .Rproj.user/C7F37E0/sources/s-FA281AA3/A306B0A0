@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1132576444",
     "id" : "A306B0A0",
-    "lastKnownWriteTime" : 1551109219,
-    "last_content_update" : 1551109219,
+    "lastKnownWriteTime" : 1552058192,
+    "last_content_update" : 1552058192685,
     "path" : "~/GitHub/rhaefer.github.io/about.Rmd",
     "project_path" : "about.Rmd",
     "properties" : {
-        "cursorPosition" : "0,0",
-        "scrollLine" : "0"
+        "cursorPosition" : "63,116",
+        "scrollLine" : "57"
     },
     "relative_order" : 3,
     "source_on_save" : false,
