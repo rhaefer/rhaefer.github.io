@@ -87,3 +87,10 @@ data_table <- data_table[complete.cases(data_table),]
 
 DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 100, dom = 'ft'))
 ```
+
+## Animated Data
+
+```{r}
+
+```
+

@@ -31,7 +31,7 @@ output:
 
 ### *2016*
 
-* [Transportation Funding](https://rhaefer.github.io/tableau.html) - Tableau dashboard of PSRC's 2016 Project Selection Process
+* [Transportation Funding](https://rhaefer.github.io/tableau.html) - Tableau dashboard of transportation funding project selection process
 
 ***
 
