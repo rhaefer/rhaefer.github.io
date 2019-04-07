@@ -16,8 +16,7 @@ div.sourceCode {
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
 library(pacman)
-p_load(gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, geojsonio,
-  rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras, sf)
+p_load(gsheet, knitr,raster,leaflet,rsconnect,datasets, tidyverse,  maptools, geojsonio, tidyverse, gganimate, rgdal, ggplot2, devtools, ggthemes, gtools, scales, DT, RColorBrewer, Rserve, leaflet.extras, sf, ggmap, ggspatial)
 
 all<-geojson_read("ski_tours/all_ski_tours.geojson", what="sp") %>% st_as_sf() 
 #load new tour geojson tracks
@@ -91,6 +90,21 @@ DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength 
 ## Animated Data
 
 ```{r}
+all2 <-all1 %>% mutate(date=as.Date(date, "%m/%d/%Y")) %>%
+    st_cast('LINESTRING')
+  
+  all2 %>%
+  ggplot() + geom_sf(data=all2) +
+    annotation_map_tile() +
+  theme_minimal() + 
+  theme (axis.text.x = element_blank(),
+         axis.text.y = element_blank(),
+         title = element_text(size=18)) + 
+  xlab("") + ylab("") +
+  transition_time(date)
+
+anim_save("caltrans_hourly1.gif",test,width = 1000, height = 500)
 
 ```
+
 

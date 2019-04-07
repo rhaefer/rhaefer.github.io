@@ -16,7 +16,7 @@ div.sourceCode {
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, lubridate)
+pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, lubridate, gganimate)
 
 bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_7_sfWFCYy0BCuic5iLayzpKsCGVyOE-5sQ/edit?usp=sharing"))
 bird$Location<-as.character(bird$Location)
@@ -34,7 +34,7 @@ bird$html <- paste0("<a href=", "\"", bird$url, "\"", "target=", "\"", "blank", 
 bird1<-bird
 #bird$Date<-as.Date(bird$Date, "%m/%d/%Y")
 
-bird$Date1<-mdy(bird$Date)
+bird$Date1<-ymd(bird$Date)
 #bird$Date1<-format(bird$Date1, "%B %d, %Y")
 
 lat_recent<-bird%>% filter (Date1==max(bird$Date1)) %>% dplyr::select (lat)
@@ -79,8 +79,8 @@ leaflet (width=900, height=700) %>%
 
 ```{r message=FALSE, warning=FALSE}
 
-bird1$Date<-mdy(bird1$Date)
-bird_table<-data.frame(bird1 %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & "),mydates=format(max(Date), '%m/%d/%Y')))
+bird1$Date<-ymd(bird1$Date)
+bird_table<-data.frame(bird1 %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & "),mydates=format(max(Date), '%Y/%m/%d')))
 bird_table$Location<- gsub("US-WA","Washington State",bird_table$Location)
 bird_table$Location<- gsub("US-OR","Oregon",bird_table$Location)
 bird_table$Location<- gsub("US-MT","Montana",bird_table$Location)
@@ -91,7 +91,7 @@ bird_table$url <- paste0("<a href=", "\"", bird_table$url, "\"","target=", "\"",
 bird_table<-bird_table %>% 
       rename(`Common Name`=Common.Name, `Total Observed`=Count, Locations=Location, `More Information`=url, RecentObservation=mydates) %>% 
       dplyr::select(`Common Name`, `Total Observed`, Locations, `More Information`, RecentObservation)
-bird_table$RecentObservation<-as.Date(bird_table$RecentObservation, "%m/%d/%Y")
+bird_table$RecentObservation<-as.Date(bird_table$RecentObservation, "%Y/%m/%d")
 bird_table<-bird_table[order(bird_table$RecentObservation, decreasing = TRUE),]
 bird_table$RecentObservation<-format(bird_table$RecentObservation, "%B %d, %Y")
 bird_table<-bird_table %>% rename (`Recent Observation`=RecentObservation)
