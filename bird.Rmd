@@ -18,30 +18,22 @@ div.sourceCode {
 library(pacman)
 pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, lubridate, gganimate)
 
-bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_7_sfWFCYy0BCuic5iLayzpKsCGVyOE-5sQ/edit?usp=sharing"))
-bird$Location<-as.character(bird$Location)
-bird$Common.Name<-gsub("'","",bird$Common.Name)
-bird$Location[bird$Location=="US-WA-Renton-Cedar River Park - 47.4656x-122.1338"] <- "Cedar River Park"
-bird$Common.Name[bird$Common.Name=="American Coot (Red-shielded)"] <- "American Coot"
-bird$lat <- jitter(bird$Latitude, factor = .2)
-bird$lon <- jitter(bird$Longitude, factor = .2)
-bird$County<- paste(bird$County, "County")
-bird$Area<- paste(sep="",bird$State.Province,"-", bird$County)
-bird$Location[bird$Location=="US-WA-North Bend-Snoqualmie National Forest - 47.4352x-121.5129"] <- "Pratt Lake (Snoqualmie Pass)"
+bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_7_sfWFCYy0BCuic5iLayzpKsCGVyOE-5sQ/edit?usp=sharing")) %>%
+  mutate(Location=as.character(Location),
+    Common.Name=gsub("'","",Common.Name),
+    lat = jitter(Latitude, factor = .2),
+    lon = jitter(Longitude, factor = .2),
+    County=paste(County, "County"),
+    Area =paste(sep="",State.Province,"-", County),
+    url = paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",Common.Name), "/id"),
+    html = paste0("<a href=", "\"", url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>"))
+
 table<-bird %>% dplyr::select(Common.Name, Count, Scientific.Name, Location, Area, Date)
-bird$url <- paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",bird$Common.Name), "/id")
-bird$html <- paste0("<a href=", "\"", bird$url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>")
 bird1<-bird
-#bird$Date<-as.Date(bird$Date, "%m/%d/%Y")
-
-bird$Date1<-ymd(bird$Date)
-#bird$Date1<-format(bird$Date1, "%B %d, %Y")
-
-lat_recent<-bird%>% filter (Date1==max(bird$Date1)) %>% dplyr::select (lat)
+lat_recent<-bird %>% filter (Date==max(Date)) %>% dplyr::select (lat)
 lat_recent<-lat_recent[1,]
 lat_recent <-lat_recent + .005
-
-lon_recent<-bird%>% filter (Date1==max(bird$Date1)) %>% dplyr::select (lon)
+lon_recent<-bird%>% filter (Date==max(Date)) %>% dplyr::select (lon)
 lon_recent<-lon_recent[1,]
 ```
 
@@ -80,18 +72,23 @@ leaflet (width=900, height=700) %>%
 ```{r message=FALSE, warning=FALSE}
 
 bird1$Date<-ymd(bird1$Date)
-bird_table<-data.frame(bird1 %>% group_by(Common.Name, url) %>% summarise(Count=sum(Count), Location=paste(unique(State.Province), collapse=" & "),mydates=format(max(Date), '%Y/%m/%d')))
-bird_table$Location<- gsub("US-WA","Washington State",bird_table$Location)
-bird_table$Location<- gsub("US-OR","Oregon",bird_table$Location)
-bird_table$Location<- gsub("US-MT","Montana",bird_table$Location)
-bird_table$Location<- gsub("US-CA","California",bird_table$Location)
-bird_table$Location<- gsub("MX-BCS","Baja, Mexico",bird_table$Location)
-bird_table$Location<- gsub("CA-BC","British Columbia",bird_table$Location)
-bird_table$url <- paste0("<a href=", "\"", bird_table$url, "\"","target=", "\"", "blank", "\"", ">", bird_table$Common.Name, " @ All About Birds","</a>")
-bird_table<-bird_table %>% 
-      rename(`Common Name`=Common.Name, `Total Observed`=Count, Locations=Location, `More Information`=url, RecentObservation=mydates) %>% 
-      dplyr::select(`Common Name`, `Total Observed`, Locations, `More Information`, RecentObservation)
-bird_table$RecentObservation<-as.Date(bird_table$RecentObservation, "%Y/%m/%d")
+
+bird_table<-bird1 %>% data.frame() %>%
+                         group_by(Common.Name, url) %>% 
+                         summarise(Count=sum(Count), 
+                                   Location=paste(unique(State.Province), collapse=" & "),mydates=format(max(Date), '%Y/%m/%d')) %>%
+  mutate(Location= case_when( Location=="US-WA" ~ "Washington State",
+                              Location=="US-OR"~"Oregon",
+                              Location=="US-MT"~"Montana",
+                              Location=="US-CA"~"California",
+                              Location=="MX-BCS"~"Baja, Mexico",
+                              Location=="CA-BC"~"British Columbia",
+                              TRUE~as.character(Location)),
+         url =paste0("<a href=", "\"", url, "\"","target=", "\"", "blank", "\"", ">", 
+                     Common.Name, " @ All About Birds","</a>")) %>%
+rename(`Common Name`=Common.Name, `Total Observed`=Count, Locations=Location, `More Information`=url, RecentObservation=mydates) %>% 
+      dplyr::select(`Common Name`, `Total Observed`, Locations, `More Information`, RecentObservation) %>%
+  mutate(RecentObservation=as.Date(RecentObservation, "%Y/%m/%d"))
 bird_table<-bird_table[order(bird_table$RecentObservation, decreasing = TRUE),]
 bird_table$RecentObservation<-format(bird_table$RecentObservation, "%B %d, %Y")
 bird_table<-bird_table %>% rename (`Recent Observation`=RecentObservation)

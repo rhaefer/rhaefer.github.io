@@ -73,38 +73,21 @@ leaflet(width=900, height=700) %>%
 
 ```{r message=FALSE, warning=FALSE}
 
-data_table<-all1 %>% data.frame() %>% dplyr::select(date, general.area, tour.name, nwac.avy.rating, weather, duration, elevation.gain..ft., distance..mile., photos )
-data_table$photos <- paste0("<a href=", "\"", data_table$photos, "\"", "target=", "\"","blank", "\"", ">", data_table$tour.name, "</a>")
-data_table$distance..mile.<- paste(data_table$distance..mile., "miles")
-data_table$elevation.gain..ft.<- paste(data_table$elevation.gain..ft., "ft")
+data_table<-all1 %>% 
+  data.frame() %>% 
+  dplyr::select(date, general.area, tour.name, nwac.avy.rating, weather, duration, elevation.gain..ft., distance..mile., photos ) %>%
+  mutate(photos = paste0("<a href=", "\"", photos, "\"", "target=", "\"","blank", "\"", ">", tour.name, "</a>"),
+  distance..mile. = paste(distance..mile., "miles"),
+elevation.gain..ft.= paste(elevation.gain..ft., "ft"))
 colnames(data_table)<-c("Date", "Area", "Tour Name", "Avalanche Danger", "Weather", "Duration", "Elevation Gain", "Distance" ,"Photos")
-data_table$Date <- as.Date(data_table$Date, "%m/%d/%Y")
+data_table <- data_table %>%
+  mutate(Date = as.Date(Date, "%m/%d/%Y"))
 data_table<-data_table[order(as.Date(data_table$Date, format="%m/%d/%Y"), decreasing = TRUE),]
 data_table$Date<-as.Date(data_table$Date, "%m/%d/%Y")
 data_table$Date<-format(data_table$Date, "%B %d, %Y")
 data_table <- data_table[complete.cases(data_table),]
 
 DT::datatable(data_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 100, dom = 'ft'))
-```
-
-## Animated Data
-
-```{r}
-all2 <-all1 %>% mutate(date=as.Date(date, "%m/%d/%Y")) %>%
-    st_cast('LINESTRING')
-  
-  all2 %>%
-  ggplot() + geom_sf(data=all2) +
-    annotation_map_tile() +
-  theme_minimal() + 
-  theme (axis.text.x = element_blank(),
-         axis.text.y = element_blank(),
-         title = element_text(size=18)) + 
-  xlab("") + ylab("") +
-  transition_time(date)
-
-anim_save("caltrans_hourly1.gif",test,width = 1000, height = 500)
-
 ```
 
 
