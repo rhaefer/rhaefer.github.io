@@ -26,7 +26,8 @@ bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_
     County=paste(County, "County"),
     Area =paste(sep="",State.Province,"-", County),
     url = paste0("https://www.allaboutbirds.org/guide/", gsub(" ","_",Common.Name), "/id"),
-    html = paste0("<a href=", "\"", url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>"))
+    html = paste0("<a href=", "\"", url, "\"", "target=", "\"", "blank", "\"",  ">", "All About Birds", "</a>"),
+    id=paste(Common.Name, Date, sep =" -- "))
 
 table<-bird %>% dplyr::select(Common.Name, Count, Scientific.Name, Location, Area, Date)
 bird1<-bird
@@ -95,3 +96,49 @@ bird_table<-bird_table %>% rename (`Recent Observation`=RecentObservation)
 
 DT::datatable(bird_table, rownames=FALSE, escape=FALSE, options=list(pageLength = 200, dom = 'ft'))
 ```
+
+```{r}
+library(shiny)
+library(shinydashboard)
+library(slickR)
+library(leaflet)
+library(sf)
+library(DT)
+
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(width=300,selectInput("slider","Select Observation",choices=unique(bird$id))),
+  dashboardBody(fluidRow(box(leafletOutput("map")),
+                         box(htmlOutput("bird_info")))))
+server <- function(input, output) { 
+   output$map<- renderLeaflet({
+   bird %>% st_as_sf(coords=c("Longitude","Latitude")) %>% 
+     filter(id==input$slider)  %>%
+     leaflet() %>% addCircles() %>% addTiles()
+   })
+    output$bird_info<-renderText({
+     req(input$slider)
+    dob <- paste(strong("Date: "), bird %>% 
+                   filter(id==input$slider) %>% 
+                   select(Date))
+    name <- paste(strong("Common Name: "), bird %>% 
+                   filter(id==input$slider) %>% 
+                   select(Common.Name))
+     name1 <- paste(strong("Scientific Name: "), bird %>% 
+                   filter(id==input$slider) %>% 
+                   select(Scientific.Name))
+     count <- paste(strong("Number Observed: "), bird %>% 
+                   filter(id==input$slider) %>% 
+                   select(Count))
+     state <- paste(strong("State: "), bird %>% 
+                   filter(id==input$slider) %>% 
+                   select(State.Province))
+     loc <- paste(strong("State: "), bird %>% 
+                   filter(id==input$slider) %>% 
+                   select(Location))
+    paste(dob, name,name1,count,state,loc,sep = "<br>")
+  })
+     }
+shinyApp(ui, server)
+```
+

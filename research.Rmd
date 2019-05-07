@@ -11,6 +11,8 @@ output:
 
 * Travel Demand Modeling
 
+* [Land Use/Zoning App](https://rhaefer.github.io/zoning_dashboard.html) - a land use/zoning data exploration tool
+
 ***
 
 ### *2018*
