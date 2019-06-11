@@ -6,6 +6,11 @@ output:
   html_document:
     highlight: tango
 ---
+
+```{r, out.width= "23%", out.extra='style="float:right; padding:10px"', echo=F}
+knitr::include_graphics("C:/Users/reidh/Documents/GitHub/rhaefer.github.io/images/profile_pic.jpg")
+```
+
 ##### https://rhaefer.github.io --- https://github.com/rhaefer
 
 Professionally, I spend my time collecting, analyzing, modeling, and visualizing data related to *urban planning*, *transportation*, *public policy*, *sustainability*, and *environmental science*. For much of this work I use the [R programming language](https://www.r-project.org/about.html). I am currently employed at the Tahoe Regional Planning Agency as a Data Modeler/Analyst. 
