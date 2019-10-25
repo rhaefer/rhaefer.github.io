@@ -1,13 +1,13 @@
 name: my-website
 output_dir: '.'
 navbar:
-  title: Reid Haefer
+  title:
   left:
-  - text: About
+  - text: 
     href: about.html
-  - text: Projects
+  - text: 
     href: research.html
-  - text: Other
+  - text: 
     href: blog.html
   right:
   - icon: fa-github fa-lg

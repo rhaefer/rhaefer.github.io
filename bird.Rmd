@@ -2,6 +2,7 @@
 title: "Bird Observations"
 output:
   html_document:
+    theme: united
     highlight: tango
     code_folding: hide
 ---
@@ -133,10 +134,13 @@ server <- function(input, output) {
      state <- paste(strong("State: "), bird %>% 
                    filter(id==input$slider) %>% 
                    select(State.Province))
-     loc <- paste(strong("State: "), bird %>% 
+     loc <- paste(strong("Location: "), bird %>% 
                    filter(id==input$slider) %>% 
                    select(Location))
-    paste(dob, name,name1,count,state,loc,sep = "<br>")
+     ebird <- paste(strong("More Info: "), bird %>% 
+                   filter(id==input$slider) %>% 
+                   select(html))
+    paste(dob, name,name1,count,state,loc,ebird,sep = "<br>")
   })
      }
 shinyApp(ui, server)
