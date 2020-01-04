@@ -16,7 +16,9 @@ div.sourceCode {
 
 ```{r message=FALSE, warning=FALSE}
 library(pacman)
-pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, lubridate, gganimate)
+pacman::p_load(raster,dplyr,gsheet, leaflet, shiny,knitr, rsconnect, rgdal, datasets, ggplot2, ggthemes, gtools, scales, DT, lubridate, gganimate, rebird)
+
+ebird key= "i23j2ukpqks2"
 
 bird <- data.frame(gsheet2tbl("https://docs.google.com/spreadsheets/d/1Lj1_ezsF_7_sfWFCYy0BCuic5iLayzpKsCGVyOE-5sQ/edit?usp=sharing")) %>%
   mutate(Location=as.character(Location),
