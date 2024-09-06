@@ -1,10 +1,8 @@
 ---
-title: "personal_website"
+title: "Reid Haefer"
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Hey - This is my website, Reid
 
 ```{r}
 1 + 1
