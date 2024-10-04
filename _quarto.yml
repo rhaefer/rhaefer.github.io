@@ -3,16 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "personal_website1"
+  title: "Reid Haefer"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-        text: About
       - text: Projects
         menu:  # Dropdown for multiple project pages
-          - text: Project 1
+          - text: Cycle Trip - France, Switzerland, Italy
             href: euro_cyle.qmd
 
 format:

@@ -1,5 +1,5 @@
 ---
-title: "11"
+title: "Cycle Trip Through France, Switzerland, Italy"
 output: html_document
 ---
 
@@ -64,7 +64,7 @@ routes<-bind_rows(st_read("data/routes/Afternoon_Ride.gpx", layer = "tracks") %>
 ```         
 ```
 
-# **Cycle Trip Through France, Switzerland, Italy**
+# 
 
 In September 2024, we planned a trip to cycle from Paris to Milan through the Alps. There were four of us including myself, Alyssa, Grant (who had just quit his job) and Wes (who was on sabbatical from his job). Our plan was to fly to Paris and then rent a rent to transport ourself and 4 bikes to Annecy, where we would start cycling through the Alps, to end in Milan. Scroll below for a day by day review of our trip. Some total stats from our trip.
 
@@ -101,7 +101,7 @@ Arrived in Paris and so did our boxes full of bike gear. Walked around and got s
 ::: {#fig-elephants layout-ncol="2" layout-row="2"}
 ![Surus](photos/IMG_2488.jpg){#fig-surus}
 
-![Surus](photos/IMG_2498.jpg){#fig-surus} ![Surus](photos/IMG_2499.jpg){#fig-surus}
+![Surus](photos/IMG_2498.jpg) ![Surus](photos/IMG_2499.jpg)
 
 Famous Elephants
 :::
@@ -110,16 +110,16 @@ Famous Elephants
 
 Went to the Louvre. I found it pretty underwhelming. Impressive and large building. Lots of Greek/Roman statues, which I didn't find too interesting. The art seemed to be mostly religious-inspired or portraits. I was hoping for more artists I knew like Van Gogh, Monet, and Picasso. We did see the Mona Lisa, but there was a crowd around it, so we couldn't get within 20 feet. We saw some other famous sites, but many were walled off because of the Olympics, like the Eiffel Tower and Notre Dame. The best part of Paris so far is the crazy bicycle scene and lively street cafes. Cyclists are bold---women in high heels and sequined dresses with no helmets ride in heavy traffic. Corner cafes with red awnings are everywhere, full of locals eating and drinking.
 
-::: {#fig-elephants layout-ncol="2" layout-row="3"}
-![Surus](photos/IMG_2503.jpg){#fig-surus} ![Surus](photos/IMG_2514.jpg){#fig-surus} ![Surus](photos/IMG_2517.jpg){#fig-surus}
+::: {layout-ncol="2" layout-row="3"}
+![Surus](photos/IMG_2503.jpg) ![Surus](photos/IMG_2514.jpg) ![Surus](photos/IMG_2517.jpg)
 :::
 
 # **9/10/24**
 
 Spent a good chunk of the day on the hill at Montmartre. I think this was the highlight of Paris for me. Great views of the city and lovely historical cobblestone streets. Picasso's first studio was here, and Van Gogh spent time here as well. A little touristy but justified. We rode our bikes down the Champs-Élysées, which was crazy busy.
 
-::: {#fig-elephants layout-ncol="2" layout-row="2"}
-![Surus](photos/montmartre.jpg){#fig-surus} ![Surus](photos/picasso.jpg){#fig-surus} ![Surus](photos/LV%20building.jpg){#fig-surus} ![Surus](photos/roundabout.jpg){#fig-surus} ![Surus](photos/van%20gogh.jpg){#fig-surus}
+::: {layout-ncol="2" layout-row="2"}
+![Surus](photos/montmartre.jpg) ![Surus](photos/picasso.jpg) ![Surus](photos/LV%20building.jpg) ![Surus](photos/roundabout.jpg) ![Surus](photos/van%20gogh.jpg)
 :::
 
 ```{r}
@@ -137,8 +137,8 @@ routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map
 
 Rented a van with our four bikes and drove to Annecy through heavy rain. We stopped at Château de Fontainebleau, which was enjoyable. Beautiful palace with 800 years of history. We learned about Napoleon and his importance to France, even saw his tiny yet opulent bed. Arrived in Annecy and walked around in the pouring rain to find dinner. Ate heavy but delicious chicken in a melted cheese bowl.
 
-::: {#fig-elephants layout-ncol="2" layout-row="3"}
-![Surus](photos/van%20life.jpg){#fig-surus} ![Surus](photos/fontaineblu1.jpg){#fig-surus} ![Surus](photos/fontaineblu2.jpg){#fig-surus} ![Surus](photos/fontaineblu3.jpg){#fig-surus} ![Surus](photos/napoleon.jpg){#fig-surus} ![Surus](photos/napoleon2){#fig-surus}
+::: {layout-ncol="2" layout-row="3"}
+![Surus](photos/van%20life.jpg) ![Surus](photos/fontaineblu1.jpg) ![Surus](photos/fontaineblu2.jpg) ![Surus](photos/fontaineblu3.jpg) ![Surus](photos/napoleon.jpg) ![Surus](photos/napoleon2)
 :::
 
 # **9/12/24**

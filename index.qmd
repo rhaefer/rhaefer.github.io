@@ -1,9 +1,11 @@
 ---
 title: "Reid Haefer"
+image: headshot.jpg
+about:
+  template: jolla
 ---
 
-Hey - This is my website, Reid
+Professionally, I spend my time conducting research and collecting, analyzing, modeling, and visualizing data related to - but not limited to - climate, urban planning, energy, sustainability, transportation, and environmental science.  My overarching interest is providing sound, data-driven information that others can use to help make difficult decisions about a wide array of topics. My experience is at the intersection of decision making and data science, helping to bridge the gap between those who are doing analysis and those who are making decisions; this includes the ability to perform technical data science tasks and to communicate the results in professional settings. My work often includes the development of data analysis workflows, modeling, GIS, data visualization, interactive data tools, dashboards, and more, using R & Python.
 
-```{r}
-1 + 1
+```         
 ```
