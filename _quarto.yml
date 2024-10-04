@@ -3,18 +3,24 @@ project:
   output-dir: docs
 
 website:
-  title: "personal_website"
+  title: "personal_website1"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - text: Projects
+        menu:  # Dropdown for multiple project pages
+          - text: Project 1
+            href: euro_cyle.qmd
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    
 
 editor: visual
 
