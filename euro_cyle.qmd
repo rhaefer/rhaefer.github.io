@@ -111,13 +111,12 @@ Famous Elephants
 Went to the Louvre. I found it pretty underwhelming. Impressive and large building. Lots of Greek/Roman statues, which I didn't find too interesting. The art seemed to be mostly religious-inspired or portraits. I was hoping for more artists I knew like Van Gogh, Monet, and Picasso. We did see the Mona Lisa, but there was a crowd around it, so we couldn't get within 20 feet. We saw some other famous sites, but many were walled off because of the Olympics, like the Eiffel Tower and Notre Dame. The best part of Paris so far is the crazy bicycle scene and lively street cafes. Cyclists are bold---women in high heels and sequined dresses with no helmets ride in heavy traffic. Corner cafes with red awnings are everywhere, full of locals eating and drinking..
 
 ::: {layout-row="2"}
-![Surus](photos/IMG_2503.jpg)
+![...](photos/IMG_2503.jpg)
 
-![Surus](photos/IMG_2514.jpg)
+![...](photos/IMG_2514.jpg)
 
-![Surus](photos/IMG_2517.jpg)
+![....](photos/IMG_2517.jpg)
 
-Famous Elephants
 :::
 
 # **9/10/24**
@@ -132,8 +131,19 @@ Spent a good chunk of the day on the hill at Montmartre. I think this was the hi
 routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
-::: {}
-![Surus](photos/montmartre.jpg) ![Surus](photos/picasso.jpg)![Surus](photos/LV building.jpg) ![Surus](photos/roundabout.jpg)![Surus](photos/van gogh.jpg)
+...\
+
+::: {layout-row="2"}
+
+![...](photos/montmartre.jpg) 
+...\
+![...](photos/picasso.jpg)
+...\
+![Surus](photos/LV building.jpg)
+...\
+![Surus](photos/roundabout.jpg)
+...\
+![Surus](photos/van gogh.jpg)
 :::
 
 # **9/11/24**
@@ -141,7 +151,17 @@ routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map
 Rented a van with our four bikes and drove to Annecy through heavy rain. We stopped at Château de Fontainebleau, which was enjoyable. Beautiful palace with 800 years of history. We learned about Napoleon and his importance to France, even saw his tiny yet opulent bed. Arrived in Annecy and walked around in the pouring rain to find dinner. Ate heavy but delicious chicken in a melted cheese bowl.
 
 ::: {}
-![Surus](photos/van%20life.jpg) ![Surus](photos/fontaineblu1.jpg) ![Surus](photos/fontaineblu2.jpg) ![Surus](photos/fontaineblu3.jpg) ![Surus](photos/napoleon.jpg) ![Surus](photos/napoleon2)
+![Surus](photos/van%20life.jpg)
+...\
+![Surus](photos/fontaineblu1.jpg)
+...\
+![Surus](photos/fontaineblu2.jpg) 
+...\
+![Surus](photos/fontaineblu3.jpg)
+...\
+![Surus](photos/napoleon.jpg) 
+...\
+![Surus](photos/napoleon2)
 :::
 
 # **9/12/24**
@@ -156,12 +176,17 @@ Learning French from a balcony in old town Annecy. Wherever you go there are hou
 routes %>% filter(name=="Day 0.5: annecy lake lap") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+...\
+
 ::: {#fig-elephants layout-ncol="2" layout-row="2"}
 ![Surus](photos/annecy1.jpg){#fig-surus}
+...\
+![Surus](photos/annecy2.jpg)
+...\
+![Surus](photos/annecy3.jpg)
+...\
+![Surus](photos/annecy4.jpg)
 
-![Surus](photos/annecy2.jpg) ![Surus](photos/annecy3.jpg) ![Surus](photos/annecy4.jpg)
-
-Famous Elephants
 :::
 
 # **9/13/24**
@@ -176,15 +201,17 @@ Biked from Annecy to Sallanches, which was about 54 miles. There was some sun an
 routes %>% filter(name=="Day 1: Annecy to Salanches") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+...\
+
 ::: {layout-nrow="3"}
-![Surus](photos/sallanches1.jpg){width=40%}
-![Surus](photos/sallanches2.jpg){width=40%} 
-![Surus](photos/sallanches3.jpg){width=40%} 
-![Surus](photos/sallanches4.jpg){width=40%}
-![Surus](photos/sallanches5.jpg){width=40%}
-![Surus](photos/sallanches6.jpg){width=40%}
-![Surus](photos/sallanches7.jpg){width=40%}
-![Surus](photos/chamhike1.jpg){width=40%}
+![Surus](photos/sallanches1.jpg)...\
+![Surus](photos/sallanches2.jpg)...\
+![Surus](photos/sallanches3.jpg)...\
+![Surus](photos/sallanches4.jpg)...\
+![Surus](photos/sallanches5.jpg)...\
+![Surus](photos/sallanches6.jpg)...\
+![Surus](photos/sallanches7.jpg)...\
+![Surus](photos/chamhike1.jpg)
 :::
 
 # **9/14/24**
