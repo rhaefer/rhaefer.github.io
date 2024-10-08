@@ -151,7 +151,7 @@ routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map
 ![...](photos/IMG_2554.jpg) ...\
 ![...](photos/IMG_2558.jpg) ...\
 
-![Surus](photos/LV building.jpg)...\
+![Surus](photos/LV building.jpg) ...\
 
 ![Surus](photos/roundabout.jpg) ...\
 
@@ -175,7 +175,7 @@ routes %>% filter(name %in% c("New file 3","New file 4")) %>% mapview(lwd = 6,co
 ...\
 
 
-![Surus](photos/van life.jpg)...\
+![Surus](photos/van life.jpg) ...\
 
 ![Surus](photos/fontaineblu1.jpg) ...\
 
@@ -185,7 +185,7 @@ routes %>% filter(name %in% c("New file 3","New file 4")) %>% mapview(lwd = 6,co
 
 ![Surus](photos/napoleon.jpg)  ...\
 ...\
-![Surus](photos/napoleon2.jpg)...\
+![Surus](photos/napoleon2.jpg) ...\
 
 
 
@@ -235,17 +235,17 @@ routes %>% filter(name=="Day 1: Annecy to Salanches") %>% mapview(lwd = 6,color 
 ...\
 
 
-![Surusa](photos/sallanches1.jpg)...\
-![Surus](photos/sallanches2.jpg)...\
-![Surus](photos/sallanches3.jpg)...\
-![Surus](photos/sallanches4.jpg)...\
-![Surus](photos/sallanches5.jpg)...\
-![Surus](photos/sallanches6.jpg)...\
-![Surus](photos/sallanches7.jpg)...\
+![Surusa](photos/sallanches1.jpg) ...\
+![Surus](photos/sallanches2.jpg) ...\
+![Surus](photos/sallanches3.jpg) ...\
+![Surus](photos/sallanches4.jpg) ...\
+![Surus](photos/sallanches5.jpg) ...\
+![Surus](photos/sallanches6.jpg) ...\
+![Surus](photos/sallanches7.jpg) ...\
 
 
 
-# **9/14/24 - Sallacnhes to Chamonix**
+# **9/14/24 - Sallanches to Chamonix**
 
 The sun returned, and we had a nice morning biking from Sallanches into the Chamonix valley. Google Maps sent us on some unnecessary gravel, where we ended up in a one-eyed farmer's driveway with lots of barking dogs. The farmer was very nice and waved us through. Beautiful ride with views of Mont Blanc on quiet roads next to the motorway. Our Airbnb is located in the heart of Chamonix, above a tasty local burger joint, Poco Loco. We decided to take the Flégère tram up and hike to Lac Blanc in the afternoon. After drinking a beer with a side of Genepi at a hut at the lake, we had to sprint down the trail to make the last tram down at the end of the day. We barely made the last tram, very sweaty from running and slightly buzzed from the drinks. Amazing day.
 
