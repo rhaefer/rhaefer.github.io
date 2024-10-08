@@ -203,8 +203,8 @@ routes %>% filter(name=="Day 1: Annecy to Salanches") %>% mapview(lwd = 6,color 
 
 ...\
 
-::: {layout-nrow="3"}
-![Surus](photos/sallanches1.jpg)...\
+::: {}
+![Surusa](photos/sallanches1.jpg)...\
 ![Surus](photos/sallanches2.jpg)...\
 ![Surus](photos/sallanches3.jpg)...\
 ![Surus](photos/sallanches4.jpg)...\
@@ -226,6 +226,20 @@ The sun returned, and we had a nice morning biking from Sallanches into the Cham
 routes %>% filter(name=="Day 2: Sallanches to Chamonix") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+...\
+
+::: {}
+
+![Surusa](photos/cham1.jpg)...\
+![Surusa](photos/cham2.jpg)...\
+![Surusa](photos/cham3.jpg)...\
+![Surusa](photos/cham4.jpg)...\
+![Surusa](photos/cham5.jpg)...\
+![Surusa](photos/cham6.jpg)...\
+
+:::
+
+...\
 ```{r}
 #| echo: FALSE
 #| warning: FALSE
@@ -233,6 +247,14 @@ routes %>% filter(name=="Day 2: Sallanches to Chamonix") %>% mapview(lwd = 6,col
 #| message: FALSE
 routes %>% filter(name=="Evening Hike") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
+
+...\
+::: {}
+![Surus](photos/chamhike1.jpg)...\
+![Surus](photos/chamhike2.jpg)...\
+![Surus](photos/IMG_9121.jpg)
+
+:::
 
 # **9/15/24**
 
@@ -246,6 +268,25 @@ Spent the day on the north side of the valley after getting tickets to take the 
 routes %>% filter(name=="Afternoon Hike") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+...\
+
+::: {}
+
+![Surusa](photos/IMG_2720.jpg)...\
+![Surusa](photos/IMG_2729.jpg)...\
+![Surusa](photos/IMG_2731.jpg)...\
+![Surusa](photos/IMG_1055.jpg)...\
+![Surusa](photos/IMG_0789.jpg)...\
+![Surusa](photos/IMG_0807.jpg)...\
+![Surusa](photos/IMG_2751.jpg)...\
+![Surusa](photos/IMG_2737.jpg)...\
+![Surusa](photos/IMG_2749.jpg)...\
+![Surusa](photos/IMG_2761.jpg)...\
+![Surusa](photos/IMG_9143.jpg)...\
+![Surusa](photos/IMG_2782.jpg)...\
+![Surusa](photos/IMG_2774.jpg)...\
+:::
+
 # **9/16/24**
 
 Big day riding from Chamonix all the way to Ackersand (above Visp). About 82 miles and 5k of vert. Met some Americans at Col de Forclaz who were hiking the Haute Route (sounds fun) from Boise and Spokane. Huge 5k descent into Martigny and then flat riding next to the Rhone River through Valais. Valais is quite industrial and agricultural, lots of construction going on. There were large excavators dumping big amounts of soil into the river. Maybe building a new bike path or train??? The river seems quite man-made and impacted. We picked some apples from local orchards, and they were amazing. Been eating pastries and bread for a week. We briefly were on Euro Velo 17, which was a nice gravel path along the river. I hope to explore more Euro Velos in the future and go to the annual conference! We didn't have a place to stay, but we ended up booking a "guest house" above Visp in Ackersand. It was a B&B with a great host. We had access to the kitchen and common areas with secure bike parking. Classic Swiss wooden mountain aesthetic. It was a great find and likely the cheapest place we could have found.
@@ -258,6 +299,22 @@ Big day riding from Chamonix all the way to Ackersand (above Visp). About 82 mil
 routes %>% filter(name=="Day 3: Cham to Ackersand") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+...\
+
+::: {}
+
+![Surusa](photos/IMG_2787.jpg)...\
+![Surusa](photos/IMG_2800.jpg)...\
+![Surusa](photos/IMG_2797.jpg)...\
+![Surusa](photos/IMG_2812.jpg)...\
+![Surusa](photos/IMG_2825.jpg)...\
+![Surusa](photos/IMG_2829.jpg)...\
+![Surusa](photos/IMG_2844.jpg)...\
+![Surusa](photos/IMG_2834.jpg)...\
+![Surusa](photos/IMG_2836.jpg)...\
+![Surusa](photos/IMG_2840.jpg)...\
+:::
+
 # **9/17/24**
 
 Took the train to Zermatt \$\$\$\$\$ from Stalden and spent the day hiking around the Matterhorn and exploring Zermatt. We decided to skip taking the gondola up and hiked about 3k to get to Schwarzee, where we had amazing views of the Matterhorn. It was quiet, peaceful, and one of my favorite moments of the trip yet. We had great weather. Staring at the Matterhorn felt like watching a screensaver in a dentist waiting room but in real life. Pretty amazing. We ate some delicious cheese fondue in Zermatt and observed all the older rich people that seem to frequent the town. Much wealthier and older vibe compared to the young outdoorsy vibe in Chamonix. Very pricey day but one of the most enjoyable days so far.
@@ -269,6 +326,21 @@ Took the train to Zermatt \$\$\$\$\$ from Stalden and spent the day hiking aroun
 #| message: FALSE
 routes %>% filter(name=="Overspending in Zermatt!") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
+
+::: {}
+
+![Surusa](photos/IMG_2855.jpg)...\
+![Surusa](photos/IMG_2925.jpg)...\
+![Surusa](photos/IMG_2872.jpg)...\
+![Surusa](photos/IMG_2892.jpg)...\
+![Surusa](photos/IMG_2901.jpg)...\
+![Surusa](photos/IMG_2904.jpg)...\
+![Surusa](photos/IMG_2910.jpg)...\
+![Surusa](photos/IMG_2912.jpg)...\
+![Surusa](photos/IMG_2919.jpg)...\
+![Surusa](photos/IMG_2916.jpg)...\
+![Surusa](photos/IMG_2928.jpg)...\
+:::
 
 # **9/18/24**
 
@@ -284,6 +356,21 @@ routes %>% filter(name %in% c("New file 1")) %>%
 
 ```
 
+\
+
+::: {}
+
+![Surusa](photos/IMG_2931.jpg)...\
+![Surusa](photos/IMG_2934.jpg)...\
+![Surusa](photos/IMG_1250.jpg)...\
+![Surusa](photos/IMG_2957.jpg)...\
+![Surusa](photos/IMG_2966.jpg)...\
+![Surusa](photos/IMG_2964.jpg)...\
+![Surusa](photos/IMG_2970.jpg)...\
+![Surusa](photos/IMG_2978.jpg)...\
+![Surusa](photos/IMG_2979.jpg)...\
+:::
+
 # **9/19/24**
 
 We stayed at a very nice B&B Borgo with a high-quality breakfast. We had a slow morning enjoying breakfast and walking around Ascona, then headed out on bikes to Lake Como. On the way to Como, we passed through Lugano. This was a bustling city on Lake Lugano. We biked through the old area with insanely steep, cobbled streets. We took the route around the north side of the lake, and it sent us on a beautiful but difficult route. We had spectacular views of the lake, but there was some hiking of bikes up steep staircases. As we reached the north side of the lake, it started raining, and when we got to Porlezza, it was a downpour. We took refuge at an outdoor cafe with a very friendly Italian clerk and had two glasses of wine and antipasto to wait out the rain. By the time we got back on our bikes, it was getting dark, so we had a wet and dark descent to Menaggio to meet Wes and Grant for a very long dinner of pizza and pasta.
@@ -296,9 +383,39 @@ We stayed at a very nice B&B Borgo with a high-quality breakfast. We had a slow 
 routes %>% filter(name== "Day 5: Asconsa to Menaggio") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+\
+
+::: {}
+
+![Surusa](photos/IMG_2999.jpg)...\
+![Surusa](photos/IMG_2989.jpg)...\
+![Surusa](photos/IMG_9191.jpg)...\
+![Surusa](photos/IMG_3007.jpg)...\
+![Surusa](photos/IMG_1288.jpg)...\
+![Surusa](photos/IMG_3020.jpg)...\
+![Surusa](photos/IMG_3028.jpg)...\
+![Surusa](photos/IMG_1311.jpg)...\
+![Surusa](photos/IMG_1325.jpg)...\
+![Surusa](photos/IMG_1332.jpg)...\
+:::
+
 # **9/20/24**
 
 Day off in Lake Como. A slow morning with pastries and pizza before hanging out at the one public beach in Menaggio, which was hidden off a tiny path by the campground. We relaxed at the beach and did some bike maintenance before catching a ferry to explore towns across the lake. We got antsy and accidentally took a ferry to Bellagio instead of Varenna. Bellagio had hoards of people and was too fancy for us. Not very memorable. We then took a second ferry to Varenna. Similar hoards of people off the ferry, but we continued south and eventually found a nice, quiet public beach to go swimming. Our only swimming experience of the trip! We then migrated to a nice outdoor cafe in a quiet plaza and drank a couple of glasses of Rosé before catching a late ferry back to Menaggio for dinner. For dinner, we ended up inside drinking a nice bottle of Lugana (from Lake Garda) and listening to Linkin Park. Our waitress was very friendly (as are many Italians).
+
+::: {}
+
+![Surusa](photos/IMG_9209.jpg)...\
+![Surusa](photos/IMG_3066.jpg)...\
+![Surusa](photos/IMG_3071.jpg)...\
+![Surusa](photos/IMG_3078.jpg)...\
+![Surusa](photos/IMG_1361.jpg)...\
+![Surusa](photos/IMG_1364.jpg)...\
+![Surusa](photos/IMG_3094.jpg)...\
+![Surusa](photos/IMG_3110.jpg)...\
+![Surusa](photos/IMG_3098.jpg)...\
+![Surusa](photos/IMG_9240.jpg)...\
+:::
 
 # **9/21/24**
 
