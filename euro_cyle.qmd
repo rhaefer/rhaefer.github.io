@@ -466,7 +466,11 @@ routes %>% filter(name %in% c( "Day 6: Como to Milano","New file 5")) %>% mapvie
 ```
 
 ::: {}
-
+![Surusa](photos/IMG_1376.jpg)...\
+![Surusa](photos/IMG_3120.jpg)...\
+![Surusa](photos/IMG_1384.jpg)...\
+![Surusa](photos/IMG_1378.jpg)...\
+![Surusa](photos/IMG_1385.jpg)...\
 ![Surusa](photos/IMG_3141.jpg)...\
 :::
 
@@ -535,6 +539,7 @@ routes %>% filter(name=="Florence to Greve in Chianti")  %>% mapview(lwd = 6,col
 ![Surusa](photos/IMG_3270.jpg)...\
 ![Surusa](photos/IMG_3271.jpg)...\
 ![Surusa](photos/IMG_3276.jpg)...\
+![Surusa](photos/IMG_3265.jpg)...\
 :::
 
 # **9/25/24 - Cycle back to florence, train to Milan**
@@ -554,6 +559,9 @@ routes %>% filter(name %in% c("Back to Firenze","New file 5"))  %>% mapview(lwd 
 
 ![Surusa](photos/IMG_3280.jpg)...\
 ![Surusa](photos/IMG_3282.jpg)...\
+![Surusa](photos/IMG_1525.jpg)...\
+![Surusa](photos/IMG_1532.jpg)...\
+![Surusa](photos/IMG_1536.jpg)...\
 ![Surusa](photos/IMG_9284.jpg)...\
 ![Surusa](photos/IMG_3286.jpg)...\
 ![Surusa](photos/IMG_3288.jpg)...\
