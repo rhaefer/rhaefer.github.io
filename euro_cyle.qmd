@@ -428,10 +428,25 @@ An ambitious day as we decided to ride 52 miles to Milan and then catch a train 
 #| message: FALSE
 routes %>% filter(name== "Day 6: Como to Milano") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
+\
+::: {}
+
+![Surusa](photos/IMG_3141.jpg)...\
+:::
 
 # **9/22/24**
 
 Intro day to Florence -- Started the day with a paid walking tour of the central city, hearing about the story of the Medici family. Spent the afternoon wandering around the city and ended up at the Piazza Michelangelo with a great view of the city. I got a little burnt out from walking aimlessly today and started feeling like I wanted to go home. But it's a beautiful city. For dinner, we ate Chinese and sweated our asses off. One of the spiciest dinner experiences of my life. My hair was damp with sweat by the end of the dinner. Insane. The people next to us got a kick out of us sweating. We finished our day with the second gelato of the day.
+
+\
+::: {}
+
+![Surusa](photos/IMG_3160.jpg)...\
+![Surusa](photos/IMG_3173.jpg)...\
+![Surusa](photos/IMG_3180.jpg)...\
+![Surusa](photos/IMG_3186.jpg)...\
+![Surusa](photos/IMG_3184.jpg)...\
+:::
 
 # **9/23/24**
 
@@ -445,6 +460,19 @@ Bike outside Florence -- Took our bikes for a ride in the hills outside Florence
 routes %>% filter(name=="Afternoon Ride") %>% slice(1) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+\
+::: {}
+
+![Surusa](photos/IMG_3196.jpg)...\
+![Surusa](photos/IMG_3199.jpg)...\
+![Surusa](photos/IMG_3203.jpg)...\
+![Surusa](photos/IMG_3205.jpg)...\
+![Surusa](photos/IMG_3209.jpg)...\
+![Surusa](photos/IMG_3213.jpg)...\
+![Surusa](photos/IMG_3220.jpg)...\
+![Surusa](photos/IMG_3222.jpg)...\
+:::
+
 # **9/24/24**
 
 Bike to Greve in Chianti from Firenze, staying at the Ancora bed and breakfast. We arrived around 1 after an easy bike ride. Hanging out around the compound in the afternoon. Thinking, staring, drinking coffee and wine. Relaxing with minimal WiFi and zero distractions besides some birds. Rain and clouds moving in and out over us with breaks of blue sky. Purchased a bottle of wine made by the host for 10 euros. Alyssa after 3 glasses of wine -- "We can always get another bottle of wine; we are in Chi-cante (chi-cahn-tee) you know." In the evening, we biked down to the small town of Greve, which has a triangular plaza in the center of town. We found a nice restaurant where we drank complimentary prosecco and then a glass of Chianti -- as we were in the home region of Chianti. Unfortunately, I received a plate of porcini pasta with no flavor. After getting gelato, we biked back up the dirt road hill to our B&B. Our host had mentioned that we should keep an eye out for wild boar and that she hopes we don't encounter one. As we slowly biked up the hill, we kept an eye out; we safely made it home.
@@ -457,6 +485,22 @@ Bike to Greve in Chianti from Firenze, staying at the Ancora bed and breakfast. 
 routes %>% filter(name=="Florence to Greve in Chianti")  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+\
+::: {}
+
+![Surusa](photos/IMG_3231.jpg)...\
+![Surusa](photos/IMG_3233.jpg)...\
+![Surusa](photos/IMG_3237.jpg)...\
+![Surusa](photos/IMG_3239.jpg)...\
+![Surusa](photos/IMG_3242.jpg)...\
+![Surusa](photos/IMG_3247.jpg)...\
+![Surusa](photos/IMG_3257.jpg)...\
+![Surusa](photos/IMG_3258.jpg)...\
+![Surusa](photos/IMG_3270.jpg)...\
+![Surusa](photos/IMG_3271.jpg)...\
+![Surusa](photos/IMG_3276.jpg)...\
+:::
+
 # **9/25/24**
 
 We woke up at the Ancora B&B to a beautifully sunny morning overlooking the Tuscany hills. We enjoyed a communal breakfast with other guests and had a very relaxing morning drinking coffee, reading, journaling, and planning our next travel plans. We bought our train tickets from Florence to Milan and then headed out on our bikes back to Florence. In Florence, we stopped at our favorite restaurant -- Pitti Express. It is a small, cheap, and fast-paced restaurant on the south side of the River. Three guys in there rapidly serving a small, delicious menu. This was our second time there. This time we got the same fresh salad, a glass of white wine, and the pesto lasagna. The lasagna was insanely rich and soft -- melt-in-your-mouth. We were in a rush, so we decided not to get the tiramisu, which was one of my biggest regrets of the trip. We biked to the train station and made our train after a hot and sweaty loading of our bikes and heavy bags on the train -- while helping another older woman with a heavy e-bike get loaded on the train, hoping the train doesn't take off without us. On the train, we enjoyed some pastries we purchased and thought about what to do in Milan. We made it to the Airbnb in Milan, where we met Grant and Wes for some unique Chinese food in a hole-in-the-wall restaurant. Staying near the La Fontana neighborhood.
@@ -468,6 +512,16 @@ We woke up at the Ancora B&B to a beautifully sunny morning overlooking the Tusc
 #| message: FALSE
 routes %>% filter(name=="Back to Firenze")  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
+
+\
+::: {}
+
+![Surusa](photos/IMG_3280.jpg)...\
+![Surusa](photos/IMG_3282.jpg)...\
+![Surusa](photos/IMG_9284.jpg)...\
+![Surusa](photos/IMG_3286.jpg)...\
+![Surusa](photos/IMG_3288.jpg)...\
+:::
 
 # **9/26/24**
 
@@ -489,9 +543,34 @@ routes %>% filter(name=="Bike box and thrift mission")  %>% mapview(lwd = 6,colo
  routes %>% filter(name=="Afternoon Ride") %>% slice(2) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
+\
+::: {}
+
+![Surusa](photos/IMG_3324.jpg)...\
+![Surusa](photos/IMG_9297.jpg)...\
+![Surusa](photos/IMG_1563.jpg)...\
+![Surusa](photos/IMG_1571.jpg)...\
+![Surusa](photos/IMG_3335.jpg)...\
+![Surusa](photos/IMG_3298.jpg)...\
+![Surusa](photos/IMG_3339.jpg)...\
+![Surusa](photos/IMG_3340.jpg)...\
+![Surusa](photos/IMG_3344.jpg)...\
+![Surusa](photos/IMG_9305.jpg)...\
+:::
+
 # **9/27/24**
 
 I woke up somewhat early and went and ate a cheesy ham and olive roll and drank espresso outside at a cafe. We had a slow morning after a late night and then said goodbye to Grant and Wes as they left to bike to Venice. We eventually cleaned up and biked with all our stuff to the bike shop, which had boxes waiting for us in Brera (Rossignolli bike shop). We packed up our bikes in a courtyard in the back of the shop with tools and shipping materials they gave us; we were very grateful to them. After getting our bikes completely boxed, we explored the neighborhood on foot and then found a fancy ramen place for lunch. At this point, Alyssa was clearly hungover, and I was just a little tired. After ramen, we immediately got gelato. I got mint, which was delicious, fresh, and had individual pieces of mint in it -- nothing like mint ice cream I've ever had. Within 30 minutes of the gelato, I started feeling ill. We ordered a large Uber van to transport us and our bikes to the hotel we were staying at closer to the airport. By the time we got to the hotel, I felt pretty bad and vomited within 10 minutes of arriving. This started a very rough 24 hours for us. That night I was able to sleep maybe 1-2 hours, and I don't think Alyssa slept. I had the body aches and a terrible stomach, and Alyssa was visiting the bathroom every 30 minutes. It was a rough way to end our trip. It's unclear whether we got food poisoning or not (or whether it was the Negroni and colorful liqueurs).
+
+\
+::: {}
+
+![Surusa](photos/IMG_3359.jpg)...\
+![Surusa](photos/IMG_3363.jpg)...\
+![Surusa](photos/IMG_3361.jpg)...\
+![Surusa](photos/IMG_3365.jpg)...\
+![Surusa](photos/IMG_3368.jpg)...\
+:::
 
 # **9/28/24**
 
