@@ -16,8 +16,11 @@ library(mapgl)
 
 
 
-routes<-bind_rows(st_read("data/routes/Afternoon_Ride.gpx", layer = "tracks") %>%
+routes<-bind_rows(st_read("data/routes/paris_to_annecy.gpx", layer = "tracks") %>%
             st_transform(crs=4326), 
+          st_read("data/routes/fountainblue to annecy.gpx", layer = "tracks") %>%
+            st_transform(crs=4326),
+          st_read("data/routes/Afternoon_Ride.gpx", layer = "tracks") %>%st_transform(crs=4326), 
           st_read("data/routes/Afternoon_Hike_cham.gpx", layer = "tracks") %>%
             st_transform(crs=4326), 
           st_read("data/routes/Bike_box_and_thrift_mission.gpx", layer = "tracks") %>%
@@ -32,8 +35,8 @@ routes<-bind_rows(st_read("data/routes/Afternoon_Ride.gpx", layer = "tracks") %>
             st_transform(crs=4326), 
           st_read("data/routes/Day_4_cont_Re_to_Asconsa.gpx", layer = "tracks") %>%
             st_transform(crs=4326), 
-          st_read("data/routes/Day_4_Ackersand_to_Brig_train_to_Domodossola.gpx", layer = "tracks") %>%
-            st_transform(crs=4326), 
+          #st_read("data/routes/Day_4_Ackersand_to_Brig_train_to_Domodossola.gpx", layer = "tracks") %>%
+            #st_transform(crs=4326), 
           st_read("data/routes/Overspending_in_Zermatt_.gpx", layer = "tracks") %>%
             st_transform(crs=4326), 
           st_read("data/routes/Day_3_Cham_to_Ackersand.gpx", layer = "tracks") %>%
@@ -57,8 +60,13 @@ routes<-bind_rows(st_read("data/routes/Afternoon_Ride.gpx", layer = "tracks") %>
           st_read("data/routes/ackersand to brig.gpx", layer = "tracks") %>%
             st_transform(crs=4326), 
           st_read("data/routes/domo to ascona.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/milan to florence.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/New file 6.gpx", layer = "tracks") %>%
             st_transform(crs=4326)
 ) %>% select(name, type)
+
 ```
 
 ```         
@@ -87,7 +95,7 @@ In September 2024, we planned a trip to cycle from Paris to Milan through the Al
 #| warning: FALSE
 #| error: FALSE
 #| message: FALSE
-routes %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+routes  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
 # **9/7/24 - SF to Paris**
@@ -148,6 +156,16 @@ routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map
 # **9/11/24 - Van to Annecy via Fontainebleau **
 
 Rented a van with our four bikes and drove to Annecy through heavy rain. We stopped at Château de Fontainebleau, which was enjoyable. Beautiful palace with 800 years of history. We learned about Napoleon and his importance to France, even saw his tiny yet opulent bed. Arrived in Annecy and walked around in the pouring rain to find dinner. Ate heavy but delicious chicken in a melted cheese bowl.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+
+
+routes %>% filter(name %in% c("New file 3","New file 4")) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
 
 ::: {}
 ![Surus](photos/van life.jpg)
@@ -332,7 +350,7 @@ Took the train to Zermatt \$\$\$\$\$ from Stalden and spent the day hiking aroun
 #| warning: FALSE
 #| error: FALSE
 #| message: FALSE
-routes %>% filter(name=="Overspending in Zermatt!") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+routes %>% filter(name %in% c("Overspending in Zermatt!","New file 6")) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
 ::: {}
@@ -434,9 +452,9 @@ An ambitious day as we decided to ride 52 miles to Milan and then catch a train 
 #| warning: FALSE
 #| error: FALSE
 #| message: FALSE
-routes %>% filter(name== "Day 6: Como to Milano") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+routes %>% filter(name %in% c( "Day 6: Como to Milano","New file 5")) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
-\
+
 ::: {}
 
 ![Surusa](photos/IMG_3141.jpg)...\
@@ -518,7 +536,7 @@ We woke up at the Ancora B&B to a beautifully sunny morning overlooking the Tusc
 #| warning: FALSE
 #| error: FALSE
 #| message: FALSE
-routes %>% filter(name=="Back to Firenze")  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+routes %>% filter(name %in% c("Back to Firenze","New file 5"))  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
 \
