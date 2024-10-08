@@ -82,13 +82,13 @@ In September 2024, we planned a trip to cycle from Paris to Milan through the Al
 
 -   30,000 pastries
 
--   9,000 sandwhiches
+-   9,000 sandwiches
 
 -   7,000 pizzas
 
 -   4,000 glasses of wine
 
--   1 bad hangover
+-   1 bad food poisoning
 
 ```{r}
 #| echo: FALSE
@@ -120,9 +120,13 @@ Went to the Louvre. Impressive and large building. Lots of Greek/Roman statues, 
 ::: {layout-row="2"}
 ![...](photos/IMG_2503.jpg)
 
-![...](photos/IMG_2514.jpg)
-
-![....](photos/IMG_2517.jpg)
+![...](photos/IMG_2510.jpg) \
+![...](photos/IMG_2511.jpg) \
+![...](photos/IMG_2512.jpg) \
+![...](photos/IMG_2516.jpg) \
+![...](photos/IMG_2514.jpg) \
+![...](photos/IMG_2517.jpg) \
+![...](photos/IMG_9056.jpg) \
 
 :::
 
@@ -145,6 +149,12 @@ routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map
 ![...](photos/montmartre.jpg) 
 ...\
 ![...](photos/picasso.jpg)
+...\
+![...](photos/IMG_2547.jpg)
+...\
+![...](photos/IMG_2554.jpg)
+...\
+![...](photos/IMG_2558.jpg)
 ...\
 ![Surus](photos/LV building.jpg)
 ...\
@@ -499,7 +509,7 @@ routes %>% filter(name=="Afternoon Ride") %>% slice(1) %>% mapview(lwd = 6,color
 ![Surusa](photos/IMG_3222.jpg)...\
 :::
 
-# **9/24/24 - Florence in Greve in Chianti**
+# **9/24/24 - Florence to Greve in Chianti**
 
 Bike to Greve in Chianti from Firenze, staying at the Ancora bed and breakfast. We arrived around 1 after an easy bike ride. Hanging out around the compound in the afternoon. Thinking, staring, drinking coffee and wine. Relaxing with minimal WiFi and zero distractions besides some birds. Rain and clouds moving in and out over us with breaks of blue sky. Purchased a bottle of wine made by the host for 10 euros. Alyssa after 3 glasses of wine -- "We can always get another bottle of wine; we are in Chi-cante (chi-cahn-tee) you know." In the evening, we biked down to the small town of Greve, which has a triangular plaza in the center of town. We found a nice restaurant where we drank complimentary prosecco and then a glass of Chianti -- as we were in the home region of Chianti. Unfortunately, I received a plate of porcini pasta with no flavor. After getting gelato, we biked back up the dirt road hill to our B&B. Our host had mentioned that we should keep an eye out for wild boar and that she hopes we don't encounter one. As we slowly biked up the hill, we kept an eye out; we safely made it home.
 
