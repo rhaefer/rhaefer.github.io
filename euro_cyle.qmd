@@ -215,7 +215,6 @@ routes %>% filter(name=="Day 0.5: annecy lake lap") %>% mapview(lwd = 6,color = 
 
 
 ![Surus](photos/annecy3.jpg) ...\
-...\
 ![Surus](photos/annecy4.jpg) ...\
 
 
@@ -579,7 +578,8 @@ We spent this day exploring Milan after figuring out which bike shop was going t
 #| warning: FALSE
 #| error: FALSE
 #| message: FALSE
-routes %>% filter(name %in% c("Bike box and thrift mission", "Afternoon Ride"))  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+routes %>% filter(name %in% c("Bike box and thrift mission", "Afternoon Ride")) %>% slice(c(2,3))  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+
 ```
 
 ...\
