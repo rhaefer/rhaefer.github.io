@@ -10,8 +10,8 @@ website:
         text: Home
       - text: Projects
         menu:  # Dropdown for multiple project pages
-          - text: Cycle Trip - France, Switzerland, Italy
-            href: euro_cyle.qmd
+          - text: Various
+            href: Various.qmd
 
 format:
   html:

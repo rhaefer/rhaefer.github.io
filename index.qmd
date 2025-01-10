@@ -4,10 +4,7 @@ image: headshot.jpg
 about:
   template: jolla
 ---
-<span style="font-size: 22px;">
-I’m a data science consultant at [**Harospec**](https://reidhaefer.rbind.io/), I run the [**Tahoe Sauna Company**](https://subscribepage.io/tahoesaunaco), and try to do fun, creative, and adventurous things in my spare time. If you’re interested in any of the things I work on, don’t hesitate to  [**contact me**](mailto:reidhaefer14@gmail.com).
-</span>
 
-<span style="font-family: 'Arial', sans-serif; font-size: 22px;">
-**Reid Haefer**
-</span>
+[ I'm a data science consultant at [**Harospec**](https://reidhaefer.rbind.io/), I run the [**Tahoe Sauna Company**](https://tahoesaunacompany.com), and try to do fun, creative, and adventurous things in my spare time. If you're interested in any of the things I work on, don't hesitate to [**contact me**](mailto:reidhaefer14@gmail.com). ]{style="font-size: 22px;"}
+
+[ **Reid Haefer** ]{style="font-family: 'Arial', sans-serif; font-size: 22px;"}

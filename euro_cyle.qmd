@@ -112,8 +112,7 @@ Arrived in Paris and so did our boxes full of bike gear. Walked around and got s
 
 ![Surus](photos/IMG_2499.jpg) ...\
 
-
-# **9/9/24 - Explore Paris on Bike **
+# **9/9/24 - Explore Paris on Bike**
 
 Went to the Louvre. Impressive and large building. Lots of Greek/Roman statues, which I didn't find too interesting. The art seemed to be mostly religious-inspired or portraits. We did see the Mona Lisa, but there was a crowd around it, so we couldn't get within 20 feet. We saw some other famous sites, but many were walled off because of the Olympics, like the Eiffel Tower and Notre Dame. The best part of Paris so far is the crazy bicycle scene and lively street cafes. Cyclists are bold---women in high heels and sequined dresses with no helmets ride in heavy traffic. Corner cafes with red awnings are everywhere, full of locals eating and drinking..
 
@@ -125,7 +124,6 @@ Went to the Louvre. Impressive and large building. Lots of Greek/Roman statues, 
 ![...](photos/IMG_2514.jpg) ...\
 ![...](photos/IMG_2517.jpg) ...\
 ![...](photos/IMG_9056.jpg) ...\
-
 
 # **9/10/24 - Explore Paris on Bike**
 
@@ -141,7 +139,6 @@ routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map
 
 ...\
 
-
 ![...](photos/montmartre.jpg) ...\
 ...\
 ![...](photos/picasso.jpg) ...\
@@ -151,14 +148,13 @@ routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map
 ![...](photos/IMG_2554.jpg) ...\
 ![...](photos/IMG_2558.jpg) ...\
 
-![Surus](photos/LV building.jpg) ...\
+![Surus](photos/LV%20building.jpg) ...\
 
 ![Surus](photos/roundabout.jpg) ...\
 
-![Surus](photos/van gogh.jpg) ...\
+![Surus](photos/van%20gogh.jpg) ...\
 
-
-# **9/11/24 - Van to Annecy via Fontainebleau **
+# **9/11/24 - Van to Annecy via Fontainebleau**
 
 Rented a van with our four bikes and drove to Annecy through heavy rain. We stopped at Château de Fontainebleau, which was enjoyable. Beautiful palace with 800 years of history. We learned about Napoleon and his importance to France, even saw his tiny yet opulent bed. Arrived in Annecy and walked around in the pouring rain to find dinner. Ate heavy but delicious chicken in a melted cheese bowl.
 
@@ -174,20 +170,17 @@ routes %>% filter(name %in% c("New file 3","New file 4")) %>% mapview(lwd = 6,co
 
 ...\
 
-
-![Surus](photos/van life.jpg) ...\
+![Surus](photos/van%20life.jpg) ...\
 
 ![Surus](photos/fontaineblu1.jpg) ...\
 
-![Surus](photos/fontaineblu2.jpg)  ...\
+![Surus](photos/fontaineblu2.jpg) ...\
 
 ![Surus](photos/fontaineblu3.jpg) ...\
 
-![Surus](photos/napoleon.jpg)  ...\
+![Surus](photos/napoleon.jpg) ...\
 ...\
 ![Surus](photos/napoleon2.jpg) ...\
-
-
 
 # **9/12/24 - Cycle loop around Lake Annecy**
 
@@ -203,7 +196,6 @@ routes %>% filter(name=="Day 0.5: annecy lake lap") %>% mapview(lwd = 6,color = 
 
 ...\
 
-
 ![Surus](photos/IMG_20240912_095037_634.jpg) ...\
 ![Surus](photos/annecy1.jpg) ...\
 ![Surus](photos/IMG_2621.jpg) ...\
@@ -213,11 +205,8 @@ routes %>% filter(name=="Day 0.5: annecy lake lap") %>% mapview(lwd = 6,color = 
 ![Surus](photos/IMG_20240912_131041_164.jpg) ...\
 ![Surus](photos/IMG_2630.jpg) ...\
 
-
 ![Surus](photos/annecy3.jpg) ...\
 ![Surus](photos/annecy4.jpg) ...\
-
-
 
 # **9/13/24 - Annecy to Sallanches**
 
@@ -233,7 +222,6 @@ routes %>% filter(name=="Day 1: Annecy to Salanches") %>% mapview(lwd = 6,color 
 
 ...\
 
-
 ![Surusa](photos/sallanches1.jpg) ...\
 ![Surus](photos/sallanches2.jpg) ...\
 ![Surus](photos/sallanches3.jpg) ...\
@@ -241,8 +229,6 @@ routes %>% filter(name=="Day 1: Annecy to Salanches") %>% mapview(lwd = 6,color 
 ![Surus](photos/sallanches5.jpg) ...\
 ![Surus](photos/sallanches6.jpg) ...\
 ![Surus](photos/sallanches7.jpg) ...\
-
-
 
 # **9/14/24 - Sallanches to Chamonix**
 
@@ -258,8 +244,6 @@ routes %>% filter(name=="Day 2: Sallanches to Chamonix") %>% mapview(lwd = 6,col
 
 ...\
 
-
-
 ![Surusa](photos/cham1.jpg)...\
 ![Surusa](photos/cham2.jpg)...\
 ![Surusa](photos/cham3.jpg)...\
@@ -267,9 +251,8 @@ routes %>% filter(name=="Day 2: Sallanches to Chamonix") %>% mapview(lwd = 6,col
 ![Surusa](photos/cham5.jpg)...\
 ![Surusa](photos/cham6.jpg)...\
 
-
-
 ...\
+
 ```{r}
 #| echo: FALSE
 #| warning: FALSE
@@ -280,15 +263,11 @@ routes %>% filter(name=="Evening Hike") %>% mapview(lwd = 6,color = "red", map.t
 
 ...\
 
-
-
 ![Surus](photos/chamhike1.jpg) ...\
 
 ![Surus](photos/chamhike2.jpg) ...\
 
 ![Surus](photos/IMG_9121.jpg) ...\
-
-
 
 # **9/15/24 - Explore Chamonix**
 
@@ -304,8 +283,6 @@ routes %>% filter(name=="Afternoon Hike") %>% mapview(lwd = 6,color = "red", map
 
 ...\
 
-
-
 ![Surusa](photos/IMG_2720.jpg)...\
 ![Surusa](photos/IMG_2729.jpg)...\
 ![Surusa](photos/IMG_2731.jpg)...\
@@ -319,7 +296,6 @@ routes %>% filter(name=="Afternoon Hike") %>% mapview(lwd = 6,color = "red", map
 ![Surusa](photos/IMG_9143.jpg)...\
 ![Surusa](photos/IMG_2782.jpg)...\
 ![Surusa](photos/IMG_2774.jpg)...\
-
 
 # **9/16/24 - Chamonix to Ackersand**
 
@@ -335,8 +311,6 @@ routes %>% filter(name=="Day 3: Cham to Ackersand") %>% mapview(lwd = 6,color = 
 
 ...\
 
-
-
 ![Surusa](photos/IMG_2787.jpg)...\
 ![Surusa](photos/IMG_2800.jpg)...\
 ![Surusa](photos/IMG_2797.jpg)...\
@@ -348,8 +322,7 @@ routes %>% filter(name=="Day 3: Cham to Ackersand") %>% mapview(lwd = 6,color = 
 ![Surusa](photos/IMG_2836.jpg)...\
 ![Surusa](photos/IMG_2840.jpg)...\
 
-
-# **9/17/24 - Zermatt **
+# **9/17/24 - Zermatt**
 
 Took the train to Zermatt \$\$\$\$\$ from Stalden and spent the day hiking around the Matterhorn and exploring Zermatt. We decided to skip taking the gondola up and hiked about 3k to get to Schwarzee, where we had amazing views of the Matterhorn. It was quiet, peaceful, and one of my favorite moments of the trip yet. We had great weather. Staring at the Matterhorn felt like watching a screensaver in a dentist waiting room but in real life. Pretty amazing. We ate some delicious cheese fondue in Zermatt and observed all the older rich people that seem to frequent the town. Much wealthier and older vibe compared to the young outdoorsy vibe in Chamonix. Very pricey day but one of the most enjoyable days so far.
 
@@ -363,8 +336,6 @@ routes %>% filter(name %in% c("Overspending in Zermatt!","New file 6")) %>% mapv
 
 ...\
 
-
-
 ![Surusa](photos/IMG_2855.jpg)...\
 ![Surusa](photos/IMG_2925.jpg)...\
 ![Surusa](photos/IMG_2872.jpg)...\
@@ -376,7 +347,6 @@ routes %>% filter(name %in% c("Overspending in Zermatt!","New file 6")) %>% mapv
 ![Surusa](photos/IMG_2919.jpg)...\
 ![Surusa](photos/IMG_2916.jpg)...\
 ![Surusa](photos/IMG_2928.jpg)...\
-
 
 # **9/18/24 - Ackersand to Ascona**
 
@@ -394,8 +364,6 @@ routes %>% filter(name %in% c("New file 1")) %>%
 
 ...\
 
-
-
 ![Surusa](photos/IMG_2931.jpg)...\
 ![Surusa](photos/IMG_2934.jpg)...\
 ![Surusa](photos/IMG_1250.jpg)...\
@@ -405,7 +373,6 @@ routes %>% filter(name %in% c("New file 1")) %>%
 ![Surusa](photos/IMG_2970.jpg)...\
 ![Surusa](photos/IMG_2978.jpg)...\
 ![Surusa](photos/IMG_2979.jpg)...\
-
 
 # **9/19/24 - Asconda to Menaggio**
 
@@ -421,8 +388,6 @@ routes %>% filter(name== "Day 5: Asconsa to Menaggio") %>% mapview(lwd = 6,color
 
 ...\
 
-
-
 ![Surusa](photos/IMG_2999.jpg)...\
 ![Surusa](photos/IMG_2989.jpg)...\
 ![Surusa](photos/IMG_9191.jpg)...\
@@ -434,12 +399,9 @@ routes %>% filter(name== "Day 5: Asconsa to Menaggio") %>% mapview(lwd = 6,color
 ![Surusa](photos/IMG_1325.jpg)...\
 ![Surusa](photos/IMG_1332.jpg)...\
 
-
 # **9/20/24 - Explore Lake Como**
 
 Day off in Lake Como. A slow morning with pastries and pizza before hanging out at the one public beach in Menaggio, which was hidden off a tiny path by the campground. We relaxed at the beach and did some bike maintenance before catching a ferry to explore towns across the lake. We got antsy and accidentally took a ferry to Bellagio instead of Varenna. Bellagio had hoards of people and was too fancy for us. Not very memorable. We then took a second ferry to Varenna. Similar hoards of people off the ferry, but we continued south and eventually found a nice, quiet public beach to go swimming. Our only swimming experience of the trip! We then migrated to a nice outdoor cafe in a quiet plaza and drank a couple of glasses of Rosé before catching a late ferry back to Menaggio for dinner. For dinner, we ended up inside drinking a nice bottle of Lugana (from Lake Garda) and listening to Linkin Park. Our waitress was very friendly (as are many Italians).
-
-
 
 ![Surusa](photos/IMG_9209.jpg)...\
 ![Surusa](photos/IMG_3066.jpg)...\
@@ -451,7 +413,6 @@ Day off in Lake Como. A slow morning with pastries and pizza before hanging out 
 ![Surusa](photos/IMG_3110.jpg)...\
 ![Surusa](photos/IMG_3098.jpg)...\
 ![Surusa](photos/IMG_9240.jpg)...\
-
 
 # **9/21/24 - Menaggio to Milan, train to florence**
 
@@ -467,7 +428,6 @@ routes %>% filter(name %in% c( "Day 6: Como to Milano","New file 5")) %>% mapvie
 
 ...\
 
-
 ![Surusa](photos/IMG_1376.jpg)...\
 ![Surusa](photos/IMG_3120.jpg)...\
 ![Surusa](photos/IMG_1384.jpg)...\
@@ -475,20 +435,17 @@ routes %>% filter(name %in% c( "Day 6: Como to Milano","New file 5")) %>% mapvie
 ![Surusa](photos/IMG_1385.jpg)...\
 ![Surusa](photos/IMG_3141.jpg)...\
 
-
 # **9/22/24 - Walk around florence**
 
 Intro day to Florence -- Started the day with a paid walking tour of the central city, hearing about the story of the Medici family. Spent the afternoon wandering around the city and ended up at the Piazza Michelangelo with a great view of the city. I got a little burnt out from walking aimlessly today and started feeling like I wanted to go home. But it's a beautiful city. For dinner, we ate Chinese and sweated our asses off. One of the spiciest dinner experiences of my life. My hair was damp with sweat by the end of the dinner. Insane. The people next to us got a kick out of us sweating. We finished our day with the second gelato of the day.
 
 \
 
-
 ![Surusa](photos/IMG_3160.jpg)...\
 ![Surusa](photos/IMG_3173.jpg)...\
 ![Surusa](photos/IMG_3180.jpg)...\
 ![Surusa](photos/IMG_3186.jpg)...\
 ![Surusa](photos/IMG_3184.jpg)...\
-
 
 # **9/23/24 - Cycle outside florence**
 
@@ -504,7 +461,6 @@ routes %>% filter(name=="Afternoon Ride") %>% slice(1) %>% mapview(lwd = 6,color
 
 \
 
-
 ![Surusa](photos/IMG_3196.jpg)...\
 ![Surusa](photos/IMG_3199.jpg)...\
 ![Surusa](photos/IMG_3203.jpg)...\
@@ -513,7 +469,6 @@ routes %>% filter(name=="Afternoon Ride") %>% slice(1) %>% mapview(lwd = 6,color
 ![Surusa](photos/IMG_3213.jpg)...\
 ![Surusa](photos/IMG_3220.jpg)...\
 ![Surusa](photos/IMG_3222.jpg)...\
-
 
 # **9/24/24 - Florence to Greve in Chianti**
 
@@ -529,7 +484,6 @@ routes %>% filter(name=="Florence to Greve in Chianti")  %>% mapview(lwd = 6,col
 
 \
 
-
 ![Surusa](photos/IMG_3231.jpg)...\
 ![Surusa](photos/IMG_3233.jpg)...\
 ![Surusa](photos/IMG_3237.jpg)...\
@@ -542,7 +496,6 @@ routes %>% filter(name=="Florence to Greve in Chianti")  %>% mapview(lwd = 6,col
 ![Surusa](photos/IMG_3271.jpg)...\
 ![Surusa](photos/IMG_3276.jpg)...\
 ![Surusa](photos/IMG_3265.jpg)...\
-
 
 # **9/25/24 - Cycle back to florence, train to Milan**
 
@@ -558,7 +511,6 @@ routes %>% filter(name %in% c("Back to Firenze","New file 5"))  %>% mapview(lwd 
 
 \
 
-
 ![Surusa](photos/IMG_3280.jpg)...\
 ![Surusa](photos/IMG_3282.jpg)...\
 ![Surusa](photos/IMG_1525.jpg)...\
@@ -567,7 +519,6 @@ routes %>% filter(name %in% c("Back to Firenze","New file 5"))  %>% mapview(lwd 
 ![Surusa](photos/IMG_9284.jpg)...\
 ![Surusa](photos/IMG_3286.jpg)...\
 ![Surusa](photos/IMG_3288.jpg)...\
-
 
 # **9/26/24 - Explore Milan**
 
@@ -584,8 +535,6 @@ routes %>% filter(name %in% c("Bike box and thrift mission", "Afternoon Ride")) 
 
 ...\
 
-
-
 ![Surusa](photos/IMG_3324.jpg)...\
 ![Surusa](photos/IMG_9297.jpg)...\
 ![Surusa](photos/IMG_1563.jpg)...\
@@ -597,20 +546,17 @@ routes %>% filter(name %in% c("Bike box and thrift mission", "Afternoon Ride")) 
 ![Surusa](photos/IMG_3344.jpg)...\
 ![Surusa](photos/IMG_9305.jpg)...\
 
-
 # **9/27/24 - Milan**
 
 I woke up somewhat early and went and ate a cheesy ham and olive roll and drank espresso outside at a cafe. We had a slow morning after a late night and then said goodbye to Grant and Wes as they left to bike to Venice. We eventually cleaned up and biked with all our stuff to the bike shop, which had boxes waiting for us in Brera (Rossignolli bike shop). We packed up our bikes in a courtyard in the back of the shop with tools and shipping materials they gave us; we were very grateful to them. After getting our bikes completely boxed, we explored the neighborhood on foot and then found a fancy ramen place for lunch. At this point, Alyssa was clearly hungover, and I was just a little tired. After ramen, we immediately got gelato. I got mint, which was delicious, fresh, and had individual pieces of mint in it -- nothing like mint ice cream I've ever had. Within 30 minutes of the gelato, I started feeling ill. We ordered a large Uber van to transport us and our bikes to the hotel we were staying at closer to the airport. By the time we got to the hotel, I felt pretty bad and vomited within 10 minutes of arriving. This started a very rough 24 hours for us. That night I was able to sleep maybe 1-2 hours, and I don't think Alyssa slept. I had the body aches and a terrible stomach, and Alyssa was visiting the bathroom every 30 minutes. It was a rough way to end our trip. It's unclear whether we got food poisoning or not (or whether it was the Negroni and colorful liqueurs).
 
 \
 
-
 ![Surusa](photos/IMG_3359.jpg)...\
 ![Surusa](photos/IMG_3363.jpg)...\
 ![Surusa](photos/IMG_3361.jpg)...\
 ![Surusa](photos/IMG_3365.jpg)...\
 ![Surusa](photos/IMG_3368.jpg)...\
-
 
 # **9/28/24 - Milan to SF to Tahoe**
 
