@@ -3,12 +3,8 @@ title: "Cycle Trip Through France, Switzerland, Italy"
 output: html_document
 ---
 
-```{r}
-#| echo: FALSE
-#| warning: FALSE
-#| error: FALSE
-#| output: FALSE
-#| message: FALSE
+```{r, warning=F, message=F, error=F, output=F, echo=F }
+
 library(sf)
 library(tidyverse)
 library(mapview)
