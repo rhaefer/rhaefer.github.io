@@ -1,0 +1,559 @@
+---
+title: "Cycle Trip Through France, Switzerland, Italy"
+output: html
+---
+
+```{r, warning=F, message=F, error=F, output=F, echo=F }
+
+library(sf)
+library(tidyverse)
+library(mapview)
+library(mapgl)
+
+
+
+routes<-bind_rows(st_read("data/routes/paris_to_annecy.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/fountainblue to annecy.gpx", layer = "tracks") %>%
+            st_transform(crs=4326),
+          st_read("data/routes/Afternoon_Ride.gpx", layer = "tracks") %>%st_transform(crs=4326), 
+          st_read("data/routes/Afternoon_Hike_cham.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Bike_box_and_thrift_mission.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/milan_afternoon_ride.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Florence_to_Greve_in_Chianti.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Day_6_Como_to_Milano.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Day_5_Asconsa_to_Menaggio.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Day_4_cont_Re_to_Asconsa.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          #st_read("data/routes/Day_4_Ackersand_to_Brig_train_to_Domodossola.gpx", layer = "tracks") %>%
+            #st_transform(crs=4326), 
+          st_read("data/routes/Overspending_in_Zermatt_.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Day_3_Cham_to_Ackersand.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Evening_Hike_cham.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Day_2_Sallanches_to_Chamonix.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Day_1_Annecy_to_Salanches.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Day_0_5_annecy_lake_lap.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Sploring_pari_.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/fiesole.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/Back_to_Firenze.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/brig to domo.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/ackersand to brig.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/domo to ascona.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/milan to florence.gpx", layer = "tracks") %>%
+            st_transform(crs=4326), 
+          st_read("data/routes/New file 6.gpx", layer = "tracks") %>%
+            st_transform(crs=4326)
+) %>% select(name, type)
+
+```
+
+```         
+```
+
+# 
+
+In September 2024, we planned a trip to cycle from Paris to Milan through the Alps. There were four of us including myself, Alyssa, Grant (who had just quit his job) and Wes (who was on sabbatical from his job). Our plan was to fly to Paris and then rent a van to transport ourselves and 4 bikes to Annecy, where we would start cycling through the Alps, to end in Milan. Scroll below for a day by day review of our trip. Some total stats from our trip.
+
+-   420 miles cycled
+
+-   27,000 feet of climbing
+
+-   30,000 pastries
+
+-   9,000 sandwiches
+
+-   7,000 pizzas
+
+-   4,000 glasses of wine
+
+-   1 bad food poisoning
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+# **9/7/24 - SF to Paris**
+
+Drove from Tahoe to the Bay Area and flew out of San Francisco airport to Paris on French Bee airlines. Alyssa has Covid, so she's wearing a mask. We picked up the Charneaus' New Zealand friend and gave her a ride to the airport. She has been visiting and built a 60-foot-high traffic cone at Burning Man..
+
+# **9/8/24 - Arrive in Paris**
+
+Arrived in Paris and so did our boxes full of bike gear. Walked around and got some delicious Chinese soup and noodles. Prices are comparable, if not less, than the U.S., \$12.50 total for my meal. Tax and tip included. I picked up a bike I purchased at a local bike shop called Bicloune. Kona Rove 700. Ready to bike around Paris!
+
+![Surus](photos/IMG_2488.jpg) ...\
+
+![Surus](photos/IMG_2498.jpg) ...\
+
+![Surus](photos/IMG_2499.jpg) ...\
+
+# **9/9/24 - Explore Paris on Bike**
+
+Went to the Louvre. Impressive and large building. Lots of Greek/Roman statues, which I didn't find too interesting. The art seemed to be mostly religious-inspired or portraits. We did see the Mona Lisa, but there was a crowd around it, so we couldn't get within 20 feet. We saw some other famous sites, but many were walled off because of the Olympics, like the Eiffel Tower and Notre Dame. The best part of Paris so far is the crazy bicycle scene and lively street cafes. Cyclists are bold---women in high heels and sequined dresses with no helmets ride in heavy traffic. Corner cafes with red awnings are everywhere, full of locals eating and drinking..
+
+![...](photos/IMG_2503.jpg) ...\
+![...](photos/IMG_2510.jpg) ...\
+![...](photos/IMG_2511.jpg) ...\
+![...](photos/IMG_2512.jpg) ...\
+![...](photos/IMG_2516.jpg) ...\
+![...](photos/IMG_2514.jpg) ...\
+![...](photos/IMG_2517.jpg) ...\
+![...](photos/IMG_9056.jpg) ...\
+
+# **9/10/24 - Explore Paris on Bike**
+
+Spent a good chunk of the day on the hill at Montmartre. I think this was the highlight of Paris for me. Great views of the city and lovely historical cobblestone streets. Picasso's first studio was here, and Van Gogh spent time here as well. A little touristy but justified. We rode our bikes down the Champs-Élysées, which was crazy busy.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Sploring pari!") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![...](photos/montmartre.jpg) ...\
+...\
+![...](photos/picasso.jpg) ...\
+...\
+![...](photos/IMG_2547.jpg) ...\
+
+![...](photos/IMG_2554.jpg) ...\
+![...](photos/IMG_2558.jpg) ...\
+
+![Surus](photos/LV%20building.jpg) ...\
+
+![Surus](photos/roundabout.jpg) ...\
+
+![Surus](photos/van%20gogh.jpg) ...\
+
+# **9/11/24 - Van to Annecy via Fontainebleau**
+
+Rented a van with our four bikes and drove to Annecy through heavy rain. We stopped at Château de Fontainebleau, which was enjoyable. Beautiful palace with 800 years of history. We learned about Napoleon and his importance to France, even saw his tiny yet opulent bed. Arrived in Annecy and walked around in the pouring rain to find dinner. Ate heavy but delicious chicken in a melted cheese bowl.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+
+
+routes %>% filter(name %in% c("New file 3","New file 4")) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surus](photos/van%20life.jpg) ...\
+
+![Surus](photos/fontaineblu1.jpg) ...\
+
+![Surus](photos/fontaineblu2.jpg) ...\
+
+![Surus](photos/fontaineblu3.jpg) ...\
+
+![Surus](photos/napoleon.jpg) ...\
+...\
+![Surus](photos/napoleon2.jpg) ...\
+
+# **9/12/24 - Cycle loop around Lake Annecy**
+
+Learning French from a balcony in old town Annecy. Wherever you go there are house sparrows. Going to go for a bike ride around the lake today. Bike around Lake Annecy today including an optional climb up Col de Forclaz. Beautiful scenery and city. Maybe one of the more beautiful places I've been to in my life. We ate chocolate crepes in Forclaz amidst cool fall-like weather but with the sun peeking out and providing great views of the lake and valley. About 32 miles and 2800 feet of climbing. On the way back we had fromage and Jamon plate at a cycle cafe right off the bike path back to Annecy. I tried to order a Monaco red beer, but my French is poor, and they gave me a coffee instead. I think it's mo-nay-poo? Need to improve my pronunciation. Our Airbnb in Annecy is stellar. It's located in the historic old town up a steep cobblestone stairwell. The entrance to the place is cave-like, but the unit is modern. We have a very nice, attentive French host who showed us around. We were able to put our bikes in the "cellar," which seems like an actual cellar where wine would age over hundreds of years. The canals and bridges of Annecy are beautiful, with the lake and mountains as a backdrop.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Day 0.5: annecy lake lap") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surus](photos/IMG_20240912_095037_634.jpg) ...\
+![Surus](photos/annecy1.jpg) ...\
+![Surus](photos/IMG_2621.jpg) ...\
+![Surus](photos/IMG_9077.jpg) ...\
+![Surus](photos/IMG_2624.jpg) ...\
+![Surus](photos/IMG_2626.jpg) ...\
+![Surus](photos/IMG_20240912_131041_164.jpg) ...\
+![Surus](photos/IMG_2630.jpg) ...\
+
+![Surus](photos/annecy3.jpg) ...\
+![Surus](photos/annecy4.jpg) ...\
+
+# **9/13/24 - Annecy to Sallanches**
+
+Biked from Annecy to Sallanches, which was about 54 miles. There was some sun and rain. Mostly pavement but some gravel. Some walking our bikes through mud. From Annecy we took D12 through Entremont, and Grant rode the Grand Alps route. We arrived at Sallanches around 6:30, very ready to be done and get warm. There weren't many good food options around the Ibis Budget hotel, so we ate some McDonald's and got to bed early.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Day 1: Annecy to Salanches") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surusa](photos/sallanches1.jpg) ...\
+![Surus](photos/sallanches2.jpg) ...\
+![Surus](photos/sallanches3.jpg) ...\
+![Surus](photos/sallanches4.jpg) ...\
+![Surus](photos/sallanches5.jpg) ...\
+![Surus](photos/sallanches6.jpg) ...\
+![Surus](photos/sallanches7.jpg) ...\
+
+# **9/14/24 - Sallanches to Chamonix**
+
+The sun returned, and we had a nice morning biking from Sallanches into the Chamonix valley. Google Maps sent us on some unnecessary gravel, where we ended up in a one-eyed farmer's driveway with lots of barking dogs. The farmer was very nice and waved us through. Beautiful ride with views of Mont Blanc on quiet roads next to the motorway. Our Airbnb is located in the heart of Chamonix, above a tasty local burger joint, Poco Loco. We decided to take the Flégère tram up and hike to Lac Blanc in the afternoon. After drinking a beer with a side of Genepi at a hut at the lake, we had to sprint down the trail to make the last tram down at the end of the day. We barely made the last tram, very sweaty from running and slightly buzzed from the drinks. Amazing day.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Day 2: Sallanches to Chamonix") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surusa](photos/cham1.jpg)...\
+![Surusa](photos/cham2.jpg)...\
+![Surusa](photos/cham3.jpg)...\
+![Surusa](photos/cham4.jpg)...\
+![Surusa](photos/cham5.jpg)...\
+![Surusa](photos/cham6.jpg)...\
+
+...\
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Evening Hike") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surus](photos/chamhike1.jpg) ...\
+
+![Surus](photos/chamhike2.jpg) ...\
+
+![Surus](photos/IMG_9121.jpg) ...\
+
+# **9/15/24 - Explore Chamonix**
+
+Spent the day on the north side of the valley after getting tickets to take the Aguille du Midi. The two-part tram takes you to 12k feet and ascends 9k feet, which is the most vert of any tram in the world. We picked a great weather day, perfectly sunny and calm. At the top, there are multiple buildings with up-close lookouts of Mont Blanc and the surrounding mountains. You can see the Matterhorn in the distance. There were many mountaineers and skiers starting or ending their adventures from this spot. Incredible steep and committing terrain. It was quite the scenery and experience. We decided to hike to Lac Bleu from the mid-station and then ended up hiking all the way down to Chamonix. 3.5k of descent. It's very steep here. My legs are sore.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Afternoon Hike") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surusa](photos/IMG_2720.jpg)...\
+![Surusa](photos/IMG_2729.jpg)...\
+![Surusa](photos/IMG_2731.jpg)...\
+![Surusa](photos/IMG_1055.jpg)...\
+![Surusa](photos/IMG_0789.jpg)...\
+![Surusa](photos/IMG_0807.jpg)...\
+![Surusa](photos/IMG_2751.jpg)...\
+![Surusa](photos/IMG_2737.jpg)...\
+![Surusa](photos/IMG_2749.jpg)...\
+![Surusa](photos/IMG_2761.jpg)...\
+![Surusa](photos/IMG_9143.jpg)...\
+![Surusa](photos/IMG_2782.jpg)...\
+![Surusa](photos/IMG_2774.jpg)...\
+
+# **9/16/24 - Chamonix to Ackersand**
+
+Big day riding from Chamonix all the way to Ackersand (above Visp). About 82 miles and 5k of vert. Met some Americans at Col de Forclaz who were hiking the Haute Route (sounds fun) from Boise and Spokane. Huge 5k descent into Martigny and then flat riding next to the Rhone River through Valais. Valais is quite industrial and agricultural, lots of construction going on. There were large excavators dumping big amounts of soil into the river. Maybe building a new bike path or train??? The river seems quite man-made and impacted. We picked some apples from local orchards, and they were amazing. Been eating pastries and bread for a week. We briefly were on Euro Velo 17, which was a nice gravel path along the river. I hope to explore more Euro Velos in the future and go to the annual conference! We didn't have a place to stay, but we ended up booking a "guest house" above Visp in Ackersand. It was a B&B with a great host. We had access to the kitchen and common areas with secure bike parking. Classic Swiss wooden mountain aesthetic. It was a great find and likely the cheapest place we could have found.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Day 3: Cham to Ackersand") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surusa](photos/IMG_2787.jpg)...\
+![Surusa](photos/IMG_2800.jpg)...\
+![Surusa](photos/IMG_2797.jpg)...\
+![Surusa](photos/IMG_2812.jpg)...\
+![Surusa](photos/IMG_2825.jpg)...\
+![Surusa](photos/IMG_2829.jpg)...\
+![Surusa](photos/IMG_2844.jpg)...\
+![Surusa](photos/IMG_2834.jpg)...\
+![Surusa](photos/IMG_2836.jpg)...\
+![Surusa](photos/IMG_2840.jpg)...\
+
+# **9/17/24 - Zermatt**
+
+Took the train to Zermatt \$\$\$\$\$ from Stalden and spent the day hiking around the Matterhorn and exploring Zermatt. We decided to skip taking the gondola up and hiked about 3k to get to Schwarzee, where we had amazing views of the Matterhorn. It was quiet, peaceful, and one of my favorite moments of the trip yet. We had great weather. Staring at the Matterhorn felt like watching a screensaver in a dentist waiting room but in real life. Pretty amazing. We ate some delicious cheese fondue in Zermatt and observed all the older rich people that seem to frequent the town. Much wealthier and older vibe compared to the young outdoorsy vibe in Chamonix. Very pricey day but one of the most enjoyable days so far.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name %in% c("Overspending in Zermatt!","New file 6")) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surusa](photos/IMG_2855.jpg)...\
+![Surusa](photos/IMG_2925.jpg)...\
+![Surusa](photos/IMG_2872.jpg)...\
+![Surusa](photos/IMG_2892.jpg)...\
+![Surusa](photos/IMG_2901.jpg)...\
+![Surusa](photos/IMG_2904.jpg)...\
+![Surusa](photos/IMG_2910.jpg)...\
+![Surusa](photos/IMG_2912.jpg)...\
+![Surusa](photos/IMG_2919.jpg)...\
+![Surusa](photos/IMG_2916.jpg)...\
+![Surusa](photos/IMG_2928.jpg)...\
+
+# **9/18/24 - Ackersand to Ascona**
+
+We left our B&B guest house and rode our bikes over to Brig to catch the train to Domodossola. Wes and Grant are climbing Simplon Pass, but we decided to ride a train through it. In Domodossola, we had lunch, espresso, and some delicious pastries. It is a very charming town with good affordable food. Alyssa took the train from Domodossola to Re because her knee was hurting her. I rode alone and had a great ride. Steep difficult climb including a long portion in a tunnel. But once I got to the top, the ride was lovely. Malesca is a cute town with access to the Val Grande National Park. While waiting for the train, I got an espresso and lemon pie at a bar right under the big basilica. Quite a lovely day. Alyssa met me in Re off the train, and we drank a glass of Rosé before biking to Ascona. Had a fun big descent on an exciting narrow road to Ascona. It's great to feel some warmer weather, though unfortunately we are back in Switzerland, and things are expensive again. Looking forward to getting back into Italy. Had dinner in Ascona/Locarno. It's a pretty area on Lake Maggiore, but it seems pretty wealthy, old, and a little too sleepy. It would probably be more lively in the peak summer season..
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name %in% c("New file 1")) %>% 
+  mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+
+```
+
+...\
+
+![Surusa](photos/IMG_2931.jpg)...\
+![Surusa](photos/IMG_2934.jpg)...\
+![Surusa](photos/IMG_1250.jpg)...\
+![Surusa](photos/IMG_2957.jpg)...\
+![Surusa](photos/IMG_2966.jpg)...\
+![Surusa](photos/IMG_2964.jpg)...\
+![Surusa](photos/IMG_2970.jpg)...\
+![Surusa](photos/IMG_2978.jpg)...\
+![Surusa](photos/IMG_2979.jpg)...\
+
+# **9/19/24 - Asconda to Menaggio**
+
+We stayed at a very nice B&B Borgo with a high-quality breakfast. We had a slow morning enjoying breakfast and walking around Ascona, then headed out on bikes to Lake Como. On the way to Como, we passed through Lugano. This was a bustling city on Lake Lugano. We biked through the old area with insanely steep, cobbled streets. We took the route around the north side of the lake, and it sent us on a beautiful but difficult route. We had spectacular views of the lake, but there was some hiking of bikes up steep staircases. As we reached the north side of the lake, it started raining, and when we got to Porlezza, it was a downpour. We took refuge at an outdoor cafe with a very friendly Italian clerk and had two glasses of wine and antipasto to wait out the rain. By the time we got back on our bikes, it was getting dark, so we had a wet and dark descent to Menaggio to meet Wes and Grant for a very long dinner of pizza and pasta.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name== "Day 5: Asconsa to Menaggio") %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surusa](photos/IMG_2999.jpg)...\
+![Surusa](photos/IMG_2989.jpg)...\
+![Surusa](photos/IMG_9191.jpg)...\
+![Surusa](photos/IMG_3007.jpg)...\
+![Surusa](photos/IMG_1288.jpg)...\
+![Surusa](photos/IMG_3020.jpg)...\
+![Surusa](photos/IMG_3028.jpg)...\
+![Surusa](photos/IMG_1311.jpg)...\
+![Surusa](photos/IMG_1325.jpg)...\
+![Surusa](photos/IMG_1332.jpg)...\
+
+# **9/20/24 - Explore Lake Como**
+
+Day off in Lake Como. A slow morning with pastries and pizza before hanging out at the one public beach in Menaggio, which was hidden off a tiny path by the campground. We relaxed at the beach and did some bike maintenance before catching a ferry to explore towns across the lake. We got antsy and accidentally took a ferry to Bellagio instead of Varenna. Bellagio had hoards of people and was too fancy for us. Not very memorable. We then took a second ferry to Varenna. Similar hoards of people off the ferry, but we continued south and eventually found a nice, quiet public beach to go swimming. Our only swimming experience of the trip! We then migrated to a nice outdoor cafe in a quiet plaza and drank a couple of glasses of Rosé before catching a late ferry back to Menaggio for dinner. For dinner, we ended up inside drinking a nice bottle of Lugana (from Lake Garda) and listening to Linkin Park. Our waitress was very friendly (as are many Italians).
+
+![Surusa](photos/IMG_9209.jpg)...\
+![Surusa](photos/IMG_3066.jpg)...\
+![Surusa](photos/IMG_3071.jpg)...\
+![Surusa](photos/IMG_3078.jpg)...\
+![Surusa](photos/IMG_1361.jpg)...\
+![Surusa](photos/IMG_1364.jpg)...\
+![Surusa](photos/IMG_3094.jpg)...\
+![Surusa](photos/IMG_3110.jpg)...\
+![Surusa](photos/IMG_3098.jpg)...\
+![Surusa](photos/IMG_9240.jpg)...\
+
+# **9/21/24 - Menaggio to Milan, train to florence**
+
+An ambitious day as we decided to ride 52 miles to Milan and then catch a train to Florence because the weather was better down south. On the bottom of Lake Como, we rode inside a long tunnel for 5 miles and then were on a long path by the freeway to Milan. We fortunately figured out the train to Florence with our bikes and made it last minute. It took us 4.5 hours to get to Florence because assembled bikes have to go on the slow local train. We arrived in Florence and were surprised how lively it was at 10pm. I ate Indian food by the train station, then made it on to Hotel Lorena in the core of the city.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name %in% c( "Day 6: Como to Milano","New file 5")) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+...\
+
+![Surusa](photos/IMG_1376.jpg)...\
+![Surusa](photos/IMG_3120.jpg)...\
+![Surusa](photos/IMG_1384.jpg)...\
+![Surusa](photos/IMG_1378.jpg)...\
+![Surusa](photos/IMG_1385.jpg)...\
+![Surusa](photos/IMG_3141.jpg)...\
+
+# **9/22/24 - Walk around florence**
+
+Intro day to Florence -- Started the day with a paid walking tour of the central city, hearing about the story of the Medici family. Spent the afternoon wandering around the city and ended up at the Piazza Michelangelo with a great view of the city. I got a little burnt out from walking aimlessly today and started feeling like I wanted to go home. But it's a beautiful city. For dinner, we ate Chinese and sweated our asses off. One of the spiciest dinner experiences of my life. My hair was damp with sweat by the end of the dinner. Insane. The people next to us got a kick out of us sweating. We finished our day with the second gelato of the day.
+
+\
+
+![Surusa](photos/IMG_3160.jpg)...\
+![Surusa](photos/IMG_3173.jpg)...\
+![Surusa](photos/IMG_3180.jpg)...\
+![Surusa](photos/IMG_3186.jpg)...\
+![Surusa](photos/IMG_3184.jpg)...\
+
+# **9/23/24 - Cycle outside florence**
+
+Bike outside Florence -- Took our bikes for a ride in the hills outside Florence. To Potassieve and then to Fiesole. We considered some wine tasting, but I guess you need reservations and they are very expensive in Tuscany. We're amateurs. That seems kinda obvious now. We ended up having a glass of boxed Chianti from a community restaurant with a great view in Fiesole, then had a fun descent back into Florence as it started to rain. Chinese food again for dinner as there was a torrential downpour.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Afternoon Ride") %>% slice(1) %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+\
+
+![Surusa](photos/IMG_3196.jpg)...\
+![Surusa](photos/IMG_3199.jpg)...\
+![Surusa](photos/IMG_3203.jpg)...\
+![Surusa](photos/IMG_3205.jpg)...\
+![Surusa](photos/IMG_3209.jpg)...\
+![Surusa](photos/IMG_3213.jpg)...\
+![Surusa](photos/IMG_3220.jpg)...\
+![Surusa](photos/IMG_3222.jpg)...\
+
+# **9/24/24 - Florence to Greve in Chianti**
+
+Bike to Greve in Chianti from Firenze, staying at the Ancora bed and breakfast. We arrived around 1 after an easy bike ride. Hanging out around the compound in the afternoon. Thinking, staring, drinking coffee and wine. Relaxing with minimal WiFi and zero distractions besides some birds. Rain and clouds moving in and out over us with breaks of blue sky. Purchased a bottle of wine made by the host for 10 euros. Alyssa after 3 glasses of wine -- "We can always get another bottle of wine; we are in Chi-cante (chi-cahn-tee) you know." In the evening, we biked down to the small town of Greve, which has a triangular plaza in the center of town. We found a nice restaurant where we drank complimentary prosecco and then a glass of Chianti -- as we were in the home region of Chianti. Unfortunately, I received a plate of porcini pasta with no flavor. After getting gelato, we biked back up the dirt road hill to our B&B. Our host had mentioned that we should keep an eye out for wild boar and that she hopes we don't encounter one. As we slowly biked up the hill, we kept an eye out; we safely made it home.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name=="Florence to Greve in Chianti")  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+\
+
+![Surusa](photos/IMG_3231.jpg)...\
+![Surusa](photos/IMG_3233.jpg)...\
+![Surusa](photos/IMG_3237.jpg)...\
+![Surusa](photos/IMG_3239.jpg)...\
+![Surusa](photos/IMG_3242.jpg)...\
+![Surusa](photos/IMG_3247.jpg)...\
+![Surusa](photos/IMG_3257.jpg)...\
+![Surusa](photos/IMG_3258.jpg)...\
+![Surusa](photos/IMG_3270.jpg)...\
+![Surusa](photos/IMG_3271.jpg)...\
+![Surusa](photos/IMG_3276.jpg)...\
+![Surusa](photos/IMG_3265.jpg)...\
+
+# **9/25/24 - Cycle back to florence, train to Milan**
+
+We woke up at the Ancora B&B to a beautifully sunny morning overlooking the Tuscany hills. We enjoyed a communal breakfast with other guests and had a very relaxing morning drinking coffee, reading, journaling, and planning our next travel plans. We bought our train tickets from Florence to Milan and then headed out on our bikes back to Florence. In Florence, we stopped at our favorite restaurant -- Pitti Express. It is a small, cheap, and fast-paced restaurant on the south side of the River. Three guys in there rapidly serving a small, delicious menu. This was our second time there. This time we got the same fresh salad, a glass of white wine, and the pesto lasagna. The lasagna was insanely rich and soft -- melt-in-your-mouth. We were in a rush, so we decided not to get the tiramisu, which was one of my biggest regrets of the trip. We biked to the train station and made our train after a hot and sweaty loading of our bikes and heavy bags on the train -- while helping another older woman with a heavy e-bike get loaded on the train, hoping the train doesn't take off without us. On the train, we enjoyed some pastries we purchased and thought about what to do in Milan. We made it to the Airbnb in Milan, where we met Grant and Wes for some unique Chinese food in a hole-in-the-wall restaurant. Staying near the La Fontana neighborhood.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name %in% c("Back to Firenze","New file 5"))  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+
+\
+
+![Surusa](photos/IMG_3280.jpg)...\
+![Surusa](photos/IMG_3282.jpg)...\
+![Surusa](photos/IMG_1525.jpg)...\
+![Surusa](photos/IMG_1532.jpg)...\
+![Surusa](photos/IMG_1536.jpg)...\
+![Surusa](photos/IMG_9284.jpg)...\
+![Surusa](photos/IMG_3286.jpg)...\
+![Surusa](photos/IMG_3288.jpg)...\
+
+# **9/26/24 - Explore Milan**
+
+We spent this day exploring Milan after figuring out which bike shop was going to help us box up our bikes for the flight on Saturday. In the morning, we did some thrift shopping and enjoyed the lively cafe scene in the hip Brera neighborhood. While Alyssa purchased some boots at a vintage store, I drank espresso and ate a delicious focaccia sandwich at 'Debbies' while observing all the fashionable and rather beautiful young people at the cafe. I felt out of place in my travel clothes. Lots of women in oversized jeans and blazer jackets. In the afternoon, Wes, Alyssa, and I biked in the rain to Naviglio, where Da Vinci designed a series of canals. Wes got a flat tire during a respite in rain, and then we continued on to the Duomo and the Galleria Vittorio. In the rain, we -- and the hoards of others -- huddled around the Duomo and walked around the indoor mall at Vittorio. The Duomo is an impressive, intricate building, ala Sagrada Familia. I wonder if humans will ever build any secular structures as impressive and long-lasting that people will be visiting hundreds and thousands of years from now. In the evening, we started with a Negroni and a nice, complimentary antipasto plate at a friendly bar in our neighborhood. We migrated to a nice restaurant where we got delicious pizza and drinks. I got the pistachio mortadella. We accidentally ordered 2 liters of Chianti (we thought maybe they were 'bottles,' but they were liters). After the wine, we were given a bucket with 3 bottles of brightly colored liqueurs that we quickly drank (unfortunately). Eventually, they were about to bring us another bucket of liqueurs, but thankfully, I declined. Feeling a little buzzed, we migrated to a bar down the street where we drank a beer on a covered bench on the street corner. We made it back to our lodging and played hearts until midnight (Wes won, as he often did).
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes %>% filter(name %in% c("Bike box and thrift mission", "Afternoon Ride")) %>% slice(c(2,3))  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+
+```
+
+...\
+
+![Surusa](photos/IMG_3324.jpg)...\
+![Surusa](photos/IMG_9297.jpg)...\
+![Surusa](photos/IMG_1563.jpg)...\
+![Surusa](photos/IMG_1571.jpg)...\
+![Surusa](photos/IMG_3335.jpg)...\
+![Surusa](photos/IMG_3298.jpg)...\
+![Surusa](photos/IMG_3339.jpg)...\
+![Surusa](photos/IMG_3340.jpg)...\
+![Surusa](photos/IMG_3344.jpg)...\
+![Surusa](photos/IMG_9305.jpg)...\
+
+# **9/27/24 - Milan**
+
+I woke up somewhat early and went and ate a cheesy ham and olive roll and drank espresso outside at a cafe. We had a slow morning after a late night and then said goodbye to Grant and Wes as they left to bike to Venice. We eventually cleaned up and biked with all our stuff to the bike shop, which had boxes waiting for us in Brera (Rossignolli bike shop). We packed up our bikes in a courtyard in the back of the shop with tools and shipping materials they gave us; we were very grateful to them. After getting our bikes completely boxed, we explored the neighborhood on foot and then found a fancy ramen place for lunch. At this point, Alyssa was clearly hungover, and I was just a little tired. After ramen, we immediately got gelato. I got mint, which was delicious, fresh, and had individual pieces of mint in it -- nothing like mint ice cream I've ever had. Within 30 minutes of the gelato, I started feeling ill. We ordered a large Uber van to transport us and our bikes to the hotel we were staying at closer to the airport. By the time we got to the hotel, I felt pretty bad and vomited within 10 minutes of arriving. This started a very rough 24 hours for us. That night I was able to sleep maybe 1-2 hours, and I don't think Alyssa slept. I had the body aches and a terrible stomach, and Alyssa was visiting the bathroom every 30 minutes. It was a rough way to end our trip. It's unclear whether we got food poisoning or not (or whether it was the Negroni and colorful liqueurs).
+
+\
+
+![Surusa](photos/IMG_3359.jpg)...\
+![Surusa](photos/IMG_3363.jpg)...\
+![Surusa](photos/IMG_3361.jpg)...\
+![Surusa](photos/IMG_3365.jpg)...\
+![Surusa](photos/IMG_3368.jpg)...\
+
+# **9/28/24 - Milan to SF to Tahoe**
+
+We woke up at 3am after not sleeping and took a ride to the airport. We needed to check our large boxes, but the ITA checking stalls didn't open for another hour, so we lay on the floor, still feeling terrible. Eventually, we checked our bags after having to run around the check-in area, wrapping our bags in plastic and dropping them off in obscure, distant large luggage areas. The pushing of large boxes actually made me feel a little better. Being sick, we were very concerned about getting on an 11-hour flight, but we had no choice. The flight went relatively well, and we made it out of Italy. It was one of the longest flights I've been on, and for half the flight, I felt pretty terrible. But we made it out alive. We arrived in SF, got our car, and did the 4-hour drive back to Tahoe. We were happy to be home -- and see Uni. What a long and difficult 24 hours...
