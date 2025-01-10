@@ -7,5 +7,5 @@ format: html
 
 Below is a list of links to various projects and blog posts of mine.
 
--   [Euro Cycle Trip - September 2024](euro_cycle.qmd)
+-   [Euro Cycle Trip - September 2024](euro_cycle.html)
 
