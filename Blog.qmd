@@ -7,5 +7,6 @@ format: html
 
 ...
 
+-   [Grand Canyon Rim 2 Rim 2 Rim - November 2024](r2r2r.html)
 -   [Euro Cycle Trip - September 2024](euro_cycle.html)
-
+-   [Bathroom Renovation - August 2024](bath_reno.html)
