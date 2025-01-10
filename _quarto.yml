@@ -10,8 +10,8 @@ website:
         text: Home
       - text: Projects
         menu:  # Dropdown for multiple project pages
-          - text: Various
-            href: Various.qmd
+          - text: 'Euro Cycle 2024'
+            href: euro_cycle.qmd
 
 format:
   html:
