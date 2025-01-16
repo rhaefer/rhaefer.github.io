@@ -5,6 +5,6 @@ about:
   template: jolla
 ---
 
-[ I'm a data science consultant at [**Harospec Data**](http://www.harospecdata.com/), I run the [**Tahoe Sauna Company**](https://tahoesaunacompany.com), and try to do fun, creative, and adventurous things in my spare time. If you're interested in any of the things I work on, don't hesitate to [**contact me**](mailto:reidhaefer14@gmail.com). ]{style="font-size: 22px;"}
+[ I provide data science services at [**Harospec Data**](http://www.harospecdata.com/), I run the [**Tahoe Sauna Company**](https://tahoesaunacompany.com), and try to do fun, creative, and adventurous things in my spare time. If you're interested in any of the things I work on, don't hesitate to [**contact me**](mailto:reidhaefer14@gmail.com). ]{style="font-size: 22px;"}
 
 [ **Reid Haefer** ]{style="font-family: 'Arial', sans-serif; font-size: 22px;"}
