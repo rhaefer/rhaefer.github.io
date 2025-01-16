@@ -3,3 +3,85 @@ title: "Grand Canyon Run, Rim 2 Rim 2 Rim, November 2024"
 output: html
 ---
 
+```{r, warning=F, message=F, error=F, output=F, echo=F }
+
+library(sf)
+library(tidyverse)
+library(mapview)
+library(mapgl)
+
+
+
+routes<-st_read("photos/r2r2r/r2r2r.gpx", layer = "tracks")
+
+```
+
+```         
+```
+
+In November 2024, I traveled to the Grand Canyon with a group of friends from Tahoe, Bay Area, and Seattle. We completed the Rim 2 Rim 2 Rim trail run in one day starting from the South Rim of the Grand Canyon, running to the North Rim, and back to the South Rim. It was roughly 45 miles, 11k of elevation gain, and took us 14.5 hours.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+routes  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
+```
+...\
+
+![Surus](photos/r2r2r/20241110_051758.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3635.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_4393.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_4394.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_135320956.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_153547923.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3639.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3642.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_4437.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_5444.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_5449.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_4442.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_162734702.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_182630517.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_195132121.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3656.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3651.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_212340820.jpg) ...\
+
+![Surus](photos/r2r2r/20241110_144908.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3664.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3667.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_5463.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_223422315.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241111_000849533.jpg) ...\
+
+![Surus](photos/r2r2r/PXL_20241110_235027480.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_3670.jpg) ...\
+
+![Surus](photos/r2r2r/IMG_5474.jpg) ...\
+
+
