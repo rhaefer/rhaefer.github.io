@@ -103,6 +103,10 @@ Our last day in Sapporo before we made a change in plans and decided to go to ot
 We spent the day at Kiroro ski resort. Powder day. The resort has some fun short steep pitches that funnel out into flatter areas. We enjoyed a long lunch of sake beer and soft serve. After skiing we went straight to Yunohana onsen otaru. It was very similar to the public onsen in Sapporo but a little smaller and less people. But overall very similar. We bought the onsen and meal combo ticket and had soba noodles on the floor after wards. 
 
 <video width="600" controls>
+  <source src="photos/japan/otaru airbnb fixed.mp4" type="video/mp4">
+</video>
+
+<video width="600" controls>
   <source src="photos/japan/kiroro lift video.mp4" type="video/mp4">
 </video>
 
@@ -119,6 +123,12 @@ We spent the day at Kiroro ski resort. Powder day. The resort has some fun short
 Full on powder day at Sapporo Teine ski resort. Snowing all day with constant free refills. A true  japow day. So much fun with everyone. No lift lines. We rode a single lift all day that gifts you access to a diversity of fun terrain. Teine is a great small resort. It felt like a pretty special day. After skiing a full day we drove to La vista Furano hills hotel which was kind of a culture shock arriving. Lots of gringos/anjins/hakujins arriving and im the lobby. It’s a big nice hotel but also rather affordable. We immediately enjoyed the hotel onsen on the rooftop which looks directly at the ski resort. Onsen is small but very nice with multiple pools of different temperatures and a sauna. Seems like all saunas in Japan have tvs. This one plays the news which is interesting ( though hard to understand). You get two towels, one small one for using in the onsen and one for drying off. Once you shower (at the small individual washing station) you dry off and put on your pajama looking shorts and shirt. It’s an incredibly nice experience. Finished the day with a nice group dinner eating an assorted of sashimi, grilled meats.
 
 ![Surus](photos/japan/FullSizeRender.jpg) ...\
+
+<video width="600" controls>
+  <source src="photos/japan/teine pow fixed.mp4" type="video/mp4">
+</video>
+
+
 ![Surus](photos/japan/IMG_0091.jpg) ...\
 ![Surus](photos/japan/IMG_4447.jpg) ...\
 ![Surus](photos/japan/IMG_2980.jpg) ...\
@@ -128,9 +138,16 @@ Full on powder day at Sapporo Teine ski resort. Snowing all day with constant fr
 
 Furano dake backcountry ski day with Nick Zoe and Jared after dropping Marlon and Justine off at the asihakawa airport. Gorgeous sunny morning driving in the snowy farmland north of Furano. So beautiful. Unfortunately we couldn’t find any breakfast in the area at 8am so we ate at 711 and got snacks for the day. I ate a warm pork bun and h and cheese sandwich for breakfast. We started ascending around 945 with other hakujins around. The ascent was serene with sun and soft snow until we gained the ridge and got into the alpine. Quickly it became windy and incredibly cold. We ascendes through a steep section on wind affected snow to gain the false summit. Wind was howling and everyone was freezing but the views were amazing. Really big beautiful mountains in Daisetsuzan National Park. We descended away from the wind on a protected glade and had some great sunny pow turns. It hadn’t snowed a large amount in a while so we weren’t expecting pow turns but we got them! On the mountain we saw several snowy hares. At one point I was descending on my split board and was essentially chasing a snowy hare a few hundred feet in front of me. On the drive down the mountain I saw a fox and an elk. After skiing we went to fukiage outdoor hot spring. A natural hot spring in the woods right off the road. There were about a 5-10 other skiers and tourists enjoying the beautiful setting. Very lovely. I imagine there are many other hidden outdoor, natural hot spring pools around Japan. Talked to some other bc skiers from Boise. Headed back to Furano and ate delicious curry soup with chicken and vegetables. I didn’t know Japan specialized in curry but it was really good. An incredible and unexpected day.
 
-![Surus](photos/japan/IMG_0084.jpg) ...\
+
 ![Surus](photos/japan/IMG_4473.jpg) ...\
 ![Surus](photos/japan/IMG_4482.jpg) ...\
+![Surus](photos/japan/IMG_0084.jpg) ...\
+
+<video width="600" controls>
+  <source src="photos/japan/furanodake vid fixed.mp4" type="video/mp4">
+</video>
+
+
 ![Surus](photos/japan/IMG_4503.jpg) ...\
 ![Surus](photos/japan/IMG_0124.jpg) ...\
 
@@ -151,6 +168,7 @@ Rest day in Furano. Zoe and Nick took off and we hung with Jared for the day. Di
 
 Travel and rest day (from skiing). Slept in and journaled on the 9th floor lounge while drinking coffee and complimentary probiotic milk drink. Packed up our stuff and arranged with the front desk to have our bags shipped and stored at the airport for a week through black cat. Before dropping the car off we stopped at Eniwaonsen honako in Chitose for an hour or two. Great local onsen with a variety of pools inside and outside with a nice view of a natural treed area. Very peaceful looking out to the sunny ski and snow covered landscape. The highlight of this onsen was a sauna experience I had, which included a guide (employee) from the onsen. When I walked in the sauna I was a little confused because there were people in the sauna but the door was open. I just assumed that maybe they liked it a little cooler which was unfortunate. But I was very wrong. After 5 minutes a man came in and closed the door and provided cups with ice to everyone in the sauna. He then proceeded to douse the large collection of sauna rocks with water, which increased the feeling of heat immediately. There were about a dozen people in the room on two levels of benches with a tv of course. After thoroughly hitting the rocks with water the “guide” ( need to see if there is a Japanese word for this role) brought out a large fan and proceeded to fan the warm air in the room vigorously. This action increased the feeling of heat immensely. He cycles around the room waving the fan in front of every person multiple times. This created a feeling of heat I haven’t experienced before. Extremely hot. So hot that at one point my skin felt very uncomfortable, akin to burning skin. After several cycles of this he started chanting and everyone else followed him in this chant. I wish I knew what they were saying but I would assume it was a chant about withstanding the intense heat that was being created. At one point he looked at me and asked if I was ok - because I assume I looked like I might pass out. Eventually the chanting and fanning of heat stopped and I exited the sauna directly into the cold plunge. Intense but exciting cultural experience. After the onsen Alyssa and I sat in a chair that vibrated your legs for a bit and then ate some ice cream. I bought a sauna hat. Great onsen experience. Flew to Osaka, shuttle to terminal 1, train to Kyoto, taxi to hotel. Ready for bed.
 
+![Surus](photos/japan/onsen chitose.jpg) ...\
 ![Surus](photos/japan/IMG_4559.jpg) ...\
 ![Surus](photos/japan/IMG_4560.jpg) ...\
 ![Surus](photos/japan/IMG_4569.jpg) ...\
@@ -170,7 +188,6 @@ Day 1 in Kyoto. Spent the morning exploring the west side of the city at the bam
 ![Surus](photos/japan/kyoto neighborhood2.jpg) ...\
 
 ![Surus](photos/japan/IMG_3026.jpg) ...\
-![Surus](photos/japan/IMG_2989.jpg) ...\
 
 # **2/24/25 - Kyoto Day 2**
 
@@ -183,6 +200,9 @@ Explored kyoto. Fushimi inari shrine was very fun. Beautiful views of the city t
 ![Surus](photos/japan/IMG_3082.jpg) ...\
 ![Surus](photos/japan/IMG_4768.jpg) ...\
 
+<video width="600" controls>
+  <source src="photos/japan/conveyorbelt fixed.mp4" type="video/mp4">
+</video>
 
 # **2/25/25 - Kyoto to Tokyo**
 
@@ -204,7 +224,6 @@ Send off Alyssa. Tired and slightly hung over. First thing, metropolitan buildin
 ![Surus](photos/japan/books.jpg) ...\
 ![Surus](photos/japan/shrine.jpg) ...\
 ![Surus](photos/japan/capsule2.jpg) ...\
-![Surus](photos/japan/capsule1.jpg) ...\
 ![Surus](photos/japan/IMG_4825.jpg) ...\
 
 # **2/27/25 - Tokyo Day 2**
