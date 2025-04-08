@@ -10,13 +10,6 @@ library(tidyverse)
 library(mapview)
 library(mapgl)
 
-
-
-routes<-st_read("photos/r2r2r/r2r2r.gpx", layer = "tracks")
-
-```
-
-```         
 ```
 
 In February, I traveled to the Japan with a group of friends from Tahoe. We traveled to both Hokkaido and Honshu for an enjoyable combination of skiing and enjoying the culture that Japan has to offer.
@@ -46,19 +39,18 @@ Drove from Tahoe to our sf airport hotel the day before our flight. It was a dow
 
 # **2/14/25 - SF to Tokyo to Sapporo**
 
-Alyssa and I met Marlon and Justine at SFO and flew straight to Tokyo then caught a connecting flight to Sapporo. From Sapporo airport we caught a train to downtown Sapporo to end at our traditional Japanese inn (ryokan). A very long day of travel. Our ryokan is Nakamuraya Ryokan. It’s a large room with 4 futons on the floor and no shoes allowed. The ryokan had a modest onsen with a single pool. In the lobby there is a smoking room that is essentially a glass telephone booth.
+Alyssa and I met Marlon and Justine at SFO and flew straight to Tokyo then caught a connecting flight to Sapporo. From Sapporo airport we caught a train to downtown Sapporo to end at our traditional Japanese inn (ryokan). A very long day of travel. Our ryokan is Nakamuraya Ryokan. It’s a large room with 4 futons on the floor and no shoes allowed. The ryokan had a modest onsen with a single pool. In the lobby there is a smoking room that is essentially a glass telephone booth. 
+
+<video width="600" controls>
+  <source src="photos/japan/sapporo_arrival_fixed.mp4" type="video/mp4">
+</video>
 
 ![Surus](photos/japan/tokyo airport.jpg) ...\
 
-<video width="600" controls>
-  <source src="photos/japan/IMG_3068.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-{{< video photos/japan/IMG_3068.mp4 >}}
-
 ![Surus](photos/japan/tatami matt sapporo.jpg) ...\
 
+
+ 
 
 # **2/15/25 - Ski Sapporo Teine**
 
@@ -110,10 +102,14 @@ Our last day in Sapporo before we made a change in plans and decided to go to ot
 
 We spent the day at Kiroro ski resort. Powder day. The resort has some fun short steep pitches that funnel out into flatter areas. We enjoyed a long lunch of sake beer and soft serve. After skiing we went straight to Yunohana onsen otaru. It was very similar to the public onsen in Sapporo but a little smaller and less people. But overall very similar. We bought the onsen and meal combo ticket and had soba noodles on the floor after wards. 
 
+<video width="600" controls>
+  <source src="photos/japan/kiroro lift video.mp4" type="video/mp4">
+</video>
+
 ![Surus](photos/japan/IMG_0766.jpg) ...\
 ![Surus](photos/japan/kirorocar.jpg) ...\
 ![Surus](photos/japan/kiroro ramen.jpg) ...\
-![Surus](photos/jakiroro2.JPG.jpg) ...\
+![Surus](photos/japan/kiroro2.jpg) ...\
 ![Surus](photos/japan/IMG_4399.jpg) ...\
 ![Surus](photos/japan/IMG_4403.jpg) ...\
 
@@ -195,7 +191,7 @@ Shinkansen bullet train from Kyoto to Tokyo. Met up for a drink at Brian’s res
 ![Surus](photos/japan/ramen tokyo.jpg) ...\
 ![Surus](photos/japan/IMG_3208.jpg) ...\
 ![Surus](photos/japan/public park.jpg) ...\
-![Surus](photos/jaharajuku.jpg.jpg) ...\
+![Surus](photos/japan/harajuku.jpg) ...\
 ![Surus](photos/japan/IMG_4798.jpg) ...\
 ![Surus](photos/japan/shinjuku.jpg) ...\
 

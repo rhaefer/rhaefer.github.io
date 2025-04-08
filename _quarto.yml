@@ -22,4 +22,8 @@ format:
 
 editor: visual
 
+resources:
+  - photos/japan/*.mp4
+  - photos/japan/*.MOV
+
 
