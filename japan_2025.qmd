@@ -9,6 +9,7 @@ library(sf)
 library(tidyverse)
 library(mapview)
 library(mapgl)
+library(leaflet)
 
 ```
 
@@ -22,15 +23,6 @@ In February, I traveled to the Japan with a group of friends from Tahoe. We trav
 .leaflet-container {
     height: 800px !important;
 }
-
-
-#| echo: FALSE
-#| warning: FALSE
-#| error: FALSE
-#| message: FALSE
-
-
-routes  %>% mapview(lwd = 6,color = "red", map.types = c("OpenStreetMap","Esri.WorldImagery","OpenTopoMap","CartoDB.Positron"), basemaps = "OpenStreetMap")
 ```
 
 # **2/13/25 - Tahoe to SF**
@@ -50,8 +42,6 @@ Alyssa and I met Marlon and Justine at SFO and flew straight to Tokyo then caugh
 ![Surus](photos/japan/tatami matt sapporo.jpg) ...\
 
 
- 
-
 # **2/15/25 - Ski Sapporo Teine**
 
 Started the day with a traditional Japanese breakfast. 5-10 small dishes consisting of fish, soy products, pickled veggies and some other mystery food. After breakfast we picked up the rental van - which is the size of a hatchback in the USA and headed to ski Sapporo Teine. Blue bird day with epic views of the city and the Sea of Japan. Wind turbines off shore. In the trees and side country we found some great pockets of left over deep, soft, light snow. Delicious miso ramen in the lodge at lunch. Right after skiing we headed to Teine onsen Honoka, a bustling, enormous public onsen. One of the coolest experiences I’ve had. Although there are a ton of people it is still a relaxing, nice experience because people are generally quiet (though some do have muted conversations) and very respectful of the onsen rules and to others. Clearly a great culture of onsen that makes a bustling onsen still feel very enjoyable. I think hakujins have an image of an onsen being a serene place where they get peace and solidarity. But the local onsen where are actually very busy though somehow it still feels peaceful. Even in the sauna with the tv playing (low volume) it is peaceful. They have a way of creating a peaceful experience in a busy, Japanese way. Dozens or hundreds of men cycling through 5-10 different pools of different temperatures. An enormous dry sauna (I couldn’t see the heat source but it appeared to be wood fired with a huge compartment of rocks, it is truly dry though, no water on the rocks ) with 4 levels of benches and a tv playing anime. The small towel that you use in the sauna can be used to cover up your private parts and people put them on their heads to regulate heat like a sauna hat. You can just use a small wet towel instead of a sauna hat.The benches are covered towels and then you bring in a small seat pad that you rinse with water when you leave. Everyone is naked which was a new experience. We had to cover up Marlon’s tattoo because they are forbidden. After the sauna we dressed in our robe like shorts and top and headed to the restaurant inside the onsen building and had some refreshments. In the steam room sits a bowl of salt that users can take scoops of and rub all over your body. In the sauna multiple hourglass timers on the wall so multiple people can keep track of their time in the sauna. A water massage area where a two strong streams of water come down on your shoulders and back. Really fun experience. We headed back to Sapporo and ended up at a bustling izakaya food stall market under the train. The building shook every time a train would pass. Ate an assortment of food including nagiri fried chicken sushi. A full day of fun.
@@ -59,20 +49,64 @@ Started the day with a traditional Japanese breakfast. 5-10 small dishes consist
 ![Surus](photos/japan/IMG_0147.jpg) ...\
 ![Surus](photos/japan/trad breakfast sapporo.jpg) ...\
 ![Surus](photos/japan/driving sapporo.jpg) ...\
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+
+# Create a data frame
+teine <- data.frame(
+  name = "Teine Ski Resort",
+  lat = 43.07777354841879,
+  lon = 141.20711357412608
+)
+
+# Plot it with a marker
+leaflet(data = teine) %>%
+  addTiles() %>%  # adds the OpenStreetMap base layer
+  setView(lng = teine$lon, lat = teine$lat, zoom = 10) %>%  # adjust zoom here
+  addMarkers(lng = ~lon, lat = ~lat, popup = ~name)
+
+```
+...\
+
 ![Surus](photos/japan/IMG_2619.jpg) ...\
+...\
 ![Surus](photos/japan/ski teine day 1.jpg) ...\
+...\
 ![Surus](photos/japan/IMG_2621.jpg) ...\
 ![Surus](photos/japan/teine sauna.jpg) ...\
+...\
 ![Surus](photos/japan/train izakaya sapporo.jpg) ...\
 ![Surus](photos/japan/IMG_2755.jpg) ...\
-
-
-
-
 
 # **2/16/25 - Ski Shirabetsu**
 
 No snow forecasters so we headed south to do a ski tour at Shirabetsu and to meet Nick Zoe and Jared. On the way, stopped at 7-11 for breakfast and lunch snacks, consisting of various rice and fish based balls pouches and sandwiches. Very weird weather and temps when we arrived. The mountain is encased in fog and as we ascended realized that the snow had warmed significantly and was pretty mushy. Met our friends near the summit and enjoyed some soft and mushy turns. Got a beer at nearby rusutsu resort. Large touristy resort. Got back to the Sapporo and did a quick onsen before dinner. Headed to ramen alley and checked out all the different ramen options. Waited for awhile then found a tiny, 8 person vendor with one guy serving great ramen. After dinner we wondered the city. Discovered the underground network of heated pathways ( it’s cold outside). There are a ton of businesses that are only accessed in the underground paths. Eventually discovered the bustling “times square of Sapporo”. It’s a big bustling city, we just happen to be staying in a quiet location.
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+
+# Create a data frame
+Shiribetsu <- data.frame(
+  name = "Mount Shiribetsu",
+  lat = 42.753002,
+  lon = 140.910548
+)
+
+# Plot it with a marker
+leaflet(data = Shiribetsu) %>%
+  addTiles() %>%  # adds the OpenStreetMap base layer
+  setView(lng = Shiribetsu$lon, lat = Shiribetsu$lat, zoom = 10) %>%  # adjust zoom here
+  addMarkers(lng = ~lon, lat = ~lat, popup = ~name)
+
+```
+...\
 
 ![Surus](photos/japan/shirtabetsu1.jpg) ...\
 ![Surus](photos/japan/IMG_2646.jpg) ...\
@@ -92,15 +126,42 @@ Our last day in Sapporo before we made a change in plans and decided to go to ot
 
 ![Surus](photos/japan/IMG_0166.jpg) ...\
 ![Surus](photos/japan/macha lips.jpg) ...\
+...\
 ![Surus](photos/japan/matcha tasting sapporo.jpg) ...\
+...\
 ![Surus](photos/japan/IMG_4367.jpg) ...\
+...\
 ![Surus](photos/japan/otaru.jpg) ...\
+...\
 ![Surus](photos/japan/otaru2.jpg) ...\
 ![Surus](photos/japan/otaru dinner.jpg) ...\
 
 # **2/18/25 - Ski Kiroro**
 
-We spent the day at Kiroro ski resort. Powder day. The resort has some fun short steep pitches that funnel out into flatter areas. We enjoyed a long lunch of sake beer and soft serve. After skiing we went straight to Yunohana onsen otaru. It was very similar to the public onsen in Sapporo but a little smaller and less people. But overall very similar. We bought the onsen and meal combo ticket and had soba noodles on the floor after wards. 
+We spent the day at Kiroro ski resort. We were planning to explore the backcountry adjacent to the resort but when we arrived it was snowing much harder than expected so we decided to avoid the backcountry. Powder day. The resort has some fun short steep pitches that funnel out into flatter areas. We enjoyed a long lunch of sake beer and soft serve. After skiing we went straight to Yunohana onsen otaru. It was very similar to the public onsen in Sapporo but a little smaller and less people. But overall very similar. We bought the onsen and meal combo ticket and had soba noodles on the floor after wards. 
+
+...\
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+
+# Create a data frame
+kiroro <- data.frame(
+  name = "Kiroro Ski Resort",
+  lat = 43.068518,
+  lon = 140.988588
+)
+# Plot it with a marker
+leaflet(data = kiroro) %>%
+  addTiles() %>%  # adds the OpenStreetMap base layer
+  setView(lng = kiroro$lon, lat = kiroro$lat, zoom = 10) %>%  # adjust zoom here
+  addMarkers(lng = ~lon, lat = ~lat, popup = ~name)
+
+```
+
+...\
 
 <video width="600" controls>
   <source src="photos/japan/otaru airbnb fixed.mp4" type="video/mp4">
@@ -112,15 +173,18 @@ We spent the day at Kiroro ski resort. Powder day. The resort has some fun short
 
 ![Surus](photos/japan/IMG_0766.jpg) ...\
 ![Surus](photos/japan/kirorocar.jpg) ...\
+...\
 ![Surus](photos/japan/kiroro ramen.jpg) ...\
+...\
 ![Surus](photos/japan/kiroro2.jpg) ...\
+...\
 ![Surus](photos/japan/IMG_4399.jpg) ...\
 ![Surus](photos/japan/IMG_4403.jpg) ...\
 
  
 # **2/19/25 - Ski Sapporo Teine**
 
-Full on powder day at Sapporo Teine ski resort. Snowing all day with constant free refills. A true  japow day. So much fun with everyone. No lift lines. We rode a single lift all day that gifts you access to a diversity of fun terrain. Teine is a great small resort. It felt like a pretty special day. After skiing a full day we drove to La vista Furano hills hotel which was kind of a culture shock arriving. Lots of gringos/anjins/hakujins arriving and im the lobby. It’s a big nice hotel but also rather affordable. We immediately enjoyed the hotel onsen on the rooftop which looks directly at the ski resort. Onsen is small but very nice with multiple pools of different temperatures and a sauna. Seems like all saunas in Japan have tvs. This one plays the news which is interesting ( though hard to understand). You get two towels, one small one for using in the onsen and one for drying off. Once you shower (at the small individual washing station) you dry off and put on your pajama looking shorts and shirt. It’s an incredibly nice experience. Finished the day with a nice group dinner eating an assorted of sashimi, grilled meats.
+Full on powder day at Sapporo Teine ski resort. Snowing all day with constant free refills. A true  japow day. So much fun with everyone. No lift lines. We rode a single lift all day that gifts you access to a diversity of fun terrain. Teine is a great small resort. It felt like a pretty special day. After skiing a full day we drove to La vista Furano hills hotel which was kind of a culture shock arriving. Lots of gringos/anjins/hakujins arriving and in the lobby. It’s a big nice hotel but also rather affordable. We immediately enjoyed the hotel onsen on the rooftop which looks directly at the ski resort. Onsen is small but very nice with multiple pools of different temperatures and a sauna. Seems like all saunas in Japan have tvs. This one plays the news which is interesting ( though hard to understand). You get two towels, one small one for using in the onsen and one for drying off. Once you shower (at the small individual washing station) you dry off and put on your pajama looking shorts and shirt. It’s an incredibly nice experience. Finished the day with a nice group dinner eating an assorted of sashimi, grilled meats.
 
 ![Surus](photos/japan/FullSizeRender.jpg) ...\
 
@@ -134,9 +198,33 @@ Full on powder day at Sapporo Teine ski resort. Snowing all day with constant fr
 ![Surus](photos/japan/IMG_2980.jpg) ...\
 
 
-# **2/20/25 - Ski Furanodake**
+# **2/20/25 - Backcountry Ski Furanodake**
 
-Furano dake backcountry ski day with Nick Zoe and Jared after dropping Marlon and Justine off at the asihakawa airport. Gorgeous sunny morning driving in the snowy farmland north of Furano. So beautiful. Unfortunately we couldn’t find any breakfast in the area at 8am so we ate at 711 and got snacks for the day. I ate a warm pork bun and h and cheese sandwich for breakfast. We started ascending around 945 with other hakujins around. The ascent was serene with sun and soft snow until we gained the ridge and got into the alpine. Quickly it became windy and incredibly cold. We ascendes through a steep section on wind affected snow to gain the false summit. Wind was howling and everyone was freezing but the views were amazing. Really big beautiful mountains in Daisetsuzan National Park. We descended away from the wind on a protected glade and had some great sunny pow turns. It hadn’t snowed a large amount in a while so we weren’t expecting pow turns but we got them! On the mountain we saw several snowy hares. At one point I was descending on my split board and was essentially chasing a snowy hare a few hundred feet in front of me. On the drive down the mountain I saw a fox and an elk. After skiing we went to fukiage outdoor hot spring. A natural hot spring in the woods right off the road. There were about a 5-10 other skiers and tourists enjoying the beautiful setting. Very lovely. I imagine there are many other hidden outdoor, natural hot spring pools around Japan. Talked to some other bc skiers from Boise. Headed back to Furano and ate delicious curry soup with chicken and vegetables. I didn’t know Japan specialized in curry but it was really good. An incredible and unexpected day.
+Furano dake backcountry ski day with Nick Zoe and Jared after dropping Marlon and Justine off at the asihakawa airport. Gorgeous sunny morning driving in the snowy farmland north of Furano. So beautiful. Unfortunately we couldn’t find any breakfast in the area at 8am so we ate at 711 and got snacks for the day. I ate a warm pork bun and ham and cheese sandwich for breakfast. We started ascending around 945 with other hakujins around. The ascent was serene with sun and soft snow until we gained the ridge and got into the alpine. Quickly it became windy and incredibly cold. We ascended through a steep section on wind affected snow to gain the false summit. Wind was howling and everyone was freezing but the views were amazing. Really big beautiful mountains in Daisetsuzan National Park. We descended away from the wind on a protected glade and had some great sunny pow turns. It hadn’t snowed a large amount in a while so we weren’t expecting pow turns but we got them! On the mountain we saw several snowy hares. At one point I was descending on my split board and was essentially chasing a snowy hare a few hundred feet in front of me. On the drive down the mountain I saw a fox and an elk. After skiing we went to fukiage outdoor hot spring. A natural hot spring in the woods right off the road. There were about a 5-10 other skiers and tourists enjoying the beautiful setting. Very lovely. I imagine there are many other hidden outdoor, natural hot spring pools around Japan. Talked to some other bc skiers from Boise. Headed back to Furano and ate delicious curry soup with chicken and vegetables. I didn’t know Japan specialized in curry but it was really good. An incredible and unexpected day.
+
+...\
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+
+# Create a data frame
+Furanodake <- data.frame(
+  name = "Furanodake",
+  lat = 43.414262,
+  lon = 142.636911
+)
+
+# Plot it with a marker
+leaflet(data = Furanodake) %>%
+  addTiles() %>%  # adds the OpenStreetMap base layer
+  setView(lng = Furanodake$lon, lat = Furanodake$lat, zoom = 10) %>%  # adjust zoom here
+  addMarkers(lng = ~lon, lat = ~lat, popup = ~name)
+
+```
+
+...\
 
 
 ![Surus](photos/japan/IMG_4473.jpg) ...\
@@ -152,14 +240,37 @@ Furano dake backcountry ski day with Nick Zoe and Jared after dropping Marlon an
 ![Surus](photos/japan/IMG_0124.jpg) ...\
 
 
-
-
 # **2/21/25 - Furano Rest Day**
 
-Rest day in Furano. Zoe and Nick took off and we hung with Jared for the day. Did a few laps at Furano ski resort in marginal snow conditions but really fun looking resort and would love to come back on a pow day. Tried some local bakeries which are great, ate some lavender soft serve, enjoyed the onsen and finished the day with at a local spot with good cheap soba noodles.
+Rest day in Furano. Zoe and Nick took off and we hung with Jared for the day. Did a few laps at Furano ski resort in marginal snow conditions but really fun looking resort and would love to come back on a pow day. Tried some local bakeries which are great, ate some lavender soft serve, enjoyed the hotel onsen and finished the day with at a local spot with good cheap soba noodles.
 
 ![Surus](photos/japan/IMG_2776.jpg) ...\
 ![Surus](photos/japan/IMG_4518.jpg) ...\
+
+...\
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| error: FALSE
+#| message: FALSE
+
+# Create a data frame
+Furano <- data.frame(
+  name = "Furano Ski Reort",
+  lat = 43.323476,
+  lon = 142.363547
+)
+
+# Plot it with a marker
+leaflet(data = Furano) %>%
+  addTiles() %>%  # adds the OpenStreetMap base layer
+  setView(lng = Furano$lon, lat = Furano$lat, zoom = 10) %>%  # adjust zoom here
+  addMarkers(lng = ~lon, lat = ~lat, popup = ~name)
+
+```
+
+...\
+
 ![Surus](photos/japan/IMG_2891.jpg) ...\
 ![Surus](photos/japan/IMG_4537.jpg) ...\
 
@@ -180,6 +291,7 @@ Day 1 in Kyoto. Spent the morning exploring the west side of the city at the bam
 
 ![Surus](photos/japan/IMG_4582.jpg) ...\
 ![Surus](photos/japan/kyoto train.jpg) ...\
+...\
 ![Surus](photos/japan/IMG_4602.jpg) ...\
 ![Surus](photos/japan/IMG_2947.jpg) ...\
 ![Surus](photos/japan/IMG_4644.jpg) ...\
@@ -195,6 +307,7 @@ Explored kyoto. Fushimi inari shrine was very fun. Beautiful views of the city t
 
 ![Surus](photos/japan/IMG_3036.jpg) ...\
 ![Surus](photos/japan/enjoy silence.jpg) ...\
+...\
 ![Surus](photos/japan/IMG_3077.jpg) ...\
 ![Surus](photos/japan/IMG_3123.jpg) ...\
 ![Surus](photos/japan/IMG_3082.jpg) ...\
@@ -206,9 +319,10 @@ Explored kyoto. Fushimi inari shrine was very fun. Beautiful views of the city t
 
 # **2/25/25 - Kyoto to Tokyo**
 
-Shinkansen bullet train from Kyoto to Tokyo. Met up for a drink at Brian’s restaurant in shibuya. Walked cat Ave through harajuku. Met up with Marlon for yakatori in omoide yokocho. Wondered shinjuku for the evening.
+Shinkansen bullet train from Kyoto to Tokyo. Met up for a drink at Brian’s restaurant in shibuya. Walked Cat Ave through harajuku. Met up with Marlon for yakatori in omoide yokocho. Wondered shinjuku for the evening.
 
 ![Surus](photos/japan/ramen tokyo.jpg) ...\
+...\
 ![Surus](photos/japan/IMG_3208.jpg) ...\
 ![Surus](photos/japan/public park.jpg) ...\
 ![Surus](photos/japan/harajuku.jpg) ...\
@@ -217,18 +331,21 @@ Shinkansen bullet train from Kyoto to Tokyo. Met up for a drink at Brian’s res
 
 # **2/26/25 - Tokyo Day 1**
 
-Send off Alyssa. Tired and slightly hung over. First thing, metropolitan building 45 floor observatory for panaramic view of Tokyo. For such a big city, air quality seems surprisingly good. A few large parks/green spaces but seems to be a lack of parks or public spaces for people to relax in public. Asakusa neighborhood and sensuji shrine. The whole neighborhood was destroyed during the infamous Tokyo Great Air raids where 10k people were killed. Jimbocho neighborhood and boom street with a delicious bahn mi. A night out with Paul Jenna and Marlon in golden gai. Eating late night tempera noodles. Checked into the capsule hotel (Anshin oyoda shinjuku) and took a sauna. 4 person sauna. Incredible hot like all Japan saunas, around 200 degrees.
+Send off Alyssa in the morning. Tired and slightly hung over. First thing, metropolitan building 45 floor observatory for panaramic view of Tokyo. For such a big city, air quality seems surprisingly good. A few large parks/green spaces but seems to be a lack of parks or public spaces for people to relax in public. Went Asakusa neighborhood and Sensuji shrine. The whole neighborhood was destroyed during the infamous Tokyo Great Air raids where 10k people were killed. Then to Jimbocho neighborhood and boom street with a delicious bahn mi. Checked into the capsule hotel (Anshin oyoda shinjuku) and took a sauna. 4 person sauna. Incredible hot like all Japan saunas, around 200 degrees. A night out with Paul Jenna and Marlon in golden gai. Eating late night tempera noodles. 
 
 
 ![Surus](photos/japan/IMG_4801.jpg) ...\
 ![Surus](photos/japan/books.jpg) ...\
+...\
 ![Surus](photos/japan/shrine.jpg) ...\
+...\
 ![Surus](photos/japan/capsule2.jpg) ...\
+...\
 ![Surus](photos/japan/IMG_4825.jpg) ...\
 
 # **2/27/25 - Tokyo Day 2**
 
-Day with Marlon. Tired and hung over from late night with Paul and Jenna TeamLab planets in the am. Really fun interactive art and technology space. Went to Thermae yu onsen in shinjuku. Brief “aroma time” where a guy comes in and throws water and aroma on rocks and fans the room briefly. Carbonated pool (1000 ppm) which supposedly provides health benefits. Very relaxing lay down pool were you are laying on the ground in about 6 inches of hot water. Half your body is submerged the other half exposed to air. Gives a sensory deprivation type feel. This one was more expensive at 20$.  Explores the quieter “suburb” of shimokitazawa. Got keema curry vegetables right off the train. Vintage, expensive thrift stores literally everywhere selling 1990s American clothing like old college sweatshirts and 90s cultural Tshirts for surprisingly high prices. Found a very nice shared use path through lovely quiet neighborhoods. This seems like a great place to live. Quiet with nice architecture. Gives off a modern, traditional Japanese feel. Great matcha ice cream. Found a traditional style restaurant on the 8th floor at night to eat a meal of small mixed plates, sashimi, udon, tempura, rice, etc.
+Day with Marlon. Tired and hung over from late night with Paul and Jenna. TeamLab planets in the am. Really fun interactive art and technology space. Got keema curry vegetables right off the train. Vintage, expensive thrift stores literally everywhere selling 1990s American clothing like old college sweatshirts and 90s cultural Tshirts for surprisingly high prices. Found a very nice shared use path through lovely quiet neighborhoods. This seems like a great place to live. Quiet with nice architecture. Gives off a modern, traditional Japanese feel. Great matcha ice cream. Went to Thermae yu onsen in shinjuku. Brief “aroma time” where a guy comes in and throws water and aroma on rocks and fans the room briefly. Carbonated pool (1000 ppm) which supposedly provides health benefits. Very relaxing lay down pool were you are laying on the ground in about 6 inches of hot water. Half your body is submerged the other half exposed to air. Gives a sensory deprivation type feel. This one was more expensive at 20$.  Explores the quieter “suburb” of shimokitazawa. Found a traditional style restaurant on the 8th floor at night to eat a meal of small mixed plates, sashimi, udon, tempura, rice, etc.
 
 ![Surus](photos/japan/IMG_4828.jpg) ...\
 ![Surus](photos/japan/IMG_4830.jpg) ...\
@@ -239,7 +356,7 @@ Day with Marlon. Tired and hung over from late night with Paul and Jenna TeamLab
 
 # **2/28/25 - Tokyo Day 3**
 
-Eating complimentary Keema curry and rice breakfast in the capsule hotel lounge and journaling with coffee. Seems like a lot of people are coughing. Kinda feels like an infermery. Do people cough a lot in Japan in general or is it just this hotel? All saunas in Japan have a large wood or ceramic plate hanging above the heater. It seems like it’s to protect the ceiling from heat/steam and or to distribute heat steam throughout the room.
+Eating complimentary Keema curry and rice breakfast in the capsule hotel lounge and journaling with coffee. Spent most of the day at the national history musesum exploring historic ceramics, artifact, and architecture, coupled with some great macha and snacks. Snuck in a quick sauna at the capsule hotel onsen. All saunas in Japan have a large wood or ceramic plate hanging above the heater. It seems like it’s to protect the ceiling from heat/steam and or to distribute heat steam throughout the room. Spent the evening in Shibuya which we liked better than Shinjuku. Went upstairs in an izakaya and asked for a recommendation and ended up getting rather raw chicken slices; I guess it's a delicacy. For dinner we went to a conveyor belt sushi spot in a basement. We ate our hearts at with sushi for 30$ total. We ended the evening at one of many vinyl bars in Shinbuya where a trendy woman DJ spun soul records in a fancy bar.
 
 ![Surus](photos/japan/IMG_4856.jpg) ...\
 ![Surus](photos/japan/IMG_4864.jpg) ...\
