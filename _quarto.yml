@@ -8,10 +8,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: Projects
-        menu:  # Dropdown for multiple project pages
-          - text: 'Personal Blog'
-            href: Blog.qmd
+      - href: Blog.qmd
+        text: Personal Blog
 
 format:
   html:
